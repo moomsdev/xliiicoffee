@@ -1,0 +1,60 @@
+.cf-complex__inserter-menu{
+    z-index: 9999 !important;
+}
+.cf-association__bar{
+    z-index: 0 !important;
+}
+
+.cf-complex__group{
+    .cf-complex__group-body{
+        .cf-field.cf-complex.cf-complex--tabbed-horizontal{
+            .cf-field__body{
+                .cf-complex__tabs{
+                    z-index: 0;
+                }
+            }
+        }
+    }
+}
+
+.subsubsub{
+    position: relative;
+    z-index: 9999;
+}
+
+.cf-complex__inserter-menu{
+    .cf-complex__inserter-item{
+        position: relative;
+
+        &:after {
+            content: "";
+            width: fit-content;
+            min-width: 50rem;
+            height: 100%;
+            min-height: 20rem;
+            position: fixed;
+            top: 0;
+            left: 100%;
+            background-repeat: no-repeat;
+            background-size: contain;
+        }
+
+        &:hover{
+
+            &:nth-child(1):after{
+                background-image: url("~@images/blocks/slider-block.png");
+            }
+
+            &:nth-child(2):after{
+                background-image: url("~@images/blocks/philosophy-block.png");
+            }
+            //&:nth-child(3):after{
+            //    background-image: url("~@images/text-image-block.png");
+            //}
+            //&:nth-child(4):after{
+            //    background-image: url("~@images/text-slider-block.png");
+            //}
+        }
+
+    }
+}

@@ -1,0 +1,158 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: MOOMS.DEV\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-06-28 13:43+0000\n"
+"PO-Revision-Date: 2023-03-11 18:50+0000\n"
+"Last-Translator: \n"
+"Language-Team: Vietnamese\n"
+"Language: vi\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.6.4; wp-6.1.1\n"
+"X-Domain: gaumap"
+
+#: setup/post-types/custom-field-content.php:31
+msgid "Add images:"
+msgstr ""
+
+#: setup/post-types/custom-field-content.php:115
+msgid "Add post related:"
+msgstr ""
+
+#: setup/theme-options.php:46
+msgid "Add slider:"
+msgstr ""
+
+#: setup/theme-options.php:25
+msgid "Add Social media:"
+msgstr ""
+
+#: footer.php:30 setup/theme-options.php:22
+msgid "Address"
+msgstr ""
+
+#: setup/theme-options.php:17
+msgid "Branding"
+msgstr ""
+
+#: setup/post-types/custom-field-content.php:25
+msgid "Choose blocks:"
+msgstr ""
+
+#: setup/post-types/custom-field-content.php:239
+msgid "Choose blogs:"
+msgstr ""
+
+#: setup/post-types/custom-field-content.php:195
+msgid "Choose post:"
+msgstr ""
+
+#: setup/post-types/custom-field-content.php:216
+msgid "Choose projects:"
+msgstr ""
+
+#: setup/post-types/custom-field-content.php:258
+#: setup/post-types/custom-field-content.php:272
+msgid "Choose services:"
+msgstr ""
+
+#: setup/theme-options.php:21
+msgid "Contact"
+msgstr ""
+
+#: setup/post-types/custom-field-content.php:20
+msgid "Content"
+msgstr ""
+
+#: setup/gutenberg_blocks.php:6 setup/blocks/sample.php:6
+msgid "Demo Block"
+msgstr ""
+
+#: header.php:39
+msgid "Discover"
+msgstr ""
+
+#: setup/theme-options.php:23
+msgid "Email"
+msgstr ""
+
+#: footer.php:19
+msgid "Get in touch"
+msgstr ""
+
+#: setup/theme-options.php:39 setup/theme-options.php:42
+msgid "Header"
+msgstr ""
+
+#: setup/theme-options.php:40
+msgid "header"
+msgstr ""
+
+#: setup/theme-options.php:45 setup/theme-options.php:49
+#: setup/post-types/custom-field-content.php:40
+msgid "Image"
+msgstr ""
+
+#: setup/post-types/custom-field-content.php:30
+msgid "Image Blocks"
+msgstr ""
+
+#: footer.php:17
+msgid "Let's start something <br> completely new together!"
+msgstr ""
+
+#: setup/theme-options.php:18
+msgid "Logo"
+msgstr ""
+
+#: setup/theme-options.php:19
+msgid "Logo fixed"
+msgstr ""
+
+#: footer.php:26 setup/theme-options.php:24
+msgid "Mobile Phone"
+msgstr ""
+
+#. Name of the theme
+msgid "mooms_dev_v1/theme"
+msgstr ""
+
+#: setup/users/auth.php:68 setup/users/auth.php:107
+msgid "Mã nhận dạng không chính xác"
+msgstr ""
+
+#: setup/theme-options.php:32
+msgid "Scripts"
+msgstr ""
+
+#: setup/post-types/custom-field-content.php:34
+msgid "Size"
+msgstr ""
+
+#: footer.php:34
+msgid "Social media"
+msgstr ""
+
+#: setup/theme-options.php:29 setup/theme-options.php:50
+msgid "Text"
+msgstr ""
+
+#: setup/theme-options.php:28
+msgid "Title"
+msgstr ""
+
+#: setup/users/auth.php:27
+msgid "Token mismatch!"
+msgstr ""
+
+#: part_templates/breadcrumb.php:11
+msgid "Trang chủ"
+msgstr ""
+
+#: setup/users/auth.php:31
+msgid "Your username or password does not match, please try again!"
+msgstr ""

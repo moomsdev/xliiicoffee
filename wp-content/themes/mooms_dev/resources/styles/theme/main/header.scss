@@ -1,0 +1,183 @@
+
+header#header {
+    padding: 7rem 0 4.5rem;
+
+    .row-menu {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+
+        .logo-image {
+            width: 100%;
+            margin-bottom: 3.5rem;
+
+            .main-logo img {
+                max-width: 38rem;
+            }
+
+            .fixed-logo {
+                max-width: 6.5rem;
+                display: none;
+            }
+
+            &.fixed {
+
+                .fixed-logo {
+                    display: block;
+                }
+            }
+        }
+
+        .main-menu {
+
+            .pc-menu {
+
+                @include mediaMaxWidth($sm) {
+                    display: none;
+                }
+
+                ul.nav-menu {
+                    display: inline-flex;
+                    column-gap: 7.5rem;
+
+                    li {
+                        a {
+                            position: relative;
+                            display: revert;
+                            font-size: 1.6rem;
+                            line-height: 1.2em;
+                            font-weight: bold;
+                            color: $primary-color;
+                            text-transform: uppercase;
+                            transition: 0.5s;
+
+                            &:after {
+                                position: absolute;
+                                content: "";
+                                width: 100%;
+                                height: .1rem;
+                                left: 0;
+                                bottom: -.2rem;
+                                background: $primary-color;
+                                transition: transform 0.5s;
+                                transform: scaleX(0);
+                                transform-origin: right;
+                            }
+
+                            &:hover:after {
+                                transform: scaleX(1);
+                                transform-origin: left;
+                            }
+                        }
+
+                        &.menu-item-has-children {
+
+                            ul.dropdown {
+                                padding: 2rem 1.5rem;
+                                display: none;
+                                background: #ffffff;
+                                li {
+                                   padding: 1rem;
+                                }
+                            }
+
+                            &:hover {
+                                ul.dropdown {
+
+                                    position: absolute;
+                                    display: block;
+                                    z-index: 9999;
+                                }
+                            }
+                        }
+
+                    }
+
+                    @include mediaMaxWidth($lg) {
+
+                        li a {
+                            font-size: 1.5rem;
+                        }
+
+                    }
+
+                    @include mediaMaxWidth($md) {
+                        column-gap: 5rem;
+
+                    }
+
+                    @include mediaMaxWidth($sm) {
+                        column-gap: 3.5rem;
+
+                    }
+
+                }
+            }
+
+            .mb-menu {
+                display: none;
+
+                @include mediaMaxWidth($sm) {
+                    display: block;
+                }
+
+                .__bar_menu{
+                    color: $primary-color;
+                    .mburger{
+                        outline: none !important;
+                    }
+                }
+            }
+        }
+
+        .right-menu {
+            ul {
+                display: flex;
+                column-gap: 3rem;
+                li {
+                    ul.language-switcher {
+                        li {
+                            position: relative;
+                            overflow: hidden;
+                            height: 0;
+                            visibility: hidden;
+                            transition: all 0.5s ease;
+                            a {
+                                font-weight: bold;
+                                color: $primary-color;
+                            }
+
+                            &.current-lang {
+                                transition: all 0.5s ease;
+                                height: 100%;
+                                visibility: visible;
+                            }
+                        }
+
+                        &:hover {
+                            li {
+                                height: 100%;
+                                visibility: visible;
+                                &.current-lang {
+                                    height: 0;
+                                    visibility: hidden;
+                                }
+                                //&:not(.current-lang) {
+                                //    position: absolute;
+                                //    width: 100%;
+                                //    height: 100%;
+                                //    top: 100%;
+                                //    left: 0;
+                                //}
+                            }
+                        }
+                    }
+
+                    img {
+                        max-width: 1.5rem;
+                    }
+                }
+            }
+        }
+    }
+}

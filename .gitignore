@@ -1,0 +1,25 @@
+wp-content/uploads/
+wp-content/cache/
+wp-content/plugins/hello.php
+wp-content/wflogs# ignore node dependency directories
+
+*.log
+*.sql
+*.sqlite
+.history
+.htaccess
+
+wp-config.php
+wp-config-local.php
+.idea
+.DS_Store
+
+wp-content/wflogs
+wp-salt.php
+wp-content/breeze-config
+wp-content/mc_data
+wp-content/plugins/malcare-security
+env.php
+
+wp-content/plugins/akismet/
+.user.ini

@@ -1,0 +1,123 @@
+html {
+  font-size: 62.5%;
+}
+
+body.login {
+  font: normal normal 400 1.6rem Montserrat;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  background: white;
+
+  .language-switcher {
+    width: 100%;
+
+    label {
+      display: none;
+    }
+  }
+
+  #login {
+    margin: 0 auto;
+    padding: 20px !important;
+    width: 470px;
+
+    p,
+    a {
+      color: black;
+    }
+
+    h1 a {
+      width: 100%;
+      max-width: 38rem;
+      background-image: url("~@images/login/xliiicoffee.png");
+      background-size: contain;
+    }
+
+    form#loginform {
+      padding: 0;
+      background: transparent;
+      border: none;
+      box-shadow: none;
+
+      p label,
+      .user-pass-wrap label {
+        margin-bottom: 1rem;
+        font: normal normal 500 1.6rem Montserrat !important;
+        color: black;
+      }
+
+      input#user_login,
+      input#user_pass {
+        margin: 0 0 2rem 0;
+        padding: .5rem 1rem;
+        background: white;
+        color: #424242;
+        border-radius: 2.5rem;
+        border: 1px solid rgba(0, 0, 0, 0.3);
+
+        &:focus {
+          outline: none;
+          box-shadow: none;
+        }
+      }
+
+      button.wp-hide-pw {
+        color: black;
+      }
+
+      p.forgetmenot {
+        margin-bottom: 1.5rem;
+        margin-left: 1rem;
+      }
+
+      p.submit input#wp-submit {
+        padding: .5rem 3rem;
+        width: 100%;
+        height: auto;
+        font-size: 1.6rem;
+        font-weight: 800;
+        background: black;
+        color: white;
+        border: 1px solid white;
+        border-radius: 2.4rem;
+        text-transform: uppercase;
+        transition: all 0.5s linear;
+        opacity: 1;
+
+        &:hover {
+          opacity: .5;
+          border: 1px solid #00bfa5;
+        }
+
+        &:focus {
+          border: none;
+          outline: none;
+          box-shadow: none;
+        }
+      }
+    }
+
+    p#nav a,
+    p#backtoblog a,
+    .privacy-policy-page-link a {
+      color: black;
+      font-size: 1.6rem;
+      transition: all 0.25s linear;
+    }
+
+    p#nav a:hover,
+    p#backtoblog a:hover,
+    .privacy-policy-page-link a:hover {
+      color: #424242;
+    }
+
+  }
+
+  .button.wp-hide-pw:focus {
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+  }
+}

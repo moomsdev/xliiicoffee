@@ -1,0 +1,109 @@
+@mixin mediaMinWidth($min-width) {
+    @media only screen and (min-width: $min-width) {
+        @content;
+    }
+}
+
+@mixin mediaMaxWidth($max-width) {
+    @media only screen and (max-width: $max-width) {
+        @content;
+    }
+}
+
+@mixin  mediaMMWidth ($max-width, $min-width) {
+    @media only screen and (max-width: $max-width) and (min-width: $min-width) {
+        @content;
+    }
+}
+
+@mixin ulReset {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+
+@mixin fontAwesome {
+    position: absolute;
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+}
+
+@mixin limitLine($number) {
+    overflow: hidden;
+    -webkit-line-clamp: $number;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+}
+
+@mixin postionAbsolute($top, $right, $bottom, $left) {
+    position: absolute;
+    top: $top;
+    right: $right;
+    bottom: $bottom;
+    left: $left;
+}
+
+@mixin transition {
+    transition: all 0.25s ease-in-out 0s;
+    -moz-transition: all 0.25s ease-in-out 0s;
+    -o-transition: all 0.25s ease-in-out 0s;
+    -webkit-transition: all 0.25s ease-in-out 0s;
+    -ms-transition: all 0.25s ease-in-out 0s;
+}
+
+@mixin transitionImg {
+    transition-duration: 0.8s;
+    -webkit-transition-duration: 0.8s;
+    -moz-transition-duration: 0.8s;
+    -o-transition-duration: 0.8s;
+    -ms-transition-duration: 0.8s;
+}
+
+@mixin scale($number) {
+    transform: scale($number);
+    -webkit-transform: scale($number);
+    -moz-transform: scale($number);
+    -o-transform: scale($number);
+    -ms-transform: scale($number);
+}
+
+@mixin boxShadow {
+    box-shadow: 0 0 11px 5px rgba(0, 0, 0, 0.03);
+    -webkit-box-shadow: 0 0 11px 5px rgba(0, 0, 0, 0.03);
+    -moz-box-shadow: 0 0 11px 5px rgba(0, 0, 0, 0.03);
+    -o-box-shadow: 0 0 11px 5px rgba(0, 0, 0, 0.03);
+}
+
+@mixin boxShadowHover {
+    box-shadow: 0 0 20px 10px rgba(198, 198, 198, 0.50);
+    -o-box-shadow: 0 0 20px 10px rgba(198, 198, 198, 0.50);
+    -moz-box-shadow: 0 0 20px 10px rgba(198, 198, 198, 0.50);
+    -webkit-box-shadow: 0 0 20px 10px rgba(198, 198, 198, 0.50);
+}
+
+@mixin breakText {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    -ms-word-break: break-all;
+    word-break: break-all;
+    word-break: break-word;
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+}
+
+@mixin delay($rule, $number, $value) {
+    @for $i from 1 to ($number + 1) {
+        &:nth-child(#{$i}) {
+            -webkit-#{$rule}-delay: (#{$i*$value});
+            #{$rule}-delay: (#{$i*$value});
+        }
+    }
+}
