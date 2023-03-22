@@ -23,9 +23,26 @@ while (have_posts()) : the_post();
             'link_custom_content_slider_block'  => $block['link_custom_content_slider_block'],
             'cpt_content_slider_block'  => $block['cpt_content_slider_block'],
             'post_display_content_slider_block' => $block['post_display_content_slider_block'],
-            'post_object_content_slider_block'  => $block['post_object_content_slider_block'],
-            // ''    => $block[''],
+            'coffee_guide_object_content_slider_block'  => $block['coffee_guide_object_content_slider_block'],
+            'collaboration_object_content_slider_block'  => $block['collaboration_object_content_slider_block'],
+            'location_object_content_slider_block'  => $block['location_object_content_slider_block'],
+            'work_with_us_object_content_slider_block'  => $block['work_with_us_object_content_slider_block'],
+            'product_object_content_slider_block'  => $block['product_object_content_slider_block'],
+            'journal_object_content_slider_block'  => $block['journal_object_content_slider_block'],
 
+
+            // Featured post block
+            'title_featured_post_block'    => $block['title_featured_post_block'],
+            'type_read_more_link_featured_post_block'    => $block['type_read_more_link_featured_post_block'],
+            'link_custom_featured_post_block'    => $block['link_custom_featured_post_block'],
+            'cpt_featured_post_block'    => $block['cpt_featured_post_block'],
+            'post_display_featured_post_block'    => $block['post_display_featured_post_block'],
+            'coffee_guide_object_featured_post_block'    => $block['coffee_guide_object_featured_post_block'],
+            'collaboration_object_featured_post_block'    => $block['collaboration_object_featured_post_block'],
+            'location_object_featured_post_block'    => $block['location_object_featured_post_block'],
+            'work_with_us_object_featured_post_block'    => $block['work_with_us_object_featured_post_block'],
+            'product_object_featured_post_block'    => $block['product_object_featured_post_block'],
+            'journal_object_featured_post_block'    => $block['journal_object_featured_post_block'],
 
         ];
         switch ($block['_type']) {
@@ -44,6 +61,12 @@ while (have_posts()) : the_post();
             case 'content_slider_blocks':
                 get_template_part('template-parts/block', 'content-slider', $args);
                 break;
+
+            // Featured post block
+            case 'featured_post_blocks':
+                get_template_part('template-parts/block', 'featured-post', $args);
+                break;
+
         }
     }
 endwhile;

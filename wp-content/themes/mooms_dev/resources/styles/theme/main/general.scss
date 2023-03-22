@@ -41,7 +41,8 @@ h4::selection,
 h5::selection,
 h6::selection,
 a::selection,
-p::selection {
+p::selection,
+img::selection {
     color: #fff;
     background-color: #000;
 }
@@ -76,6 +77,7 @@ img{
     max-width: 100%;
     width: 100%;
     transition: all .25s linear;
+    cursor: pointer;
 }
 
 img,
@@ -95,6 +97,9 @@ a {
     color: $primary-color;
     line-height: 1.5em;
     text-decoration: none;
+    &:hover {
+        color: #000;
+    }
 }
 
 a,

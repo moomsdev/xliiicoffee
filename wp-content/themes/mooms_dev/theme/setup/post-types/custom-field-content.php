@@ -203,7 +203,7 @@ add_action('carbon_fields_register_fields', function () {
                                   ['type' => 'post', 'post_type' => 'product',],
                               ]),
 
-                         Field::make('association', 'journal_guide_object_content_slider_block', __('Choose post:', 'gaumap'))
+                         Field::make('association', 'journal_object_content_slider_block', __('Choose post:', 'gaumap'))
                               ->set_width(80)
                               ->set_min(4)
                               ->set_max(8)
@@ -257,7 +257,7 @@ add_action('carbon_fields_register_fields', function () {
                                   'auto'   => 'Auto',
                               ]),
 
-                         Field::make('separator', 'auto_separator_featured_post_block', __('Automatically display the last 8 posts', 'gaumap'))
+                         Field::make('separator', 'auto_separator_featured_post_block', __('Automatically display the last 2 posts', 'gaumap'))
                               ->set_width(80)
                               ->set_conditional_logic([
                                   'relation' => 'AND',
@@ -266,8 +266,7 @@ add_action('carbon_fields_register_fields', function () {
 
                          Field::make('association', 'coffee_guide_object_featured_post_block', __('Choose post:', 'gaumap'))
                               ->set_width(80)
-                              ->set_min(4)
-                              ->set_max(8)
+                              ->set_max(2)
                               ->set_conditional_logic([
                                   'relation' => 'AND',
                                   ['field' => 'cpt_featured_post_block', 'value' => 'coffee_guide', 'compare' => '=',],
@@ -279,8 +278,7 @@ add_action('carbon_fields_register_fields', function () {
 
                          Field::make('association', 'collaboration_object_featured_post_block', __('Choose post:', 'gaumap'))
                               ->set_width(80)
-                              ->set_min(4)
-                              ->set_max(8)
+                              ->set_max(2)
                               ->set_conditional_logic([
                                   'relation' => 'AND',
                                   ['field' => 'cpt_featured_post_block', 'value' => 'collaboration', 'compare' => '=',],
@@ -293,8 +291,7 @@ add_action('carbon_fields_register_fields', function () {
 
                          Field::make('association', 'location_object_featured_post_block', __('Choose post:', 'gaumap'))
                               ->set_width(80)
-                              ->set_min(4)
-                              ->set_max(8)
+                              ->set_max(2)
                               ->set_conditional_logic([
                                   'relation' => 'AND',
                                   ['field' => 'cpt_featured_post_block', 'value' => 'location', 'compare' => '=',],
@@ -306,8 +303,7 @@ add_action('carbon_fields_register_fields', function () {
 
                          Field::make('association', 'work_with_us_object_featured_post_block', __('Choose post:', 'gaumap'))
                               ->set_width(80)
-                              ->set_min(4)
-                              ->set_max(8)
+                              ->set_max(2)
                               ->set_conditional_logic([
                                   'relation' => 'AND',
                                   ['field' => 'cpt_featured_post_block', 'value' => 'work_with_us', 'compare' => '=',],
@@ -320,8 +316,7 @@ add_action('carbon_fields_register_fields', function () {
 
                          Field::make('association', 'product_object_featured_post_block', __('Choose post:', 'gaumap'))
                               ->set_width(80)
-                              ->set_min(4)
-                              ->set_max(8)
+                              ->set_max(2)
                               ->set_conditional_logic([
                                   'relation' => 'AND',
                                   ['field' => 'cpt_featured_post_block', 'value' => 'product', 'compare' => '=',],
@@ -332,10 +327,9 @@ add_action('carbon_fields_register_fields', function () {
                                   ['type' => 'post', 'post_type' => 'product',],
                               ]),
 
-                         Field::make('association', 'journal_guide_object_featured_post_block', __('Choose post:', 'gaumap'))
+                         Field::make('association', 'journal_object_featured_post_block', __('Choose post:', 'gaumap'))
                               ->set_width(80)
-                              ->set_min(4)
-                              ->set_max(8)
+                              ->set_max(2)
                               ->set_conditional_logic([
                                   'relation' => 'AND',
                                   ['field' => 'cpt_featured_post_block', 'value' => 'journal', 'compare' => '=',],

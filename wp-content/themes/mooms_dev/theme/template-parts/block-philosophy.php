@@ -8,8 +8,6 @@ $typeLink = $args['type_read_more_link_philosophy_block'];
 $readLink = $args['link_custom_philosophy_block'];
 $pageObject = $args['page_object_philosophy_block'];
 
-// var_dump($imgSmall);
-
 if ( $typeLink == 'manual' ) :
     $link = $readLink;
 else:

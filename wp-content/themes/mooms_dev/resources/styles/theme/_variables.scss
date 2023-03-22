@@ -14,10 +14,16 @@ $primary-color: #000000;
 $base-font-size: 1.6rem;
 
 // Breakpoint
-$xs: 320px;
+//$xs: 320px;
+//$sm: 768px;
+//$md: 1024px;
+//$lg: 1280px;
+//$xl: 1440px;
+
+$xs: 576px;
 $sm: 768px;
-$md: 1024px;
-$lg: 1280px;
+$md: 992px;
+$lg: 1200px;
 $xl: 1440px;
 
 $container-padding: 2rem;
