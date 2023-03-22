@@ -12,7 +12,7 @@ while (have_posts()) : the_post();
             'img_lg_philosophy_block'   => $block['img_lg_philosophy_block'],
             'img_sm_philosophy_block'   => $block['img_sm_philosophy_block'],
             'desc_philosophy_block' => $block['desc_philosophy_block'],
-            'type_read_more_link'   => $block['type_read_more_link'],
+            'type_read_more_link'   => $block['type_read_more_link_philosophy_block'],
             'link_custom_philosophy_block'  => $block['link_custom_philosophy_block'],
             'page_object_philosophy_block'  => $block['page_object_philosophy_block'],
 

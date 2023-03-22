@@ -48,12 +48,15 @@
             &:nth-child(2):after{
                 background-image: url("~@images/blocks/philosophy-block.png");
             }
-            //&:nth-child(3):after{
-            //    background-image: url("~@images/text-image-block.png");
-            //}
-            //&:nth-child(4):after{
-            //    background-image: url("~@images/text-slider-block.png");
-            //}
+
+            &:nth-child(3):after{
+                background-image: url("~@images/blocks/content-slider-block.png");
+            }
+
+            &:nth-child(4):after{
+                background-image: url("~@images/blocks/featured-post-block.png");
+            }
+
         }
 
     }
