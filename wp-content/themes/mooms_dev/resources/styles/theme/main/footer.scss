@@ -1,0 +1,126 @@
+footer.footer {
+
+    .footer-top {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        column-gap: 5rem;
+
+        @include mediaMaxWidth($sm) {
+            justify-content: center;
+        }
+
+        .columns {
+            margin-bottom: 4.5rem;
+
+            @include mediaMaxWidth($sm) {
+                margin-bottom: 2.5rem;
+            }
+
+            ul {
+                display: flex;
+                column-gap: 3rem;
+
+                li {
+                    display: flex;
+                    align-items: center;
+
+                    img {
+                        transition: all .3s;
+
+                        &:hover {
+                            opacity: .6;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .footer-bottom {
+
+        .info-company {
+
+            @include mediaMaxWidth($xl) {
+                margin-bottom: 4.5rem;
+            }
+
+            @include mediaMaxWidth($md) {
+                margin-bottom: 2.5rem;
+            }
+
+            .name {
+                margin-bottom: 1rem;
+                font-size: 2rem;
+            }
+
+            .info {
+                margin-bottom: .5rem;
+                font-size: 1.6rem;
+            }
+        }
+
+        .footer-menu {
+            ul {
+                column-gap: 7rem;
+                column-count: 2;
+                @include mediaMaxWidth($xl) {
+                    column-gap: 4rem;
+                }
+
+                @include mediaMaxWidth($md) {
+                    margin-bottom: 2.5rem;
+                    column-count: 1;
+                }
+
+                li {
+                    page-break-inside: avoid;
+
+                    a {
+                        font-size: 1.6rem;
+                        text-decoration: none;
+                        transition: text-decoration 0.3s linear;
+
+                        &:hover {
+                            text-decoration: underline;
+                            transition: text-decoration 0.3s linear;
+                        }
+                    }
+                }
+            }
+        }
+
+        .certificate {
+
+            .information {
+                margin-bottom: 1.5rem;
+                font-size: 1.6rem;
+                text-align: end;
+
+                @include mediaMaxWidth($md) {
+                    text-align: center;
+                }
+            }
+
+            .media {
+                display: flex;
+                justify-content: flex-end;
+                column-gap: 3rem;
+
+                @include mediaMaxWidth($md) {
+                    justify-content: center;
+                }
+
+                img {
+                    max-width: 12rem;
+                    transition: all .3s;
+
+                    &:hover {
+                        opacity: .6;
+                    }
+                }
+            }
+        }
+    }
+
+}
