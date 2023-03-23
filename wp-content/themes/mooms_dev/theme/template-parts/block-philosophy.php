@@ -22,7 +22,7 @@ endif;
 <section class="philosophy-block">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-12 col-xl-7 left-column">
+            <div class="col-12 col-xl-6 col-xxl-7 left-column">
 
                 <div class="content">
                     <h2 class="title-blocks">
@@ -30,10 +30,10 @@ endif;
                     </h2>
 
                     <div class="description-blocks">
-                        <?php echo $desc; ?>
+                        <?php echo apply_filters('the_content', $desc);?>
                     </div>
 
-                    <a href="<?php echo $link; ?>" class="read-more-blocks"><?php echo __('Đọc thêm', 'gaumap'); ?></a>
+                    <a href="<?php echo $link; ?>" class="read-more-blocks up-hover"><?php echo __('Đọc thêm', 'gaumap'); ?></a>
                 </div>
 
                 <figure class="media sm-img">
@@ -42,7 +42,7 @@ endif;
 
             </div>
 
-            <div class="col-12 col-xl-5 right-column">
+            <div class="col-12 col-xl-6 col-xxl-5 right-column">
                 <figure class="media lg-img">
                     <img src="<?php echo getImageUrlById($imgLarge) ?>" alt="<?php echo get_the_title($imgLarge);  ?>">
                 </figure>

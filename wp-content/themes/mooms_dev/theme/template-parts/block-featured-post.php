@@ -53,7 +53,7 @@ endif;
         <div class="container-fluid">
             <div class="title-link">
                 <h2 class="title-blocks"><?php echo $title; ?></h2>
-                <a href="<?php echo $link; ?>" class="read-more-blocks"><?php echo __('Xem tất cả', 'gaumap'); ?></a>
+                <a href="<?php echo $link; ?>" class="read-more-blocks up-hover"><?php echo __('Xem tất cả', 'gaumap'); ?></a>
             </div>
 
             <div class="row">
@@ -153,7 +153,7 @@ endif;
                                                                     foreach ($tags as $tag) :
                                                                     ?>
                                                                         <li>
-                                                                            <a href="<?php echo get_term_link($tag->term_id) ?>">
+                                                                            <a href="<?php echo get_term_link($tag->term_id) ?>" class="up-hover">
                                                                                 <?php echo $tag->name ?>
                                                                             </a>
                                                                         </li>
@@ -170,7 +170,9 @@ endif;
                                                         <h3 class="title-post"><?php theTitle(); ?>  </h3>
                                                     </a>
 
-                                                    <p class="desc-post"><?php thePostMeta('description'); ?></p>
+                                                    <div class="desc-post">
+                                                        <?php echo apply_filters('the_content', $desc); ?>
+                                                    </div>
                                                 </div>
 
                                                 <div class="inner__media">
@@ -208,7 +210,7 @@ endif;
                                                         foreach ($tags as $tag) :
                                                             ?>
                                                             <li>
-                                                                <a href="<?php echo get_term_link($tag->term_id) ?>">
+                                                                <a href="<?php echo get_term_link($tag->term_id) ?>" class="up-hover">
                                                                     <?php echo $tag->name ?>
                                                                 </a>
                                                             </li>
@@ -225,7 +227,12 @@ endif;
                                                 <h3 class="title-post fs-43"><?php echo get_the_title($post['id']); ?>  </h3>
                                             </a>
 
-                                            <p class="desc-post"><?php echo getPostMeta('description',$post['id']); ?></p>
+                                            <div class="desc-post">
+                                                <?php
+                                                $desc = getPostMeta('description',$post['id']);
+                                                echo apply_filters('the_content', $desc);
+                                                ?>
+                                            </div>
                                         </div>
 
                                         <div class="inner__media">
