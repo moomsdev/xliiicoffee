@@ -27,7 +27,17 @@ section {
         &.fs-43 {
             font-size: 4.3rem;
         }
-        &.fs-30 {}
+        &.fs-30 {
+            font-size: 3rem;
+
+            @include mediaMaxWidth($md) {
+                font-size: 2.8rem;
+            }
+
+            @include mediaMaxWidth($sm) {
+                font-size: 2.4rem;
+            }
+        }
         &.fs-25 {}
         &.fs-20 {}
 
@@ -36,22 +46,42 @@ section {
 
 .title-blocks {
     margin-bottom: 3.5rem;
+    font-family: $font-heading;
     font-size: 7rem;
     text-transform: uppercase;
 
     @include mediaMaxWidth($lg) {
-        font-size: 5rem;
+        font-size: 4rem;
     }
 
     @include mediaMaxWidth($sm) {
         margin-bottom: 2rem;
-        font-size: 3.6rem;
+        font-size: 2.8rem;
     }
-
 }
 
 .description-blocks {
     font-size: 2rem;
+}
+
+.read-more-blocks {
+    margin-bottom: 2.3em;
+    display: block;
+    font-size: 2rem;
+    text-transform: uppercase;
+
+    @include mediaMaxWidth($lg) {
+        font-size: 1.8rem;
+    }
+
+    @include mediaMaxWidth($sm) {
+        margin-bottom: 1.1em;
+    }
+
+    @include mediaMaxWidth($xs) {
+        margin-bottom: 1.3em;
+        font-size: 1.6rem;
+    }
 }
 
 .up-hover {
@@ -106,25 +136,4 @@ section {
         transform: scaleX(1);
         transform-origin: left;
     }
-}
-
-.read-more-blocks {
-    margin-bottom: 2.3em;
-    display: block;
-    font-size: 2rem;
-    text-transform: uppercase;
-
-    @include mediaMaxWidth($lg) {
-        font-size: 1.8rem;
-    }
-
-    @include mediaMaxWidth($sm) {
-        margin-bottom: 1.1em;
-    }
-
-    @include mediaMaxWidth($xs) {
-        margin-bottom: 1.3em;
-        font-size: 1.6rem;
-    }
-
 }

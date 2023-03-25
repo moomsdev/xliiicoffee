@@ -14,30 +14,32 @@ use Carbon_Fields\Field\Field;
 
 $optionsPage = Container::make('theme_options', __('Theme Options', 'gaumap'))
                         ->set_page_file('app-theme-options.php')
-                        ->add_tab(__('Thương hiệu | Branding', 'gaumap'), [
+                        ->add_tab(__('Branding | Thương hiệu', 'gaumap'), [
                             Field::make('image', 'logo' . currentLanguage(), __('Logo', 'gaumap'))
                                  ->set_width(25),
                             Field::make('image', 'logo_fixed' . currentLanguage(), __('Logo fixed', 'gaumap'))
                                  ->set_width(25),
+                            Field::make('image', 'hinh_anh_mac_dinh' . currentLanguage(), __('Default image | Hình ảnh mặc định', 'gaumap'))
+                                 ->set_width(25),
                         ])
 
-                        ->add_tab(__('Liên hệ | Contact', 'gaumap'), [
+                        ->add_tab(__('Contact | Liên hệ', 'gaumap'), [
 
-                            Field::make('text', 'company' . currentLanguage(), __('Company', 'gaumap'))
+                            Field::make('text', 'company' . currentLanguage(), __('Company | Công ty', 'gaumap'))
                                  ->set_default_value('43 SERVICES TRADING PRODUCTION LIMITED LIABILITY COMPANY'),
 
-                            Field::make('textarea', 'address' . currentLanguage(), __('Address', 'gaumap'))
+                            Field::make('textarea', 'address' . currentLanguage(), __('Address | Địa chỉ', 'gaumap'))
                                  ->set_default_value('43 Tran Tan Moi Street, Hoa Thuan Tay, Hai Chau District, Da Nang Province'),
 
                             Field::make('text', 'email' . currentLanguage(), __('Email', 'gaumap'))
                                  ->set_width(50)
                                  ->set_default_value('infor@43factory.coffee'),
 
-                            Field::make('text', 'phone_number' . currentLanguage(), __('Phone number', 'gaumap'))
+                            Field::make('text', 'phone_number' . currentLanguage(), __('Phone number | Số điện thoại', 'gaumap'))
                                  ->set_width(50)
                                  ->set_default_value('0799 343 943'),
 
-                            Field::make('complex', 'social_media' . currentLanguage(), __('Add Social media:', 'gaumap'))
+                            Field::make('complex', 'social_media' . currentLanguage(), __('Socials | Mạng xã hội', 'gaumap'))
                                  ->set_width(50)
                                  ->set_layout('tabbed-vertical')
                                  ->add_fields([
@@ -46,7 +48,7 @@ $optionsPage = Container::make('theme_options', __('Theme Options', 'gaumap'))
                                      Field::make('text', 'link_social', __('Link', 'gaumap')),
                                  ])->set_header_template('<% if (name_social) { %><%- name_social %><% } %>'),
 
-                            Field::make('complex', 'payments' . currentLanguage(), __('Add payments:', 'gaumap'))
+                            Field::make('complex', 'payments' . currentLanguage(), __('Payments | Thanh Toán', 'gaumap'))
                                  ->set_width(50)
                                  ->set_layout('tabbed-vertical')
                                  ->add_fields([
@@ -54,7 +56,7 @@ $optionsPage = Container::make('theme_options', __('Theme Options', 'gaumap'))
                                      Field::make('text', 'name_payment', __('Name', 'gaumap')),
                                  ])->set_header_template('<% if (name_payment) { %><%- name_payment %><% } %>'),
 
-                            Field::make('textarea', 'certificate' . currentLanguage(), __('Certificate', 'gaumap')),
+                            Field::make('textarea', 'certificate' . currentLanguage(), __('Certificate | Chứng nhận', 'gaumap')),
 
                             Field::make('image', 'bocongthuong' . currentLanguage(), __('Bộ công thương', 'gaumap'))
                                  ->set_width(20),

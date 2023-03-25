@@ -1,3 +1,167 @@
-.philosophy-block {
+.content-slider-block {
+
+    .title-link {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+
+        .title-blocks {
+            margin-bottom: 2.5rem;
+        }
+
+        .read-more-blocks {
+            margin-bottom: 1.8em;
+
+            @include mediaMaxWidth($sm) {
+                margin-bottom: 1.5em;
+            }
+
+            @include mediaMaxWidth($xs) {
+                margin-bottom: 1.8em;
+            }
+
+        }
+
+    }
+
+    .description-blocks {
+        margin-bottom: 5rem;
+    }
+
+    .items {
+        position: relative;
+        overflow: hidden;
+
+        .swiper-slide {
+            .media {
+                margin-bottom: 2.8rem;
+                padding-bottom: 100%;
+                width: 100%;
+                position: relative;
+                overflow: hidden;
+                clear: both;
+
+                @include mediaMaxWidth($md) {
+                    margin-bottom: 2rem;
+                }
+
+                @include mediaMaxWidth($sm) {
+                    margin-bottom: 1.8rem;
+                }
+
+                img {
+                    position:absolute;
+                    left: 0;
+                    top: 0;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    object-position: center center;
+                    transition: all .5s;
+
+                    &:hover {
+                        transform: scale(1.1);
+                    }
+                }
+            }
+
+            .content {
+                .categories {
+                    margin-bottom: 2.8rem;
+
+                    @include mediaMaxWidth($md) {
+                        margin-bottom: 2rem;
+                    }
+
+                    @include mediaMaxWidth($sm) {
+                        margin-bottom: 1.8rem;
+                    }
+
+                    ul {
+                        display: flex;
+
+                        li {
+                            padding: 0 4rem;
+                            position: relative;
+                            font-size: 1.6rem;
+                            text-transform: uppercase;
+
+                            @include mediaMaxWidth($md) {
+                                padding: 0 2rem;
+                            }
+
+                            @include mediaMaxWidth($sm) {
+                                font-size: 1.5rem;
+                            }
+
+                            &:first-child {
+                                padding-left: 0;
+                                &:after {
+                                    content: none;
+                                }
+                            }
+
+                            &:last-child {
+                                padding-right: 0;
+                            }
+
+                            &:after {
+                                content: "";
+                                position: absolute;
+                                top: 50%;
+                                left: 0;
+                                transform: translateY(-50%);
+                                width: .1rem;
+                                height: 90%;
+                                background-color: #000;
+                            }
+                        }
+                    }
+                }
+
+                .title-post {
+                    text-transform: uppercase;
+                }
+
+                .price-product {
+                    margin-top: 1rem;
+
+                    @include mediaMaxWidth($sm) {
+                        margin-top: .5rem;
+                    }
+
+                    .price {
+                        font-size: 1.6rem;
+                    }
+                }
+
+                .origin-product {
+                    margin-top: 2.8rem;
+                    font-size: 1.6rem;
+
+                    @include mediaMaxWidth($md) {
+                        margin-top: 2rem;
+                    }
+
+                    @include mediaMaxWidth($sm) {
+                        margin-top: 1.8rem;
+                    }
+
+                }
+
+                .desc-post {
+                    margin-top: 1.5rem;
+                    font-size: 1.6rem;
+
+                    @include mediaMaxWidth($md) {
+                        margin-top: 1.2rem;
+                    }
+
+                }
+
+
+            }
+        }
+    }
 
 }

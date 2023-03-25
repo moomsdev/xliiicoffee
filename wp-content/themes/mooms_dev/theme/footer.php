@@ -103,7 +103,10 @@
 
 </div>
 
-<nav id="mobile_menu" class="d-none">
+<!-- Back to top button -->
+<a id="button" style="background-image: url('<?php theAsset('icon/back-to-top.png'); ?>')"></a>
+
+<nav id="mobile_menu">
     <?php
     wp_nav_menu([
         'menu'           => 'main-menu',

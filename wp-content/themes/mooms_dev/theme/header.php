@@ -32,6 +32,11 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="<?php theAsset('/favicon/ms-icon-144x144.png'); ?>">
     <meta name="theme-color" content="#ffffff">
+    <style>
+        :root {
+            --mb-bar-height: 2px;
+        }
+    </style>
 </head>
 
 <body <?php body_class(); ?>>
@@ -49,35 +54,37 @@
                         <img src="<?php theOptionImage('logo_fixed'); ?>" alt="<?php bloginfo('url'); ?>">
                     </a>
                 </div>
-                <div class="main-menu">
-                    <div class="pc-menu">
-                        <?php
-                        wp_nav_menu([
-                            'menu'           => 'main-menu',
-                            'theme_location' => 'main-menu',
-                            'container'      => 'ul',
-                            'menu_class'     => 'nav-menu',
-                            'walker'         => new Bootstrap_Menu_Walker(),
-                        ])
-                        ?>
+                <div class="both-menu">
+                    <div class="main-menu">
+                        <div class="pc-menu">
+                            <?php
+                            wp_nav_menu([
+                                'menu'           => 'main-menu',
+                                'theme_location' => 'main-menu',
+                                'container'      => 'ul',
+                                'menu_class'     => 'nav-menu',
+                                'walker'         => new Bootstrap_Menu_Walker(),
+                            ])
+                            ?>
+                        </div>
+                        <div class="mb-menu">
+                            <a class="__bar_menu" href="#mobile_menu">
+                                <button class="mburger mburger--collapse">
+                                    <b></b>
+                                    <b></b>
+                                    <b></b>
+                                </button>
+                            </a>
+                        </div>
                     </div>
-                    <div class="mb-menu">
-                        <a class="__bar_menu" href="#mobile_menu">
-                            <button class="mburger mburger--collapse">
-                                <b></b>
-                                <b></b>
-                                <b></b>
-                            </button>
-                        </a>
+                    <div class="right-menu">
+                        <ul>
+                            <li ><?php theLanguageSwitcher() ?></li>
+                            <li><a href="#"><img src="<?php theAsset('/icon/icon-search.png'); ?>" alt="search"></a></li>
+                            <li><a href="#"><img src="<?php theAsset('/icon/icon-user.png'); ?>" alt="search"></a></li>
+                            <li><a href="#"><img src="<?php theAsset('/icon/icon-cart.png'); ?>" alt="search"></a></li>
+                        </ul>
                     </div>
-                </div>
-                <div class="right-menu">
-                    <ul>
-                        <li ><?php theLanguageSwitcher() ?></li>
-                        <li><a href="#"><img src="<?php theAsset('/icon/icon-search.png'); ?>" alt="search"></a></li>
-                        <li><a href="#"><img src="<?php theAsset('/icon/icon-user.png'); ?>" alt="search"></a></li>
-                        <li><a href="#"><img src="<?php theAsset('/icon/icon-cart.png'); ?>" alt="search"></a></li>
-                    </ul>
                 </div>
             </div>
         </div>

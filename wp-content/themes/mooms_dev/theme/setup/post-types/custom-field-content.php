@@ -200,7 +200,7 @@ add_action('carbon_fields_register_fields', function () {
                               ])
                               ->set_types([
                                   ['type' => 'term', 'taxonomy' => 'product_cat',],
-                                  ['type' => 'post', 'post_type' => 'product',],
+                                  // ['type' => 'post', 'post_type' => 'product',],
                               ]),
 
                          Field::make('association', 'journal_object_content_slider_block', __('Choose post:', 'gaumap'))

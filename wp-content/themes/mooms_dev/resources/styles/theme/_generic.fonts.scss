@@ -1,23 +1,38 @@
 /* ------------------------------------------------------------ *\
     Fonts
 \* ------------------------------------------------------------ */
+
+
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap');
 
-@font-face {
-    font-family: SFUfutura-bold;
-    //src: url("/../resources/fonts/SFUFuturaBold.TTF");
-}
-
-
-@font-face {
-    font-family: futura-bold;
-    //src: url("./resources/styles/fonts/futurastd-bold.otf");
-}
+$FuturaM: futura-medium, sans-serif;
+$FuturaB: futura-bold, sans-serif;
+$SFUfuturaB: SFUfutura-bold, sans-serif;
+$SFUfuturaB: SFUfutura-bold, sans-serif;
+$LemonMilk: LemonMilk, sans-serif;
 
 @font-face {
     font-family: futura-medium;
-    //src: url("/../resources/fonts/futurastd-medium.otf");
+    src: url('../../fonts/futurastd-medium.otf');
 }
 
+@font-face {
+    font-family: futura-bold;
+    src: url('../../fonts/futurastd-bold.otf');
+}
+
+@font-face {
+    font-family: LemonMilk;
+    src: url('../../fonts/LemonMilk.otf');
+}
+
+@font-face {
+    font-family: SFUfutura-bold;
+    src: url('../../fonts/SFUFuturaBold.TTF');
+}
+
+@font-face {
+    font-family: SFUfutura;
+    src: url('../../fonts/SFUFuturaRegular.TTF');
+}
 

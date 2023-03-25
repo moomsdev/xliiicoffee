@@ -16,33 +16,54 @@ import "mmenu-js/dist/mmenu.polyfills";
 import 'swiper/swiper-bundle.min';
 import Swiper from 'swiper/swiper-bundle.min';
 
-// import "aos/dist/aos";
-// import AOS from "aos";
-
 // import "@fancyapps/fancybox/dist/jquery.fancybox.min";
 jQuery(document).ready(function () {
-    // jQuery(document).ready(function() {
-    //     $("#main_menu").hover(
-    //         function(){
-    //             window.setTimeout(function(){
-    //                 $("ul").addClass("show");
-    //             }, 400);
-    //         },
-    //         function(){
-    //             $("ul").removeClass("show");
-    //         });
-    // });
-  // $('[data-fancybox="images"]').fancybox({
-  //   thumbs: {
-  //     autoStart: true,
-  //     axis: "x",
-  //   },
-  // });
 
-  //--------animation
-  // AOS.init({
-  //   once: true,
-  // });
+    // // Smooth scrolling
+    // $(window).on('scroll', function(event) {
+    //     event.preventDefault();
+    //     var scrollPosition = $(window).scrollTop();
+    //     $('html, body').stop().animate({
+    //         scrollTop: scrollPosition
+    //     }, 200);
+    // });
+    //
+    // $(window).on('mousewheel', function(event) {
+    //     event.preventDefault();
+    //     var delta = event.originalEvent.wheelDelta;
+    //     var scrollPosition = $(window).scrollTop();
+    //     $('html, body').stop().animate({
+    //         scrollTop: scrollPosition - delta
+    //     }, 200);
+    // });
+
+    //back to top
+    var btn = $('#button');
+
+    $(window).scroll(function() {
+        if ($(window).scrollTop() > 600) {
+            btn.addClass('show');
+        } else {
+            btn.removeClass('show');
+        }
+    });
+
+    btn.on('click', function(e) {
+        e.preventDefault();
+        $('html, body').animate({scrollTop:0}, '300');
+    });
+
+    // Menu fixed
+    let navbar = document.getElementById('header').classList
+    let active_class = "fixed"
+
+    /**
+     * Scroll menu
+     */
+    window.addEventListener('scroll', e => {
+        if(pageYOffset > 500) navbar.add(active_class)
+        else navbar.remove(active_class)
+    })
 
   // ---------mmenu
 
@@ -51,28 +72,10 @@ jQuery(document).ready(function () {
     searchfield: false,
     counters: false,
 
-    navbar: {
-      title: "MENU",
-    },
-    iconbar: {
-      use: true,
-      top: ["<a href='/'><i class='fa fa-home'></i></a>"],
-      // bottom: [
-      //   "<a target='_blank' href='" +
-      //     fb +
-      //     "'><i class='fab fa-facebook-f'></i></a>",
-      //   "<a target='_blank' href='" +
-      //     ytb +
-      //     "'><i class='fab fa-youtube'></i></a>",
-      //   "<a target='_blank' href='" +
-      //     itg +
-      //     "'><i class='fab fa-instagram'></i></a>",
-      // ],
-    },
+
   });
 
-  //----------slider
-
+    // Slider Blocks
     const swiper_slider = new Swiper('.sliders', {
         spaceBetween: 30,
         centeredSlides: true,
@@ -85,6 +88,36 @@ jQuery(document).ready(function () {
         pagination: {
             el: ".swiper-pagination",
         },
+    });
+
+    // Content Slider Blocks
+    const content_slider = new Swiper('.content-slider', {
+        spaceBetween: 30,
+        cslidesPerView: 4,
+        paginationClickable: true,
+        speed: 1500,
+        autoplay: {
+            delay: 5000,
+            disableOnInteraction: false,
+        },
+        breakpoints: {
+            1440: {
+                slidesPerView: 4,
+                spaceBetween: 30
+            },
+            992: {
+                slidesPerView: 3,
+                spaceBetween: 30
+            },
+            576: {
+                slidesPerView: 2,
+                spaceBetween: 15
+            },
+            320: {
+                slidesPerView: 1,
+                spaceBetween: 15
+            }
+        }
     });
 
 });
