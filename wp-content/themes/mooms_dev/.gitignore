@@ -10,7 +10,7 @@
 /node_modules/
 
 # Composer packages
-/vendor/
+# /vendor/
 
 # WordPress Coding Standards
 /wpcs/
