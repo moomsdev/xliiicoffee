@@ -27,14 +27,16 @@ class WorkWithUs extends \App\Abstracts\AbstractPostType {
     /**
      * Document: https://docs.carbonfields.net/#/containers/post-meta
      */
-    // public function metaFields()
-    // {
-    //     Container::make('post_meta', __('Exclude', 'gaumap'))
-    //              ->set_context('carbon_fields_after_title')
-    //              ->set_priority('high')
-    //              ->where('post_type', 'IN', [$this->post_type])
-    //              ->add_fields([
-    //                  Field::make('textarea', 'description' , __('Description', 'gaumap')),
-    //              ]);
-    // }
+    public function metaFields() {
+        Container::make('post_meta', __('Exclude', 'gaumap'))
+                 ->set_context('carbon_fields_after_title')
+                 ->set_priority('high')
+                 ->where('post_type', 'IN', [$this->post_type])
+                 ->add_fields([
+                     Field::make('image', 'large_img', __('Large image', 'gaumap'))
+                          ->set_width(20),
+                     Field::make('textarea', 'description', __('Description', 'gaumap'))
+                          ->set_width(80),
+                 ]);
+    }
 }

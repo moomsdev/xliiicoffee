@@ -197,24 +197,24 @@ function getProductGalleryImageIds() : array
     return $product->get_gallery_image_ids();
 }
 
-function getProductPrice(WC_Product $product)
-{
-    if ($product->is_type('variable')) {
-        return $product->get_variation_price('min');
-    }
-
-    $regularPrice = $product->get_regular_price();
-    $salePrice    = $product->get_sale_price();
-    if (!empty($salePrice)) {
-        return $salePrice;
-    }
-
-    if (empty($regularPrice)) {
-        return 0;
-    }
-
-    return $regularPrice;
-}
+// function getProductPrice(WC_Product $product)
+// {
+//     if ($product->is_type('variable')) {
+//         return $product->get_variation_price('min');
+//     }
+//
+//     $regularPrice = $product->get_regular_price();
+//     $salePrice    = $product->get_sale_price();
+//     if (!empty($salePrice)) {
+//         return $salePrice;
+//     }
+//
+//     if (empty($regularPrice)) {
+//         return 0;
+//     }
+//
+//     return $regularPrice;
+// }
 
 function getProductPercentageSaleOff(WC_Product $product)
 {
@@ -257,14 +257,15 @@ function getProductCategoryThumbnail(WP_Term $category, $width = null, $height =
     return getImageUrlById($thumbnail_id, $width, $height);
 }
 
-function theProductPrice()
-{
-    /**
-     * @var \WC_Product $product
-     */ global $product;
-    $price = getProductPrice($product);
-    echo '<span class="product__price">' . (empty($price) ? __('Liên hệ', 'gaumap') : wc_price($price)) . '</span>';
-}
+
+// function theProductPrice()
+// {
+//     /**
+//      * @var \WC_Product $product
+//      */ global $product;
+//     $price = getProductPrice($product);
+//     echo '<span class="product__price">' . (empty($price) ? __('Liên hệ', 'gaumap') : wc_price($price)) . '</span>';
+// }
 
 function theProductPercentageSaleOff()
 {
@@ -275,4 +276,41 @@ function theProductPercentageSaleOff()
     if (empty($percent)) {
         echo "<span class=\"product__percent-sale-off\">{$percent}%</span>";
     }
+}
+
+function getProductPrice(WC_Product $product)
+{
+    if ( $product->is_type('variable') ) :
+        return $product->get_variation_price('min');
+    endif;
+
+    $regularPrice = $product->get_regular_price();
+    $salePrice    = $product->get_sale_price();
+
+    if ( !empty($salePrice) ) :
+    ?>
+        <div class="price-product">
+            <span class="price regular-price"><?php echo number_format($regularPrice,0,",","."); ?> VND</span>
+            <span class="price sale-price"><?php echo number_format($salePrice,0,",","."); ?> VND</span>
+        </div>
+    <?php
+    endif;
+
+    if ( empty($salePrice) ) :
+    ?>
+        <div class="price-product">
+            <span class="price regular-price"><?php echo number_format($regularPrice,0,",","."); ?> VND</span>
+        </div>
+    <?php
+    endif;
+
+    return $regularPrice;
+}
+
+function theProductPrice()
+{
+    /**
+     * @var \WC_Product $product
+     */ global $product;
+    $price = getProductPrice($product);
 }
