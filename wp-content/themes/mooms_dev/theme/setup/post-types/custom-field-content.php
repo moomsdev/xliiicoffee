@@ -295,7 +295,7 @@ add_action('carbon_fields_register_fields', function () {
                               ->set_conditional_logic([
                                   'relation' => 'AND',
                                   ['field' => 'cpt_featured_post_block', 'value' => 'location', 'compare' => '=',],
-                                  ['field' => 'post_display_content_slider_block', 'value' => 'manual', 'compare' => '=',],
+                                  ['field' => 'post_display_featured_post_block', 'value' => 'manual', 'compare' => '=',],
                               ])
                               ->set_types([
                                   ['type' => 'post', 'post_type' => 'location',],

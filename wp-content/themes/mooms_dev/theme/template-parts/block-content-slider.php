@@ -59,7 +59,7 @@ endif;
         <?php endif; ?>
 
         <div class="items">
-            <div class="swiper content-slider">
+            <div class="swiper content-slider swiper-backface-hidden">
                 <!-- Additional required wrapper -->
                 <div class="swiper-wrapper">
                     <?php
@@ -233,6 +233,7 @@ endif;
                     endif;
                     ?>
                 </div>
+                <div class="swiper-scrollbar swiper-scrollbar-horizontal"></div>
             </div>
         </div>
 

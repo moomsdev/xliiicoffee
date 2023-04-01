@@ -15,37 +15,6 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-// add_action('init', function () {
-//     register_post_type('product', [
-//         'labels'              => [
-//             'name'               => __('Sản phẩm', 'app'),
-//             'singular_name'      => __('Sản phẩm', 'app'),
-//             'add_new'            => __('Add New', 'app'),
-//             'add_new_item'       => __('Add new Custom Type', 'app'),
-//             'view_item'          => __('View Custom Type', 'app'),
-//             'edit_item'          => __('Edit Custom Type', 'app'),
-//             'new_item'           => __('New Custom Type', 'app'),
-//             'search_items'       => __('Search Custom Types', 'app'),
-//             'not_found'          => __('No custom types found', 'app'),
-//             'not_found_in_trash' => __('No custom types found in trash', 'app'),
-//         ],
-//         'public'              => true,
-//         'exclude_from_search' => false,
-//         'show_ui'             => true,
-//         'capability_type'     => 'post',
-//         'hierarchical'        => false,
-//         'has_archive' => true,
-//         '_edit_link'          => 'post.php?post=%d',
-//         'query_var'           => true,
-//         'menu_icon'           => 'dashicons-admin-post',
-//         'supports'            => ['title', 'editor', 'page-attributes'],
-//         'rewrite'             => [
-//             'slug'       => 'san-pham',
-//             'with_front' => false,
-//         ],
-//     ]);
-// });
-
 add_action('carbon_fields_register_fields', function () {
     Container::make('post_meta', __('More information | Thông tin thêm', 'gaumap'))
              ->set_context('carbon_fields_after_title')// normal, advanced, side or carbon_fields_after_title
