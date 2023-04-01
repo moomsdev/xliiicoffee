@@ -6,16 +6,14 @@ use Carbon_Fields\Container;
 use Carbon_Fields\Field;
 use Intervention\Image\ImageManagerStatic as Image;
 
-class AdminSettings
-{
+class AdminSettings {
     protected $currentUser;
 
     protected $superUsers = SUPER_USER;
 
     protected $errorMessage = '';
 
-    public function __construct()
-    {
+    public function __construct() {
         $this->currentUser = wp_get_current_user();
 
         if (in_array($this->currentUser->user_login, $this->superUsers, true)) {
@@ -77,7 +75,7 @@ class AdminSettings
         add_action('admin_head', function () {
             ?>
             <script>
-                jQuery(document).ready(function() {
+                jQuery(document).ready(function () {
                     jQuery('.pw-weak').remove();
                 });
             </script>
@@ -87,7 +85,7 @@ class AdminSettings
         add_action('login_enqueue_scripts', function () {
             ?>
             <script>
-                document.addEventListener("DOMContentLoaded", function(event) {
+                document.addEventListener("DOMContentLoaded", function (event) {
                     let elements = document.getElementsByClassName('pw-weak');
                     console.log(elements);
                     let requiredElement = elements[0];
@@ -104,19 +102,15 @@ class AdminSettings
                 <div style="position: relative;">
                     <div style="text-align:center">
                         <a target="_blank" href="<?php echo AUTHOR['website'] ?>" title="<?php echo AUTHOR['name'] ?>">
-                            <img style="width:100%" src="<?php echo AUTHOR['logo_color_url'] ?>" alt="<?php echo AUTHOR['name'] ?>" title="<?php echo AUTHOR['name'] ?>">
+                            <img style="width:100%" src="<?php echo AUTHOR['logo_black_url'] ?>" alt="<?php echo AUTHOR['name'] ?>" title="<?php echo AUTHOR['name'] ?>">
                         </a>
                     </div>
                     <h2 style="text-align:center;"><?php echo AUTHOR['name'] ?></h2>
-                    <div style="margin-top:20px">
-                        <h3 style="text-align:center;"><strong>THÔNG TIN NHÀ PHÁT TRIỂN</strong></h3>
-                        <!--<p>Hệ thống được phát triển bởi <a target="_blank" href="--><?php //echo AUTHOR['website'] ?><!--"><strong>--><?php //echo AUTHOR['name'] ?><!--</strong></a></p>-->
-                        <!--<p>Mọi yêu cầu, hỗ trợ quý khách vui lòng liên hệ:</p>-->
-                        <p><strong>Điện thoại</strong>: <a href="tel:<?php echo AUTHOR['phone_number'] ?>" style="color:red"><?php echo AUTHOR['phone_number'] ?></a></p>
-                        <p><strong>Email</strong>: <a style="color:red" href="mailto:<?php echo AUTHOR['email'] ?>"><?php echo AUTHOR['email'] ?></a></p>
-                        <p><strong>Website</strong>: <a style="color:red" target="_blank" href="<?php echo AUTHOR['website'] ?>"><?php echo AUTHOR['website'] ?></a></p>
+                    <div style="margin-top:2rem; display: flex; column-gap: 15px; justify-content: space-between;">
+                        <p><a style="font: normal normal 500 12px Montserrat; color: black; text-decoration: none;" href="tel:<?php echo str_replace(['.', ',', ' '], '', AUTHOR['phone_number']); ?>"><?php echo AUTHOR['phone_number'] ?></a></p>
+                        <p><a style="font: normal normal 500 12px Montserrat; color: black; text-decoration: none;" href="mailto:<?php echo AUTHOR['email'] ?>"><?php echo AUTHOR['email'] ?></a></p>
+                        <p><a style="font: normal normal 500 12px Montserrat; color: black; text-decoration: none;" href="<?php echo AUTHOR['website'] ?>" target="_blank"><?php echo AUTHOR['website'] ?></a></p>
                     </div>
-                    <p><strong>Cảm ơn quý khách đã tin tưởng và sử dụng sản phẩm của chúng tôi.</strong></p>
                 </div>
             <?php });
         });
@@ -131,10 +125,11 @@ class AdminSettings
                         'families': [
                             "Montserrat:300,400,500,600,700,800,900",
                             'Nunito:200,300,400,600,700,800,900',
-                            'Roboto:300,400,500,600,700'
+                            'Roboto:300,400,500,600,700',
+                            'Noto Sans:400,500,600,700'
                         ]
                     },
-                    active: function() {
+                    active: function () {
                         sessionStorage.fonts = true;
                     }
                 });
@@ -143,7 +138,7 @@ class AdminSettings
             <style>
                 html,
                 body {
-                    font: normal normal 500 14px Montserrat;
+                    /*font: normal normal 500 14px Noto Sans;*/
                 }
             </style>
 
@@ -205,7 +200,7 @@ class AdminSettings
 
     public function changeFooterCopyright() {
         add_filter('admin_footer_text', static function () {
-            echo '<a href="' . AUTHOR['website'] . '" target="_blank">' . AUTHOR['name'] . '</a> © 2022';
+            echo '<a href="' . AUTHOR['website'] . '" target="_blank">' . AUTHOR['name'] . '</a> © 2023';
         });
     }
 
@@ -231,23 +226,13 @@ class AdminSettings
         add_action('admin_bar_menu', static function ($wp_admin_bar) use ($author) {
             $args = [
                 'id'    => 'logo_author',
-                'title' => '<img src="' . $author['logo_url'] . '" style="height:25px;padding-top:3px;">',
+                'title' => '<img src="' . $author['logo_url'] . '" style="height: 1rem; padding-top:.3rem;">',
                 'href'  => $author['website'],
                 'meta'  => [
                     'target' => '_blank',
                 ],
             ];
             $wp_admin_bar->add_node($args);
-
-            // $args = [
-            //     'id'    => 'theme_author',
-            //     'title' => $author['name'],
-            //     'href'  => $author['website'],
-            //     'meta'  => [
-            //         'target' => '_blank',
-            //     ],
-            // ];
-            // $wp_admin_bar->add_node($args);
         }, 10);
     }
 
@@ -285,16 +270,16 @@ class AdminSettings
     public function resizeOriginalImageAfterUpload() {
         add_filter('intermediate_image_sizes_advanced', static function ($sizes) {
             $imgSize = [
-                // 'medium',
-                // 'medium_large',
-                // 'large',
-                // 'full',
-                // 'woocommerce_single',
-                // 'woocommerce_gallery_thumbnail',
-                // 'shop_catalog',
-                // 'shop_single',
-                // 'woocommerce_thumbnail',
-                // 'shop_thumbnail',
+                'medium',
+                'medium_large',
+                'large',
+                'full',
+                'woocommerce_single',
+                'woocommerce_gallery_thumbnail',
+                'shop_catalog',
+                'shop_single',
+                'woocommerce_thumbnail',
+                'shop_thumbnail',
             ];
             foreach ($imgSize as $item) {
                 if (array_key_exists($item, $sizes)) {
@@ -314,15 +299,6 @@ class AdminSettings
                 $image->resize(null, null, static function ($constraint) {
                     $constraint->aspectRatio();
                 });
-                // if (($imgWidth > $imgHeight) && ($imgWidth > 1920)) {
-                //     $image->resize(1920, null, static function ($constraint) {
-                //         $constraint->aspectRatio();
-                //     });
-                // } elseif (($imgHeight > $imgWidth) && ($imgHeight > 1080)) {
-                //     $image->resize(null, 1080, static function ($constraint) {
-                //         $constraint->aspectRatio();
-                //     });
-                // }
                 $image->save($imgPath, 100);
             } catch (\Exception $ex) {
             }
@@ -332,9 +308,8 @@ class AdminSettings
 
     public function addCustomResources() {
         add_action('admin_enqueue_scripts', static function ($hook) {
-            // wp_enqueue_style('mooms-custom-style', adminAsset('css/admin.css'));
             wp_enqueue_script('jquery_repeater', 'https://cdnjs.cloudflare.com/ajax/libs/jquery.repeater/1.2.1/jquery.repeater.min.js');
-            wp_enqueue_script('mooms-custom-scripts', adminAsset('js/admin.js'));
+            wp_enqueue_script('gapmap-custom-scripts', adminAsset('js/admin.js'));
         });
     }
 
@@ -353,49 +328,48 @@ class AdminSettings
 
     public function createAdminOptions() {
         add_action('carbon_fields_register_fields', static function () {
-            $options = Container::make('theme_options', __('Admin', 'mooms'))
-                                ->set_page_file(__('mooms-admin-settings', 'mooms'))
+            $options = Container::make('theme_options', __('Admin', 'gaumap'))
+                                ->set_page_file(__('gaumap-admin-settings', 'gaumap'))
                                 ->set_page_menu_position(2)
-                                ->add_tab(__('ADMIN', 'mooms'), [
-                                    Field::make('checkbox', 'is_maintenance', __('Turn on website maintenance mode', 'mooms')),
-                                    Field::make('checkbox', 'use_rank_math_breadcrumb', __('Using Rank Math breadcrumbs', 'mooms')),
-                                    Field::make('checkbox', 'disable_admin_confirm_email', __('Turn off the feature to change email admin need to verify email', 'mooms')) ->set_default_value('true'),
-                                    Field::make('checkbox', 'disable_use_weak_password', __('Turn off the feature that allows the use of weak passwords', 'mooms')),
-                                    Field::make('checkbox', 'use_short_url', __('Sử dụng đường dẫn tắt (Loại bỏ thư mục wp-content/theme. Chú ý điều chỉnh file .htaccess như hướng dẫn)', 'mooms')),
-                                    Field::make('separator', 'gm_sep_1', __('Tùy chỉnh render ảnh', 'mooms')),
-                                    Field::make('checkbox', 'use_php_image_magick', __('Sử dụng thư viện PHP ImageMagick để xử lý ảnh', 'mooms')),
-                                    Field::make('radio', 'use_image_ext', __('Render chuẩn ảnh')) ->set_width(50) ->set_default_value('default')
+                                ->add_tab(__('ADMIN', 'gaumap'), [
+                                    Field::make('checkbox', 'is_maintenance', __('Turn on website maintenance mode', 'gaumap')),
+                                    Field::make('checkbox', 'use_rank_math_breadcrumb', __('Using Rank Math breadcrumbs', 'gaumap')),
+                                    Field::make('checkbox', 'disable_admin_confirm_email', __('Turn off the feature to change email admin need to verify email', 'gaumap'))->set_default_value('true'),
+                                    Field::make('checkbox', 'disable_use_weak_password', __('Turn off the feature that allows the use of weak passwords', 'gaumap')),
+                                    Field::make('checkbox', 'use_short_url', __('Sử dụng đường dẫn tắt (Loại bỏ thư mục wp-content/theme. Chú ý điều chỉnh file .htaccess như hướng dẫn)', 'gaumap')),
+                                    Field::make('separator', 'gm_sep_1', __('Tùy chỉnh render ảnh', 'gaumap')),
+                                    Field::make('checkbox', 'use_php_image_magick', __('Sử dụng thư viện PHP ImageMagick để xử lý ảnh', 'gaumap')),
+                                    Field::make('radio', 'use_image_ext', __('Render chuẩn ảnh'))->set_width(50)->set_default_value('default')
                                          ->set_options([
-                                             'default' => __('Dùng chuẩn mặc định của ảnh', 'mooms'),
-                                             'fixed'   => __('Render ra chuẩn ảnh cố định', 'mooms'),
+                                             'default' => __('Dùng chuẩn mặc định của ảnh', 'gaumap'),
+                                             'fixed'   => __('Render ra chuẩn ảnh cố định', 'gaumap'),
                                          ]),
-                                    Field::make('text', 'fixed_image_ext', __('Chuẩn ảnh cố định', 'mooms'))->set_default_value('webp'),
+                                    Field::make('text', 'fixed_image_ext', __('Chuẩn ảnh cố định', 'gaumap'))->set_default_value('webp'),
                                 ])
-                                ->add_tab(__('SMTP', 'mooms'), [
-                                    Field::make('checkbox', 'use_smtp', __('Sử dụng SMTP để gửi mail', 'mooms')),
-                                    Field::make('separator', 'smtp_separator_1', __('Thông tin máy chủ SMTP', 'mooms')),
-                                    Field::make('text', 'smtp_host', __('Địa chỉ máy chủ', 'mooms')) ->set_default_value('smtp.gmail.com'),
-                                    Field::make('text', 'smtp_port', __('Cổng máy chủ', 'mooms'))  ->set_default_value('587'),
-                                    Field::make('text', 'smtp_secure', __('Phương thức mã hóa', 'mooms'))   ->set_default_value('TLS'),
-                                    Field::make('separator', 'smtp_separator_2', __('Thông tin email hệ thống', 'mooms')),
-                                    Field::make('text', 'smtp_username', __('Địa chỉ email', 'mooms')) ->set_default_value('mooms.dev@gmail.com'),
-                                    Field::make('text', 'smtp_password', __('Mật khẩu', 'mooms')) ->set_default_value('utakxthdfibquxos'),
+                                ->add_tab(__('SMTP', 'gaumap'), [
+                                    Field::make('checkbox', 'use_smtp', __('Sử dụng SMTP để gửi mail', 'gaumap')),
+                                    Field::make('separator', 'smtp_separator_1', __('Thông tin máy chủ SMTP', 'gaumap')),
+                                    Field::make('text', 'smtp_host', __('Địa chỉ máy chủ', 'gaumap'))->set_default_value('smtp.gmail.com'),
+                                    Field::make('text', 'smtp_port', __('Cổng máy chủ', 'gaumap'))->set_default_value('587'),
+                                    Field::make('text', 'smtp_secure', __('Phương thức mã hóa', 'gaumap'))->set_default_value('TLS'),
+                                    Field::make('separator', 'smtp_separator_2', __('Thông tin email hệ thống', 'gaumap')),
+                                    Field::make('text', 'smtp_username', __('Địa chỉ email', 'gaumap'))->set_default_value('mooms.dev@gmail.com'),
+                                    Field::make('text', 'smtp_password', __('Mật khẩu', 'gaumap'))->set_default_value('utakxthdfibquxos'),
                                 ])
-                                ->add_tab(__('Theme info', 'mooms'), [
-                                    Field::make('text', 'theme_info_name', __('Name', 'mooms')) ->set_attribute('readOnly','Blog Du lịch - Website MOOMS.DEV'),
-                                    Field::make('text', 'theme_info_email', __('Email', 'mooms')) ->set_width(50) ->set_attribute('readOnly','mooms.dev@gmail.com'),
-                                    Field::make('text', 'theme_info_phone_number', __('Phone', 'mooms')) ->set_width(50) ->set_attribute('readOnly','0989 64 67 66'),
-                                    Field::make('text', 'theme_info_logo_url', __('Link logo', 'mooms')) ->set_width(50) ->set_attribute('readOnly','mooms.dev/logo.png'),
-                                    Field::make('text', 'theme_info_website', __('Website', 'mooms')) ->set_width(50) ->set_attribute('readOnly','https://mooms.dev'),
+                                ->add_tab(__('Theme info', 'gaumap'), [
+                                    Field::make('text', 'theme_info_name', __('Name', 'gaumap'))->set_attribute('readOnly', 'LA CÀ DEV'),
+                                    Field::make('text', 'theme_info_email', __('Email', 'gaumap'))->set_width(50)->set_attribute('readOnly', 'mooms.dev@gmail.com'),
+                                    Field::make('text', 'theme_info_phone_number', __('Phone', 'gaumap'))->set_width(50)->set_attribute('readOnly', '0989 64 67 66'),
+                                    Field::make('text', 'theme_info_logo_url', __('Link logo', 'mooms'))->set_width(50)->set_attribute('readOnly', 'mooms.dev/images/moomsdev-white.png'),
+                                    Field::make('text', 'theme_info_website', __('Website', 'mooms'))->set_width(50)->set_attribute('readOnly', 'https://mooms.dev'),
                                 ]);
-
         });
     }
 
     public function hideSuperUsers() {
         add_action('pre_user_query', function ($user_search) {
             global $wpdb;
-            $superUsers = "('" . implode("','", $this->superUsers) . "')";
+            $superUsers               = "('" . implode("','", $this->superUsers) . "')";
             $user_search->query_where = str_replace('WHERE 1=1', "WHERE 1=1 AND {$wpdb->users}.user_login NOT IN " . $superUsers, $user_search->query_where);
         });
     }
@@ -470,7 +444,7 @@ class AdminSettings
                 'tools_page_remove_personal_data',
             ];
             $current_screen = get_current_screen();
-            // dump($current_screen);
+
             if ($current_screen !== null && in_array($current_screen->id, $deniePage, true)) {
                 wp_die($errorMessage);
             }
@@ -478,7 +452,6 @@ class AdminSettings
     }
 
     public function disableOptionsReadPage() {
-        //	    $denyPages = [];
         $removePages = [
             'options-reading.php',
             'options-writing.php',
@@ -492,12 +465,6 @@ class AdminSettings
             foreach ($removePages as $page) {
                 remove_submenu_page('options-general.php', $page);
             }
-            //            global $submenu;
-            //            dump($submenu);
-            //            remove_submenu_page('options-general.php', 'options-writing.php');
-            //            remove_submenu_page('options-general.php', 'options-discussion.php');
-            //            remove_submenu_page('options-general.php', 'options-media.php');
-            //            remove_submenu_page('options-general.php', 'privacy.php');
         });
 
         $errorMessage = $this->errorMessage;

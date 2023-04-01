@@ -28,6 +28,6 @@ $default_options = [
  * Default sidebar.
  */
 register_sidebar(array_merge($default_options, [
-    'name' => __('Default Sidebar', 'mooms'),
+    'name' => __('Default Sidebar', 'gaumap'),
     'id'   => 'default-sidebar',
 ]));

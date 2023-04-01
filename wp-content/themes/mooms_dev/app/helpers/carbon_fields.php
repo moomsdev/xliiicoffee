@@ -6,19 +6,10 @@
  */
 
 /**
- * Bootstrap Carbon Fields.
- */
-// function app_bootstrap_carbon_fields() {
-// 	\Carbon_Fields\Carbon_Fields::boot();
-// }
-
-/**
  * Bootstrap Carbon Fields container definitions.
  */
 function app_bootstrap_carbon_fields_register_fields() {
     include_once APP_APP_SETUP_DIR . 'theme-options.php';
-    // include_once APP_APP_SETUP_DIR . 'carbon-fields' . DIRECTORY_SEPARATOR . 'post-meta.php';
-    // include_once APP_APP_SETUP_DIR . 'carbon-fields' . DIRECTORY_SEPARATOR . 'term-meta.php';
 }
 
 /**

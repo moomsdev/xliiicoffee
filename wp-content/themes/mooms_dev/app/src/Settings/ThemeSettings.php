@@ -88,7 +88,7 @@ class ThemeSettings {
     }
 
     public function hideAdminBar() {
-        if ( is_user_logged_in() ) {
+        if (is_user_logged_in()) {
             show_admin_bar(true);
             add_filter('show_admin_bar', '__return_true');
         } else {
@@ -104,8 +104,7 @@ class ThemeSettings {
      *
      * @return array
      */
-    public function AddActiveClassToCurrentMenu()
-    {
+    public function AddActiveClassToCurrentMenu() {
         add_filter('nav_menu_css_class', static function ($classes) {
             if (in_array('current-menu-item', $classes, true)) {
                 $classes[] = 'current-menu-item';
@@ -152,7 +151,6 @@ class ThemeSettings {
     public function addFooterData() {
         add_action('wp_footer', static function () {
             echo carbon_get_theme_option('footer_scripts');
-            // echo "<script>let blankps=document.querySelectorAll('.removePara p');for(let i=0;i<blankps.length;i++){blankps[i].remove();}</script>";
         }, PHP_INT_MAX);
     }
 
@@ -164,11 +162,10 @@ class ThemeSettings {
     public function LoadCustomJavascriptFile($files) {
         $count = 1;
         wp_enqueue_script('mooms-google-map', 'https://maps.googleapis.com/maps/api/js?key=' . apply_filters('carbon_fields_map_field_api_key', true) . '&libraries=geometry,places,drawing', [], '0.1.0', true);
-        //        \WP_InstantClick::no_instant('mooms-google-map');
+
         foreach ($files as $file) {
-            $scriptHandle = 'mooms-css-' . $count;
+            $scriptHandle = 'gaumap-css-' . $count;
             wp_enqueue_script($scriptHandle, $file, [], '0.1.0', true);
-            //            \WP_InstantClick::no_instant($scriptHandle);
             $count++;
         }
     }
@@ -181,7 +178,7 @@ class ThemeSettings {
     public function loadCustomStyleSheetFiles($files) {
         $count = 1;
         foreach ($files as $file) {
-            wp_enqueue_style('mooms-css-' . $count, $file, [], '0.1.0');
+            wp_enqueue_style('gaumap-css-' . $count, $file, [], '0.1.0');
             $count++;
         }
 

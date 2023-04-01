@@ -21,15 +21,14 @@ if (!defined('ABSPATH')) {
 define('ALLOW_UNFILTERED_UPLOADS', true);
 
 define('AUTHOR', [
-    'name'           => 'Blog Du lịch - Lập trình MOOMS.DEV',
+    'name'           => 'LA CÀ DEV',
     'email'          => 'support@mooms.dev',
-    'phone_number'   => '0989.64.67.66',
-    'logo_url'       => '//mooms.dev/logo.png',
-    'logo_color_url' => '//mooms.dev/logo_color.png',
-    'logo_black_url' => '//mooms.dev/logo_black.png',
+    'phone_number'   => '0989 64 67 66',
+    'logo_url'       => '//mooms.dev/images/moomsdev-white.png',
+    'logo_black_url' => '//mooms.dev/images/logo_black.png',
     'logo_white_url' => '//mooms.dev/logo.png',
     'favicon'        => '//mooms.dev/favicon.png',
-    'website'        => '//mooms.dev',
+    'website'        => 'https://mooms.dev',
     'date_started'   => get_option('_theme_info_date_started'),
     'date_published' => get_option('_theme_info_date_publish'),
 ]);
@@ -247,9 +246,3 @@ function get_custom_post_types($exclude_post_types = array()) {
 
 $exclude_post_types = array('post', 'page');
 $post_types = get_custom_post_types($exclude_post_types);
-
-//
-
-
-
-

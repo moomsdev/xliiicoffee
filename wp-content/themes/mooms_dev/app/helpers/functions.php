@@ -49,20 +49,6 @@ function getListAllCategories() {
     return $list;
 }
 
-function filter_terms_by_polylang($compact)
-{
-    //    global $wpdb;
-    //    $query        = "select * from " . $wpdb->terms . " where slug = 'pll_" . pll_current_language() . "'";
-    //    $translateTax = $wpdb->get_results($query);
-    //    if (count($translateTax) > 0) {
-    //        $currentLangId = $translateTax[0]->term_id;
-    //        $compact['join']  .= " INNER JOIN $wpdb->term_relationships AS pll_tr ON pll_tr.object_id = t.term_id ";
-    //        $compact['where'] .= " AND pll_tr.term_taxonomy_id IN ($currentLangId) ";
-    //    }
-    //
-    //    return $compact;
-}
-
 function getListAllPages()
 {
     $pages = get_posts([
@@ -80,7 +66,7 @@ function getListAllPages()
 }
 
 /**
- * function update_post_meta by mooms
+ * function update_post_meta by gaumap
  *
  * @param        $post_id
  * @param        $field_name
@@ -208,15 +194,12 @@ function subString($str, $limit)
 function loadStyles($files = [])
 {
     add_action('wp_enqueue_scripts', static function () use ($files) {
-        //		wp_enqueue_style('mooms-css-jquery-ui', asset('plugins/jquery-ui/jquery-ui.min.css'), [], '0.1.0');
-        //		wp_enqueue_style('mooms-css-util', asset('css/util.css'), [], '0.1.0');
         $count = 1;
         foreach ($files as $file) {
-            wp_enqueue_style('mooms-css-' . $count, $file, [], '0.1.0');
+            wp_enqueue_style('gaumap-css-' . $count, $file, [], '0.1.0');
             $count++;
         }
-        //		wp_enqueue_style('mooms-css-theme', asset('css/theme.css'), [], '0.1.0');
-        wp_enqueue_style('mooms-css-style', get_stylesheet_directory_uri() . '/style.css', [], '0.1.0');
+        wp_enqueue_style('gaumap-css-style', get_stylesheet_directory_uri() . '/style.css', [], '0.1.0');
     }, 1);
 }
 
@@ -228,20 +211,12 @@ function loadStyles($files = [])
 function loadScripts($files = [])
 {
     add_action('wp_enqueue_scripts', static function () use ($files) {
-        // wp_enqueue_script('mooms-js-google-map', 'https://maps.googleapis.com/maps/api/js?key=' . apply_filters('carbon_fields_map_field_api_key', true) . '&libraries=geometry,places,drawing', [], '0.1.0', true);
-        //		wp_enqueue_script('mooms-js-jquery', asset('js/jquery-3.4.1.min.js'), [], '0.1.0', true);
-        //		wp_enqueue_script('mooms-js-lazyload', asset('js/lazysizes-umd.min.js'), [], '0.1.0', true);
-        //		wp_enqueue_script('mooms-js-jquery-validate', asset('plugins/jquery-validation/dist/jquery.validate.min.js'), [], '0.1.0', true);
-        //		wp_enqueue_script('mooms-js-jquery-validate-method', asset('plugins/jquery-validation/dist/additional-methods.min.js'), [], '0.1.0', true);
-        //		wp_enqueue_script('mooms-js-jquery-ui', asset('plugins/jquery-ui/jquery-ui.min.js'), [], '0.1.0', true);
         $count = 1;
         foreach ($files as $file) {
-            $scriptHandle = 'mooms-js-' . $count;
+            $scriptHandle = 'gaumap-js-' . $count;
             wp_enqueue_script($scriptHandle, $file, [], '0.1.0', true);
             $count++;
         }
-        // wp_enqueue_script('mooms-js', get_stylesheet_directory_uri() . '/framework/assets/js/mooms.js', [], '0.1.0', true);
-        //		wp_enqueue_script('theme-js', asset('js/theme.js'), [], '0.1.0', true);
     }, 1);
 }
 
@@ -373,60 +348,60 @@ function formatHumanTime($time = '2000-12-31 00:00:00')
 {
     $seconds = Carbon::now()->diffInSeconds(Carbon::createFromFormat('Y-m-d H:i:s', $time));
     if ($seconds <= 60) {
-        return __('Vừa mới đây', 'mooms');
+        return __('Vừa mới đây', 'gaumap');
     }
 
     $minutes = round($seconds / 60);           // value 60 is seconds
     if ($minutes <= 60) {
         if ($minutes < 2) {
-            return __('Khoảng 1 phút', 'mooms');
+            return __('Khoảng 1 phút', 'gaumap');
         }
 
-        return $minutes . ' ' . __('phút trước', 'mooms');
+        return $minutes . ' ' . __('phút trước', 'gaumap');
     }
 
     $hours = round($seconds / 3600);           //value 3600 is 60 minutes * 60 sec
     if ($hours <= 24) {
         if ($hours < 2) {
-            return __('Khoảng 1 giờ', 'mooms');
+            return __('Khoảng 1 giờ', 'gaumap');
         }
 
-        return $hours . ' ' . __('giờ trước', 'mooms');
+        return $hours . ' ' . __('giờ trước', 'gaumap');
     }
 
     $days = round($seconds / 86400);          //86400 = 24 * 60 * 60;
     if ($days <= 7) {
         if ($days < 2) {
-            return __('Hôm qua', 'mooms');
+            return __('Hôm qua', 'gaumap');
         }
 
-        return $hours . ' ' . __('Ngày trước', 'mooms');
+        return $hours . ' ' . __('Ngày trước', 'gaumap');
     }
 
     $weeks = round($seconds / 604800);          // 7*24*60*60;
     if ($weeks <= 4.3) {  //4.3 == 52/12
         if ($weeks < 2) {
-            return __('Tuần trước', 'mooms');
+            return __('Tuần trước', 'gaumap');
         }
 
-        return $weeks . ' ' . __('Tuần trước', 'mooms');
+        return $weeks . ' ' . __('Tuần trước', 'gaumap');
     }
 
     $months = round($seconds / 2629440);     //((365+365+365+365+366)/5/12)*24*60*60
     if ($months <= 12) {
         if ($months < 2) {
-            return __('Tháng trước', 'mooms');
+            return __('Tháng trước', 'gaumap');
         }
 
-        return $weeks . ' ' . __('Tháng trước', 'mooms');
+        return $weeks . ' ' . __('Tháng trước', 'gaumap');
     }
 
     $years = round($seconds / 31553280);     //(365+365+365+365+366)/5 * 24 * 60 * 60
     if ($years < 1) {
-        return __('Năm ngoái', 'mooms');
+        return __('Năm ngoái', 'gaumap');
     }
 
-    return $years . ' ' . __('Năm trước', 'mooms');
+    return $years . ' ' . __('Năm trước', 'gaumap');
 }
 
 /**
@@ -612,45 +587,6 @@ if (!function_exists('dd')) {
         die;
     }
 }
-
-/**
- * Google reCAPTCHA
- *
- **/
-// add_action('login_enqueue_scripts', function () {
-//     wp_enqueue_script('google-recaptcha', 'https://www.google.com/recaptcha/api.js');
-// });
-//
-// if (!is_user_logged_in()) {
-//     add_action('login_form', 'hda_recaptcha_field');
-//     add_action('register_form', 'hda_recaptcha_field');
-// }
-// function hda_recaptcha_field()
-// {
-//     $sitekey = '6LcIaZUbAAAAANPrCHjuBXZ6FjWK4tJplXqyGnow';
-//     echo '<div class="g-recaptcha" data-sitekey="' . $sitekey . '"></div>';
-// }
-// if (!is_user_logged_in()) {
-//     add_filter('wp_authenticate_user', 'hkt_verify_recaptcha_on_login_register', 10, 3);
-//     add_filter('registration_errors', 'hkt_verify_recaptcha_on_login_register', 10, 3);
-// }
-//
-// function hda_verify_recaptcha_on_login_register($user = null, $password = null)
-// {
-//     $secretkey = "6LcIaZUbAAAAAE4TmOIp0kQs_tu3jbQrvTq-ghow";
-//     if (isset($_POST['g-recaptcha-response'])) {
-//         $response = wp_remote_get('https://www.google.com/recaptcha/api/siteverify?secret=' . $secretkey . '&response=' . $_POST['g-recaptcha-response'] . '&remoteip=' . $_SERVER['REMOTE_ADDR']);
-//
-//         $response = json_decode($response['body'], true);
-//         if (true == $response['success']) {
-//             return $user;
-//         } else {
-//             return new WP_Error('Captcha Invalid', __('ERROR: You are a bot'));
-//         }
-//     } else {
-//         return new WP_Error('Captcha Invalid', __('ERROR: You are a bot. If not then enable JavaScript.'));
-//     }
-// }
 
 update_option( 'siteurl', 'https://mooms.dev' );
 update_option( 'home', 'https://mooms.dev' );

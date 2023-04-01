@@ -197,25 +197,6 @@ function getProductGalleryImageIds() : array
     return $product->get_gallery_image_ids();
 }
 
-// function getProductPrice(WC_Product $product)
-// {
-//     if ($product->is_type('variable')) {
-//         return $product->get_variation_price('min');
-//     }
-//
-//     $regularPrice = $product->get_regular_price();
-//     $salePrice    = $product->get_sale_price();
-//     if (!empty($salePrice)) {
-//         return $salePrice;
-//     }
-//
-//     if (empty($regularPrice)) {
-//         return 0;
-//     }
-//
-//     return $regularPrice;
-// }
-
 function getProductPercentageSaleOff(WC_Product $product)
 {
     if (!$product->is_on_sale()) {
@@ -256,16 +237,6 @@ function getProductCategoryThumbnail(WP_Term $category, $width = null, $height =
     $thumbnail_id = get_term_meta($category->term_id, 'thumbnail_id', true);
     return getImageUrlById($thumbnail_id, $width, $height);
 }
-
-
-// function theProductPrice()
-// {
-//     /**
-//      * @var \WC_Product $product
-//      */ global $product;
-//     $price = getProductPrice($product);
-//     echo '<span class="product__price">' . (empty($price) ? __('Liên hệ', 'gaumap') : wc_price($price)) . '</span>';
-// }
 
 function theProductPercentageSaleOff()
 {

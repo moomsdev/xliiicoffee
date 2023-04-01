@@ -95,10 +95,14 @@ jQuery(document).ready(function () {
         spaceBetween: 30,
         cslidesPerView: 4,
         paginationClickable: true,
+        loop: true,
         speed: 1500,
-        autoplay: {
-            delay: 5000,
-            disableOnInteraction: false,
+        // autoplay: {
+        //     delay: 5000,
+        //     disableOnInteraction: false,
+        // },
+        scrollbar: {
+            el: ".swiper-scrollbar",
         },
         breakpoints: {
             1440: {
@@ -111,7 +115,9 @@ jQuery(document).ready(function () {
             },
             576: {
                 slidesPerView: 2,
-                spaceBetween: 15
+                centeredSlides: true,
+                spaceBetween: 30,
+                grabCursor: true,
             },
             320: {
                 slidesPerView: 1,

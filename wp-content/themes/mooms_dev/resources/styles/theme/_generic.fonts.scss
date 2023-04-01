@@ -2,29 +2,7 @@
     Fonts
 \* ------------------------------------------------------------ */
 
-
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap');
-
-$FuturaM: futura-medium, sans-serif;
-$FuturaB: futura-bold, sans-serif;
-$SFUfuturaB: SFUfutura-bold, sans-serif;
-$SFUfuturaB: SFUfutura-bold, sans-serif;
-$LemonMilk: LemonMilk, sans-serif;
-
-@font-face {
-    font-family: futura-medium;
-    src: url('../../fonts/futurastd-medium.otf');
-}
-
-@font-face {
-    font-family: futura-bold;
-    src: url('../../fonts/futurastd-bold.otf');
-}
-
-@font-face {
-    font-family: LemonMilk;
-    src: url('../../fonts/LemonMilk.otf');
-}
 
 @font-face {
     font-family: SFUfutura-bold;
@@ -34,5 +12,10 @@ $LemonMilk: LemonMilk, sans-serif;
 @font-face {
     font-family: SFUfutura;
     src: url('../../fonts/SFUFuturaRegular.TTF');
+}
+
+@font-face {
+    font-family: VNF-Futura;
+    src: url('../../fonts/VNF-FuturaRegular.ttf');
 }
 

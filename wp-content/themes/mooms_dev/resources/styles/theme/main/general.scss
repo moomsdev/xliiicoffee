@@ -161,10 +161,15 @@ p:empty{
 }
 
 .container-fluid {
-    padding-right: 5rem;
-    padding-left: 5rem;
+    padding-right: 10rem;
+    padding-left: 10rem;
 
-    @include mediaMaxWidth(1440px) {
+    @include mediaMaxWidth($lg) {
+        padding-right: 5rem;
+        padding-left: 5rem;
+    }
+
+    @include mediaMaxWidth($md) {
         padding-right: 2rem;
         padding-left: 2rem;
     }
