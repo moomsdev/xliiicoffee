@@ -24,10 +24,10 @@ define('AUTHOR', [
     'name'           => 'LA CÀ DEV',
     'email'          => 'support@mooms.dev',
     'phone_number'   => '0989 64 67 66',
-    'logo_url'       => '//mooms.dev/images/moomsdev-white.png',
-    'logo_black_url' => '//mooms.dev/images/logo_black.png',
-    'logo_white_url' => '//mooms.dev/logo.png',
-    'favicon'        => '//mooms.dev/favicon.png',
+    // 'logo_url'       => '//mooms.dev/images/moomsdev-white.png',
+    // 'logo_black_url' => '//mooms.dev/images/logo_black.png',
+    // 'logo_white_url' => '//mooms.dev/logo.png',
+    // 'favicon'        => '//mooms.dev/favicon.png',
     'website'        => 'https://mooms.dev',
     'date_started'   => get_option('_theme_info_date_started'),
     'date_published' => get_option('_theme_info_date_publish'),
@@ -227,22 +227,3 @@ new \App\PostTypes\Location();
 new \App\PostTypes\WorkWithUs();
 new \App\PostTypes\CoffeeGuide();
 new \App\PostTypes\Collaboration();
-
-// Function just run js contact form 7 at page Contact
-function my_deregister_javascript() {
-    if ( !is_page('Contact') ) {
-        wp_deregister_script( 'contact-form-7' );
-    }
-}
-add_action( 'wp_print_scripts', 'my_deregister_javascript', 100 );
-
-// Function get all custom post type
-function get_custom_post_types($exclude_post_types = array()) {
-    $args = array('public' => true, '_builtin' => false);
-    $post_types = get_post_types($args, 'names');
-    $post_types = array_diff($post_types, $exclude_post_types);
-    return $post_types;
-}
-
-$exclude_post_types = array('post', 'page');
-$post_types = get_custom_post_types($exclude_post_types);

@@ -208,43 +208,6 @@ function thePagination($query = null) {
     }
 }
 
-/**
- * Tạo phân trang sử dụnng boostrap 5
- *
- * @param mixed|\WP_Query $query
- */
-function thePagination5($query = null) {
-    if (empty($query)) {
-        global $wp_query;
-        $query = $wp_query;
-    }
-
-    $paged5 = (get_query_var('paged') === 0) ? 1 : get_query_var('paged');
-    $pages5 = paginate_links([
-        'base'      => str_replace(999999999, '%#%', esc_url(get_pagenum_link(999999999))),
-        'format'    => '?paged=%#%',
-        'current'   => $paged5,
-        'total'     => $query->max_num_pages,
-        'type'      => 'array',
-        'prev_next' => true,
-        'prev_text' => '<span aria-hidden="true">&laquo;</span>',
-        'next_text' => '<span aria-hidden="true">&raquo;</span>',
-        'before_page_number' => '<li class="page-item">',
-        'after_page_number' => '</li>',
-        'link_before' => '<span class="page-link">',
-        'link_after' => '</span>',
-        'class' => 'pagination'
-    ]);
-    if (is_array($pages5)) {
-        $pagination5 = '<nav aria-label="Page navigation"><ul class="pagination">';
-        foreach ($pages5 as $page) {
-            $pagination5 .= $page;
-        }
-        $pagination5 .= '</ul></nav>';
-        echo $pagination5;
-    }
-}
-
 
 /**
  * Load bản đồ Google

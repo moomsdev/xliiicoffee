@@ -102,7 +102,7 @@ class AdminSettings {
                 <div style="position: relative;">
                     <div style="text-align:center">
                         <a target="_blank" href="<?php echo AUTHOR['website'] ?>" title="<?php echo AUTHOR['name'] ?>">
-                            <img style="width:100%" src="<?php echo AUTHOR['logo_black_url'] ?>" alt="<?php echo AUTHOR['name'] ?>" title="<?php echo AUTHOR['name'] ?>">
+                            <img style="width:100%" src="<?php echo get_site_url() . '/wp-content/themes/mooms_dev/resources/images/dev/moomsdev-black.png' ?>" alt="<?php echo AUTHOR['name'] ?>" title="<?php echo AUTHOR['name'] ?>">
                         </a>
                     </div>
                     <h2 style="text-align:center;"><?php echo AUTHOR['name'] ?></h2>
@@ -226,7 +226,7 @@ class AdminSettings {
         add_action('admin_bar_menu', static function ($wp_admin_bar) use ($author) {
             $args = [
                 'id'    => 'logo_author',
-                'title' => '<img src="' . $author['logo_url'] . '" style="height: 1rem; padding-top:.3rem;">',
+                'title' => '<img src="' . get_site_url() . "/wp-content/themes/mooms_dev/resources/images/dev/moomsdev-white.png" . '" style="height: 1rem; padding-top:.3rem;" alt="' . AUTHOR['name'] . '">',
                 'href'  => $author['website'],
                 'meta'  => [
                     'target' => '_blank',
@@ -336,15 +336,15 @@ class AdminSettings {
                                     Field::make('checkbox', 'use_rank_math_breadcrumb', __('Using Rank Math breadcrumbs', 'gaumap')),
                                     Field::make('checkbox', 'disable_admin_confirm_email', __('Turn off the feature to change email admin need to verify email', 'gaumap'))->set_default_value('true'),
                                     Field::make('checkbox', 'disable_use_weak_password', __('Turn off the feature that allows the use of weak passwords', 'gaumap')),
-                                    Field::make('checkbox', 'use_short_url', __('Sử dụng đường dẫn tắt (Loại bỏ thư mục wp-content/theme. Chú ý điều chỉnh file .htaccess như hướng dẫn)', 'gaumap')),
-                                    Field::make('separator', 'gm_sep_1', __('Tùy chỉnh render ảnh', 'gaumap')),
-                                    Field::make('checkbox', 'use_php_image_magick', __('Sử dụng thư viện PHP ImageMagick để xử lý ảnh', 'gaumap')),
-                                    Field::make('radio', 'use_image_ext', __('Render chuẩn ảnh'))->set_width(50)->set_default_value('default')
-                                         ->set_options([
-                                             'default' => __('Dùng chuẩn mặc định của ảnh', 'gaumap'),
-                                             'fixed'   => __('Render ra chuẩn ảnh cố định', 'gaumap'),
-                                         ]),
-                                    Field::make('text', 'fixed_image_ext', __('Chuẩn ảnh cố định', 'gaumap'))->set_default_value('webp'),
+                                    // Field::make('checkbox', 'use_short_url', __('Sử dụng đường dẫn tắt (Loại bỏ thư mục wp-content/theme. Chú ý điều chỉnh file .htaccess như hướng dẫn)', 'gaumap')),
+                                    // Field::make('separator', 'gm_sep_1', __('Tùy chỉnh render ảnh', 'gaumap')),
+                                    // Field::make('checkbox', 'use_php_image_magick', __('Sử dụng thư viện PHP ImageMagick để xử lý ảnh', 'gaumap')),
+                                    // Field::make('radio', 'use_image_ext', __('Render chuẩn ảnh'))->set_width(50)->set_default_value('default')
+                                    //      ->set_options([
+                                    //          'default' => __('Dùng chuẩn mặc định của ảnh', 'gaumap'),
+                                    //          'fixed'   => __('Render ra chuẩn ảnh cố định', 'gaumap'),
+                                    //      ]),
+                                    // Field::make('text', 'fixed_image_ext', __('Chuẩn ảnh cố định', 'gaumap'))->set_default_value('webp'),
                                 ])
                                 ->add_tab(__('SMTP', 'gaumap'), [
                                     Field::make('checkbox', 'use_smtp', __('Sử dụng SMTP để gửi mail', 'gaumap')),
@@ -355,14 +355,18 @@ class AdminSettings {
                                     Field::make('separator', 'smtp_separator_2', __('Thông tin email hệ thống', 'gaumap')),
                                     Field::make('text', 'smtp_username', __('Địa chỉ email', 'gaumap'))->set_default_value('mooms.dev@gmail.com'),
                                     Field::make('text', 'smtp_password', __('Mật khẩu', 'gaumap'))->set_default_value('utakxthdfibquxos'),
-                                ])
-                                ->add_tab(__('Theme info', 'gaumap'), [
-                                    Field::make('text', 'theme_info_name', __('Name', 'gaumap'))->set_attribute('readOnly', 'LA CÀ DEV'),
-                                    Field::make('text', 'theme_info_email', __('Email', 'gaumap'))->set_width(50)->set_attribute('readOnly', 'mooms.dev@gmail.com'),
-                                    Field::make('text', 'theme_info_phone_number', __('Phone', 'gaumap'))->set_width(50)->set_attribute('readOnly', '0989 64 67 66'),
-                                    Field::make('text', 'theme_info_logo_url', __('Link logo', 'mooms'))->set_width(50)->set_attribute('readOnly', 'mooms.dev/images/moomsdev-white.png'),
-                                    Field::make('text', 'theme_info_website', __('Website', 'mooms'))->set_width(50)->set_attribute('readOnly', 'https://mooms.dev'),
                                 ]);
+                                // ->add_tab(__('Theme info', 'gaumap'), [
+                                //     Field::make('text', 'theme_info_name', __('Name', 'gaumap'))
+                                //          ->set_attribute('readOnly', 'LA CÀ DEV'),
+                                //     Field::make('text', 'theme_info_email', __('Email', 'gaumap'))
+                                //          ->set_width(33.33)
+                                //          ->set_attribute('readOnly','mooms.dev@gmail.com')
+                                //          ->set_default_value('mooms.dev@gmail.com'),
+                                //     Field::make('text', 'theme_info_phone_number', __('Phone', 'gaumap'))->set_width(33.33)->set_attribute('readOnly', '0989 64 67 66'),
+                                //     // Field::make('text', 'theme_info_logo_url', __('Link logo', 'mooms'))->set_width(33.33)->set_attribute('readOnly', 'mooms.dev/images/moomsdev-white.png'),
+                                //     Field::make('text', 'theme_info_website', __('Website', 'mooms'))->set_width(33.33)->set_attribute('readOnly', 'https://mooms.dev/'),
+                                // ]);
         });
     }
 
@@ -391,20 +395,20 @@ class AdminSettings {
         add_action('after_setup_theme', static function () {
             if (get_option('_is_maintenance') === 'yes') {
                 wp_die('
-					<div style="position: relative;">
-						<div style="text-align:center">
-							<a target="_blank" href="' . AUTHOR['website'] . '">
-								<img style="width:50%" src="' . AUTHOR['logo_url'] . '" alt="' . AUTHOR['name'] . '">
-							</a>
-						</div>
-						<h2 style="text-align:center">The system is currently under maintenance, please come back later. Thank you</h2>
-						<div style="text-align:center">
-							<h3>Hệ thống được phát triển bởi <a target="_blank" href="' . AUTHOR['website'] . '"><strong>' . AUTHOR['name'] . '</strong></a></h3>
-							<p>Mọi yêu cầu, hỗ trợ quý khách hàng có thể liên hệ</p>
-							<p><strong>Điện thoại</strong>: <a href="tel:' . AUTHOR['phone_number'] . '" style="color:red">' . AUTHOR['phone_number'] . '</a></p>
-							<p><strong>Email</strong>: <a style="color:red" href="mailto:' . AUTHOR['email'] . '">' . AUTHOR['email'] . '</a></p>
-						</div>
-					</div>');
+
+                    <div style="position: relative;">
+                        <div style="text-align:center">
+                            <a target="_blank" href="' . AUTHOR['website'] . '" title="' . AUTHOR['name'] . '">
+                                <img style="width:100%" src="' .  get_site_url() . "/wp-content/themes/mooms_dev/resources/images/dev/moomsdev-black.png" . ' ?>" alt="' . AUTHOR['name'] . '" title="' . AUTHOR['name'] . '">
+                            </a>
+                        </div>
+                        <div style="margin-top:1rem; display: flex; flex-wrap: wrap; column-gap: 15px; justify-content: space-between;">
+                            <p><a style="font: normal normal 500 20px Montserrat; color: black; text-decoration: none;" href="tel: ' . str_replace(['.', ',', ' '], '', AUTHOR['phone_number']) . ' "> ' . AUTHOR['phone_number'] . ' </a></p>
+                            <p><a style="font: normal normal 500 20px Montserrat; color: black; text-decoration: none;" href="mailto:' . AUTHOR['email'] . '">' . AUTHOR['email'] . '</a></p>
+                            <p><a style="font: normal normal 500 20px Montserrat; color: black; text-decoration: none;" href="' . AUTHOR['website'] . '" target="_blank">' . AUTHOR['website'] . '</a></p>
+                        </div>
+                        <h2 style="font: normal normal 700 22px Montserrat; text-align:center">The system is currently under maintenance, please come back later.<br>Thank you</h2>
+                    </div>');
             }
         });
     }

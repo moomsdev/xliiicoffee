@@ -242,7 +242,7 @@ function getRelatePosts($postId = null, $postCount = null)
     }
 
     $taxonomies  = get_post_taxonomies($postId);
-    $arrTaxQuery = ['relation' => 'OR'];
+    $arrTaxQuery = ['relation' => 'AND'];
     foreach ($taxonomies as $taxonomy) {
         $arrTerm = [];
         $terms   = get_the_terms($postId, $taxonomy);
@@ -625,7 +625,7 @@ function getYoutubeEmbedUrl($url) {
     if (count($matches)) {
         $youtube_id = $matches[0];
     }
-    return 'https://www.youtube.com/embed/' . $youtube_id;
+    return 'https://www.youtube.com/embed/' . $youtube_id . '?modestbranding=1&rel=0&controls=0&showinfo=0&title=0';
 }
 
 function getVideoUrl($video_link) {
@@ -691,5 +691,57 @@ function hide_editor()
     // }
 }
 
+// add_filter( 'carbon_fields_map_field_api_key', 'crb_get_gmaps_api_key' );
+// function crb_get_gmaps_api_key( $key ) {
+//     return 'AIzaSyBdhL5DKDR1HPG9JptbtlHh9-KSERv84Kk';
+// }
 
+//
+function getIframeSrc($html) {
+    $dom = new DOMDocument();
+    $dom->loadHTML($html);
 
+    $xpath = new DOMXPath($dom);
+    $src = $xpath->evaluate("string(//iframe/@src)");
+
+    return $src;
+}
+
+//sort_dashboard_posts
+add_filter('pre_get_posts', 'sort_dashboard_posts');
+function sort_dashboard_posts($query)
+{
+    if (is_admin() && $query->is_main_query() && $query->get('post_type') != 'page') {
+        $query->set('orderby', 'date');
+        $query->set('order', 'DESC');
+    }
+}
+
+// Showing all tags in admin -> edit post
+add_filter( 'get_terms_args', 'themeprefix_show_tags' );
+function themeprefix_show_tags ( $args ) {
+    if ( defined( 'DOING_AJAX' ) && DOING_AJAX && isset( $_POST['action'] ) && $_POST['action'] === 'get-tagcloud' ) {
+        unset( $args['number'] );
+        $args['hide_empty'] = 0;
+    }
+    return $args;
+}
+
+// Function just run js contact form 7 at page Contact
+function my_deregister_javascript() {
+    if ( !is_page('Contact') ) {
+        wp_deregister_script( 'contact-form-7' );
+    }
+}
+add_action( 'wp_print_scripts', 'my_deregister_javascript', 100 );
+
+// Function get all custom post type
+function get_custom_post_types($exclude_post_types = array()) {
+    $args = array('public' => true, '_builtin' => false);
+    $post_types = get_post_types($args, 'names');
+    $post_types = array_diff($post_types, $exclude_post_types);
+    return $post_types;
+}
+
+$exclude_post_types = array('post', 'page');
+$post_types = get_custom_post_types($exclude_post_types);

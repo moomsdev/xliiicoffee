@@ -66,11 +66,14 @@ html {
     }
 }
 
-
 .container-carbon_fields_container_more_option_them_lua_chon {
     .cf-container__fields {
         ul.cf-radio__list {
             display: block;
         }
     }
+}
+
+#woocommerce-product-images {
+    display: none !important;
 }
