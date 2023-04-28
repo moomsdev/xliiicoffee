@@ -12,25 +12,33 @@
 <div class="page-listing products">
     <div class="container-fluid">
         <?php
-        $ProductCats = get_terms('product_cat', [
+        $ProductCats = get_terms('collaboration_cat', [
             'hide_empty' => true,
             'parent'   => 0,
         ]);
 
         foreach ( $ProductCats as $ProductCat ) :
 
-                $displayType = carbon_get_term_meta($ProductCat->term_id, 'display_type');
+                $displayType = carbon_get_term_meta($ProductCat->term_id, 'co_display_type');
                 $titleCat = $ProductCat->name;
                 $slugCat = $ProductCat->slug;
                 $idCat = $ProductCat->term_id;
 
+                if ( $displayType == "partner-cat" ) :
+                    $postsPerPage = 4;
+                elseif ( $displayType == "customer-cat" ) :
+                    $postsPerPage = 2;
+                else:
+                    $postsPerPage = 1;
+                endif;
+
                 $post_query = new WP_Query([
-                    'post_type' => 'product',
-                    'posts_per_page' => 5,
+                    'post_type' => 'collaboration',
+                    'posts_per_page' => $postsPerPage,
                     'post_status' => 'publish',
                     'tax_query'      => [
                         [
-                            'taxonomy'         => 'product_cat',
+                            'taxonomy'         => 'collaboration_cat',
                             'field'            => 'term_id',
                             'terms'            => $idCat,
                             'include_children' => true,
@@ -38,16 +46,23 @@
                     ],
                 ]);
 
-            if ( $displayType == "grid-card" ) :
+            if ( $displayType == "partner-cat" ) :
 
-                $template_path = 'template-parts/loop-subscription.php';
+                $template_path = 'template-parts/loop-partner.php';
+                if (file_exists(get_template_directory() . '/' . $template_path)) :
+                    include(get_template_directory() . '/' . $template_path);
+                endif;
+
+            elseif ( $displayType == "customer-cat" ) :
+
+                $template_path = 'template-parts/loop-pcustomer.php';
                 if (file_exists(get_template_directory() . '/' . $template_path)) :
                     include(get_template_directory() . '/' . $template_path);
                 endif;
 
             else :
 
-                $template_path = 'template-parts/loop-coffee_bean.php';
+                $template_path = 'template-parts/loop-colleague.php';
                 if (file_exists(get_template_directory() . '/' . $template_path)) :
                     include(get_template_directory() . '/' . $template_path);
                 endif;

@@ -42,3 +42,16 @@ add_action('init', function () {
     );
 });
 // phpcs:enable
+
+add_action('carbon_fields_register_fields', function () {
+    Container::make('term_meta', __('More option | Thêm lựa chọn', 'gaumap'))
+             ->where('term_taxonomy', 'IN', ['collaboration_cat'])
+             ->add_fields([
+                 Field::make('radio_image','co_display_type', __('Display type | Kiểu hiển thị','gaumap'))
+                      ->set_options([
+                          'partner-cat' => get_site_url() . '/wp-content/themes/mooms_dev/resources/images/partner-cat.png' ,
+                          'customer-cat' => get_site_url() . '/wp-content/themes/mooms_dev/resources/images/customer-cat.png' ,
+                          'colleague-cat' => get_site_url() . '/wp-content/themes/mooms_dev/resources/images/colleague-cat.png' ,
+                      ]),
+             ]);
+});

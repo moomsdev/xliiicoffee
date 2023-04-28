@@ -1,11 +1,5 @@
 .featured-post-block {
 
-    .title-link {
-        display: flex;
-        justify-content: space-between;
-        align-items: end;
-    }
-
     .left-column {
 
         @include mediaMaxWidth($xl) {

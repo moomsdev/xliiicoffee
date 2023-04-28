@@ -70,22 +70,7 @@ $optionsPage = Container::make('theme_options', __('Theme Options', 'gaumap'))
                         ])
 
                         ->add_tab(__('Scripts', 'gaumap'), [
-                            Field::make('text', 'crb_google_maps_api_key', __('Google Maps API Key', 'app')),
+                            // Field::make('text', 'crb_google_maps_api_key', __('Google Maps API Key', 'app')),
                             Field::make('header_scripts', 'crb_header_script', __('Header Script', 'app')),
                             Field::make('footer_scripts', 'crb_footer_script', __('Footer Script', 'app')),
                         ]);
-
-
-// Container::make('theme_options', __('Header', 'gaumap'))
-//          ->set_page_file(__('header', 'gaumap'))
-//          ->set_page_menu_position(2)
-//          ->set_page_menu_title(__('Header', 'gaumap'))
-//          ->set_page_parent($optionsPage)
-//          ->add_fields([
-//              Field::make('image', 'background_header' . currentLanguage(), __('Image', 'gaumap')),
-//              Field::make('complex', 'header_slider' . currentLanguage(), __('Add slider:', 'gaumap'))
-//                   ->set_layout('tabbed-horizontal')
-//                   ->add_fields([
-//                       Field::make('textarea', 'text_slider', __('Text', 'gaumap'))->set_width(60),
-//                   ]),
-//          ]);

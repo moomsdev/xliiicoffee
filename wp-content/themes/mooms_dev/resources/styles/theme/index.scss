@@ -14,6 +14,7 @@
 @import './_variables.scss';
 @import './_sprite.scss';
 @import './_mixin.scss';
+@import "./main/*.scss";
 
 /**
  * -----------Helpers Theme-----------
@@ -33,5 +34,4 @@
 @import "~swiper/swiper-bundle.css";
 @import "~mburger-css/src/scss/mburger";
 @import "~mmenu-js/src/mmenu";
-@import "./main/*.scss";
 

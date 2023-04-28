@@ -126,5 +126,31 @@ jQuery(document).ready(function () {
         }
     });
 
+    // Farm imagines in single-product.php
+    const farm_slider = new Swiper('.farm-sliders', {
+        spaceBetween: 30,
+        centeredSlides: true,
+        effect: 'fade',
+        speed: 1500,
+        autoplay: {
+            delay: 5000,
+            disableOnInteraction: false,
+        },
+    });
+
+    //Gallery product
+    const gallery_product = new Swiper('.gallery-product', {
+        spaceBetween: 30,
+        centeredSlides: true,
+        speed: 1500,
+        autoplay: {
+            delay: 3000,
+            disableOnInteraction: false,
+        },
+        pagination: {
+            el: ".swiper-pagination",
+        },
+    });
+
 });
 

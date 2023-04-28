@@ -49,9 +49,11 @@ endif;
 ?>
 <section class="featured-post-block">
     <div class="container-fluid">
-        <div class="title-link">
-            <h2 class="title-blocks"><?php echo $title; ?></h2>
-            <a href="<?php echo $link; ?>" class="read-more-blocks up-hover"><?php echo __('Xem tất cả', 'gaumap'); ?></a>
+        <div class="row">
+            <div class="col-12 title-link">
+                <h2 class="title-blocks"><?php echo $title; ?></h2>
+                <a href="<?php echo $link; ?>" class="read-more-blocks up-hover"><?php echo __('Xem tất cả', 'gaumap'); ?></a>
+            </div>
         </div>
 
         <div class="row">

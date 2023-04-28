@@ -32,6 +32,7 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="<?php theAsset('/favicon/ms-icon-144x144.png'); ?>">
     <meta name="theme-color" content="#ffffff">
+    <meta name="yandex-verification" content="d3004127fd81372a" />
     <style>
         :root {
             --mb-bar-height: 2px;
