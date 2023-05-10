@@ -9,7 +9,7 @@
  * @package WPEmergeTheme
  */
 ?>
-<div class="page-listing products">
+<div class="page-listing products collaboration">
     <div class="container-fluid">
         <?php
         $ProductCats = get_terms('collaboration_cat', [
@@ -23,6 +23,7 @@
                 $titleCat = $ProductCat->name;
                 $slugCat = $ProductCat->slug;
                 $idCat = $ProductCat->term_id;
+                $desc = $ProductCat->description;
 
                 if ( $displayType == "partner-cat" ) :
                     $postsPerPage = 4;
@@ -55,7 +56,7 @@
 
             elseif ( $displayType == "customer-cat" ) :
 
-                $template_path = 'template-parts/loop-pcustomer.php';
+                $template_path = 'template-parts/loop-customer.php';
                 if (file_exists(get_template_directory() . '/' . $template_path)) :
                     include(get_template_directory() . '/' . $template_path);
                 endif;

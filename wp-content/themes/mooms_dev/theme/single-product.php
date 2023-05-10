@@ -42,7 +42,7 @@ $tag = get_the_terms($post, 'product_tag');
                             foreach( $galleries as $image ) :
                             ?>
                                 <div class="swiper-slide">
-                                    <img src="<?php echo getImageUrlById($image['img_gallery_product']) ?>" alt="<?php echo get_the_title($image['img_gallery_product']);  ?>">
+                                    <img src="<?php echo getImageUrlById($image['img_gallery_product']) ?>" alt="<?php echo get_the_title($image['img_gallery_product']); ?>">
                                 </div>
                             <?php
                             endforeach;
