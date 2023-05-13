@@ -51,10 +51,6 @@
             object-fit: cover;
             object-position: center center;
             transition: all .5s;
-
-            &:hover {
-                transform: scale(1.1);
-            }
         }
     }
 
