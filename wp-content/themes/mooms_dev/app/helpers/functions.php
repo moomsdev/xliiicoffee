@@ -671,32 +671,36 @@ function getVideoUrl($video_link) {
 /**
  *  Hide Editor
  */
-add_action('admin_init', 'hide_editor');
-function hide_editor()
-{
-    // Get the Post ID.
-    $post_id = $_GET['post'] ? $_GET['post'] : $_POST['post_ID'];
-    if (!isset($post_id)) return;
-    // Hide the editor on the page titled 'Homepage'
-    // $homepgname = get_the_title($post_id);
-    // if($homepgname == 'Homepage'){
-    //     remove_post_type_support('page', 'editor');
-    // }
-    // Hide the editor on a page with a specific page template
-    // Get the name of the Page Template file.
-    $template_file = get_post_meta($post_id, '_wp_page_template', true);
-
-    // if ($template_file == 'page_templates/about_us_template.php') { // the filename of the page template
-    //     remove_post_type_support('page', 'editor');
-    // }
-}
-
-// add_filter( 'carbon_fields_map_field_api_key', 'crb_get_gmaps_api_key' );
-// function crb_get_gmaps_api_key( $key ) {
-//     return 'AIzaSyBdhL5DKDR1HPG9JptbtlHh9-KSERv84Kk';
+// add_action('admin_init', 'hide_editor');
+// function hide_editor()
+// {
+//     // Get the Post ID.
+//     $post_id = $_GET['post'] ? $_GET['post'] : $_POST['post_ID'];
+//     if (!isset($post_id)) return;
+//     // Hide the editor on the page titled 'Homepage'
+//     // $homepgname = get_the_title($post_id);
+//     // if($homepgname == 'Homepage'){
+//     //     remove_post_type_support('page', 'editor');
+//     // }
+//     // Hide the editor on a page with a specific page template
+//     // Get the name of the Page Template file.
+//     $template_file = get_post_meta($post_id, '_wp_page_template', true);
+//
+//     if ($template_file == 'page_templates/about_us_template.php') { // the filename of the page template
+//         remove_post_type_support('page', 'editor');
+//     }
 // }
 
-//
+function hide_editor() {
+    $post_types = get_post_types();
+
+    foreach ($post_types as $post_type) {
+        remove_post_type_support($post_type, 'editor');
+    }
+}
+add_action('admin_init', 'hide_editor');
+
+// get src url from iframe
 function getIframeSrc($html) {
     $dom = new DOMDocument();
     $dom->loadHTML($html);
@@ -705,16 +709,6 @@ function getIframeSrc($html) {
     $src = $xpath->evaluate("string(//iframe/@src)");
 
     return $src;
-}
-
-//sort_dashboard_posts
-add_filter('pre_get_posts', 'sort_dashboard_posts');
-function sort_dashboard_posts($query)
-{
-    if (is_admin() && $query->is_main_query() && $query->get('post_type') != 'page') {
-        $query->set('orderby', 'date');
-        $query->set('order', 'DESC');
-    }
 }
 
 // Showing all tags in admin -> edit post
@@ -726,14 +720,6 @@ function themeprefix_show_tags ( $args ) {
     }
     return $args;
 }
-
-// Function just run js contact form 7 at page Contact
-function my_deregister_javascript() {
-    if ( !is_page('Contact') ) {
-        wp_deregister_script( 'contact-form-7' );
-    }
-}
-add_action( 'wp_print_scripts', 'my_deregister_javascript', 100 );
 
 // Function get all custom post type
 function get_custom_post_types($exclude_post_types = array()) {

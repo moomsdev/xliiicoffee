@@ -52,7 +52,7 @@ endif;
         <div class="row">
             <div class="col-12 title-link">
                 <h2 class="title-blocks"><?php echo $title; ?></h2>
-                <a href="<?php echo $link; ?>" class="read-more-blocks up-hover"><?php echo __('Xem tất cả', 'gaumap'); ?></a>
+                <a href="<?php echo $link; ?>" class="read-more-blocks text-shadow"><?php echo __('Xem tất cả', 'gaumap'); ?></a>
             </div>
         </div>
 
@@ -153,7 +153,7 @@ endif;
                                                                 foreach ($tags as $tag) :
                                                                 ?>
                                                                     <li>
-                                                                        <a href="<?php echo get_term_link($tag->term_id) ?>" class="up-hover">
+                                                                        <a href="<?php echo get_term_link($tag->term_id) ?>" class="text-shadow">
                                                                             <?php echo $tag->name ?>
                                                                         </a>
                                                                     </li>
@@ -210,7 +210,7 @@ endif;
                                                     foreach ($tags as $tag) :
                                                         ?>
                                                         <li>
-                                                            <a href="<?php echo get_term_link($tag->term_id) ?>" class="up-hover">
+                                                            <a href="<?php echo get_term_link($tag->term_id) ?>" class="text-shadow">
                                                                 <?php echo $tag->name ?>
                                                             </a>
                                                         </li>

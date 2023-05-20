@@ -49,14 +49,8 @@ add_action('carbon_fields_register_fields', function () {
                  Field::make('text', 'altitude', __('Altitude | Độ cao', 'gaumap'))
                       ->set_width(33.33)
                       ->set_default_value('masl'),
-                 Field::make('select', 'process', __('Process | Phương pháp sơ chế', 'gaumap'))
-                      ->set_width(33.33)
-                      ->add_options([
-                          'washed'  => __('Washed'),
-                          'decaf'   => __('Decaf'),
-                          'natural' => __('Natural'),
-                          'honey'   => __('Honey'),
-                      ]),
+                 Field::make('text', 'process', __('Process | Phương pháp sơ chế', 'gaumap'))
+                      ->set_width(33.33),
                  Field::make('text', 'net_weight', __('Net weight | Trọng lượng', 'gaumap'))
                       ->set_width(33.33)
                       ->set_default_value('gram'),

@@ -9,6 +9,7 @@
  * @package WPEmergeTheme
  */
 global $product;
+$product = wc_get_product(get_the_ID());
 
 $galleries = getPostMeta('product_gallery');
 
@@ -56,9 +57,9 @@ $tag = get_the_terms($post, 'product_tag');
                     <div class="inner-info-product">
                         <h1 class="title-product"><?php theTitle(); ?></h1>
 
-                        <div class="price-product">
-                            <span class="price regular-price">1.000.000 VND</span>
-                        </div>
+                        <?php
+                        theProductPrice($product);
+                        ?>
 
                         <div class="list-info">
                             <ul>
@@ -175,9 +176,15 @@ $tag = get_the_terms($post, 'product_tag');
                                           </li>";
                                 endif;
                                 ?>
-
                             </ul>
                         </div>
+
+                        <?php
+                        if ($product instanceof WC_Product) {
+                            $shortDescription = $product->get_short_description();
+                            echo "<div class='product-short-desc'>" . apply_filters('the_content', $shortDescription) . "</div>";
+                        }
+                        ?>
 
                         <div class="cart-product">
                             <!--<button type="submit" name="add-to-cart" class="btn-block notice addtoCart"><span>THÊM VÀO GIỎ HÀNG</span></button>-->

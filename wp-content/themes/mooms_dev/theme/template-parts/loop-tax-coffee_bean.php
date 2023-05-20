@@ -1,6 +1,35 @@
+<?php
+global $product;
+$product = wc_get_product(get_the_ID());
+?>
 <section class="coffee-bean">
     <div class="title-link">
         <h2 class="title-blocks"><?php echo $titleCat; ?></h2>
+    </div>
+
+    <div class="categories">
+        <ul class="">
+            <?php
+               $ProductCats = get_terms('product_cat', [
+                    'hide_empty' => true,
+                    'parent'   => 0,
+                ]);
+                foreach ($ProductCats as $ProductCat) :
+                    $child_product_cats = get_terms('product_cat', [
+                        'hide_empty'	=> true,
+                        'parent'   		=> $ProductCat->term_id,
+                    ]);
+                    $i= 0;
+                    foreach ($child_product_cats as $type) :
+            ?>
+                        <li>
+                            <a class="nav-link <?php echo $active ?>"  href="<?php echo $type->slug ?>"><?php echo $type->name ?></a>
+                        </li>
+            <?php
+                    endforeach;
+                endforeach;
+            ?>
+        </ul>
     </div>
 
     <div class="row items">
@@ -57,7 +86,7 @@
                             <h4 class="title-post fs-30"><?php theTitle(); ?></h4>
                         </a>
 
-                        <?php theProductPrice(); ?>
+                        <?php theProductPrice($product); ?>
 
                         <?php
                         $origin = getPostMeta('origin');

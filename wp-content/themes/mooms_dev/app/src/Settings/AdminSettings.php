@@ -333,7 +333,7 @@ class AdminSettings {
                                 ->set_page_menu_position(2)
                                 ->add_tab(__('ADMIN', 'gaumap'), [
                                     Field::make('checkbox', 'is_maintenance', __('Turn on website maintenance mode', 'gaumap')),
-                                    Field::make('checkbox', 'use_rank_math_breadcrumb', __('Using Rank Math breadcrumbs', 'gaumap')),
+                                    // Field::make('checkbox', 'use_rank_math_breadcrumb', __('Using Rank Math breadcrumbs', 'gaumap')),
                                     Field::make('checkbox', 'disable_admin_confirm_email', __('Turn off the feature to change email admin need to verify email', 'gaumap'))->set_default_value('true'),
                                     Field::make('checkbox', 'disable_use_weak_password', __('Turn off the feature that allows the use of weak passwords', 'gaumap')),
                                     // Field::make('checkbox', 'use_short_url', __('Sử dụng đường dẫn tắt (Loại bỏ thư mục wp-content/theme. Chú ý điều chỉnh file .htaccess như hướng dẫn)', 'gaumap')),

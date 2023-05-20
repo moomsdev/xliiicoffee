@@ -21,8 +21,8 @@ add_action('carbon_fields_register_fields', function () {
              ->add_fields([
                      Field::make('radio_image','display_type', __('Display type | Kiểu hiển thị','gaumap'))
                         ->set_options([
-                        'grid-card' => get_site_url() . '/wp-content/themes/mooms_dev/resources/images/grid-card-type.jpg' ,
-                        'grid-content-img' => get_site_url() . '/wp-content/themes/mooms_dev/resources/images/grid-content-img-type.png' ,
+                            'grid-content-img' => get_site_url() . '/wp-content/themes/mooms_dev/resources/images/grid-content-img-type.png' ,
+                            'grid-card' => get_site_url() . '/wp-content/themes/mooms_dev/resources/images/grid-card-type.jpg' ,
                     ]),
              ]);
 });

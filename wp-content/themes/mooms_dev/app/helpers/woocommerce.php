@@ -265,9 +265,7 @@ function getProductPrice(WC_Product $product)
             <span class="price sale-price"><?php echo number_format($salePrice,0,",","."); ?> VND</span>
         </div>
     <?php
-    endif;
-
-    if ( empty($salePrice) ) :
+        else:
     ?>
         <div class="price-product">
             <span class="price regular-price"><?php echo number_format($regularPrice,0,",","."); ?> VND</span>
@@ -283,5 +281,5 @@ function theProductPrice()
     /**
      * @var \WC_Product $product
      */ global $product;
-    $price = getProductPrice($product);
+    $price = number_format(getProductPrice($product),0,",",".");
 }

@@ -1,3 +1,7 @@
+<?php
+global $product;
+$product = wc_get_product(get_the_ID());
+?>
 <section class="coffee-bean">
     <div class="row">
         <div class="col-12 title-link">
@@ -45,7 +49,7 @@
                             </a>
 
 
-                            <?php theProductPrice(); ?>
+                            <?php theProductPrice($product); ?>
 
                             <?php
                             $origin = getPostMeta('origin');

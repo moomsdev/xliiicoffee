@@ -50,14 +50,16 @@ endif;
         <div class="row">
             <div class="col-12 title-link">
                 <h2 class="title-blocks"><?php echo $title; ?></h2>
-                <a href="<?php echo $link; ?>" class="read-more-blocks up-hover"><?php echo __('Xem tất cả', 'gaumap'); ?></a>
+                <a href="<?php echo $link; ?>" class="read-more-blocks text-shadow"><?php echo __('Xem tất cả', 'gaumap'); ?></a>
             </div>
         </div>
 
         <?php if ( $desc ) : ?>
-            <div class="description-blocks">
+        <div class="row">
+            <div class="col-12 col-lg-6 description-blocks">
                 <?php echo apply_filters('the_content', $desc); ?>
             </div>
+        </div>
         <?php endif; ?>
 
         <div class="items">
@@ -163,6 +165,7 @@ endif;
                             $post_type = get_post_type($post['id']);
                             if ( $post_type == 'product' ) :
                                 $taxonomy = "product_cat";
+                                $variety = "variety_cat";
                             elseif ( $post_type == 'coffee_guide' ) :
                                 $taxonomy = "coffee_guide_cat";
                             elseif ( $post_type == 'work_with_us' ) :
@@ -188,9 +191,14 @@ endif;
                                             <div class="categories">
                                                 <ul>
                                                     <?php
-                                                    foreach ($categories as $category) {
-                                                        echo  "<li> $category->name </li>";
-                                                    }
+                                                        if ( $post_type == 'product' ) :
+                                                            echo "<li> $taxonomy[0] </li>
+                                                                  <li> $variety[0] </li>";
+                                                        else:
+                                                            foreach ($categories as $category) {
+                                                                echo  "<li> $category->name </li>";
+                                                            }
+                                                        endif;
                                                     ?>
                                                 </ul>
                                             </div>

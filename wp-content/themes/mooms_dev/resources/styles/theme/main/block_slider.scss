@@ -1,4 +1,9 @@
 .slider-block {
+    padding-top: 3rem;
+
+    @include mediaMaxWidth($sm) {
+        padding-top: 2rem;
+    }
 
     .sliders{
 
@@ -11,19 +16,20 @@
                     object-fit: cover;
 
                     @include mediaMaxWidth($sm) {
-                        max-height: 45rem;
+                        min-height: 45rem;
                     }
                 }
             }
         }
 
         .swiper-pagination-bullets {
-            padding: 3rem 0;
+            padding-top: 3rem;
+            padding-bottom: 0;
             position: relative;
 
             .swiper-pagination-bullet {
-                width: 1.5rem;
-                height: 1.5rem;
+                width: 1rem;
+                height: 1rem;
                 text-align: center;
                 opacity: 1;
                 background: #E6E6E6;

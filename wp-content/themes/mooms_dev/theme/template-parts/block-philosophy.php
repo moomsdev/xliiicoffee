@@ -22,7 +22,7 @@ endif;
 <section class="philosophy-block">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-12 col-xl-6 col-xxl-7 left-column">
+            <div class="col-12 col-xl-6 col-xxl-6 left-column">
 
                 <div class="content">
                     <h2 class="title-blocks">
@@ -44,7 +44,7 @@ endif;
 
             </div>
 
-            <div class="col-12 col-xl-6 col-xxl-5 right-column">
+            <div class="col-12 col-xl-6 col-xxl-6 right-column">
                 <figure class="media lg-img">
                     <a href="<?php echo $link; ?>">
                         <img src="<?php echo getImageUrlById($imgLarge) ?>" alt="<?php echo get_the_title($imgLarge);  ?>">

@@ -219,6 +219,24 @@ add_filter('style_loader_tag', function ($html, $handle) {
     return str_replace("media='all' />", 'media="all" rel="preload" as="style" onload="this.onload=null;this.rel=\'stylesheet\'">', $html);
 }, 10, 2);
 
+//sort_dashboard_posts
+add_filter('pre_get_posts', 'sort_dashboard_posts');
+function sort_dashboard_posts($query)
+{
+    if (is_admin() && $query->is_main_query() && $query->get('post_type') != 'page') {
+        $query->set('orderby', 'date');
+        $query->set('order', 'DESC');
+    }
+}
+
+// Function just run js contact form 7 at page Contact
+function my_deregister_javascript() {
+    if ( !is_page('Contact') ) {
+        wp_deregister_script( 'contact-form-7' );
+    }
+}
+add_action( 'wp_print_scripts', 'my_deregister_javascript', 100 );
+
 //===================================================================
 ////=====================       MOOMS.DEV       =====================
 //===================================================================

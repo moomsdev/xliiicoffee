@@ -7,7 +7,7 @@ while (have_posts()) : the_post();
             // Slider Blocks
             'slider_block'     => $block['slider_block'],
 
-            // Philosophy Blocks
+            // Philosophy Blocks - style 1
             'title_philosophy_block'    => $block['title_philosophy_block'],
             'img_lg_philosophy_block'   => $block['img_lg_philosophy_block'],
             'img_sm_philosophy_block'   => $block['img_sm_philosophy_block'],
@@ -15,6 +15,14 @@ while (have_posts()) : the_post();
             'type_read_more_link'   => $block['type_read_more_link_philosophy_block'],
             'link_custom_philosophy_block'  => $block['link_custom_philosophy_block'],
             'page_object_philosophy_block'  => $block['page_object_philosophy_block'],
+
+            // Philosophy Blocks - style 2
+            'title_philosophy_block_2'    => $block['title_philosophy_block_2'],
+            'img_philosophy_block_2'   => $block['img_philosophy_block_2'],
+            'desc_philosophy_block_2' => $block['desc_philosophy_block_2'],
+            'type_read_more_link_philosophy_block_2'   => $block['type_read_more_link_philosophy_block_2'],
+            'link_custom_philosophy_block_2'  => $block['link_custom_philosophy_block_2'],
+            'page_object_philosophy_block_2'  => $block['page_object_philosophy_block_2'],
 
             // Content Slider Blocks
             'title_content_slider_block'    => $block['title_content_slider_block'],
@@ -52,9 +60,14 @@ while (have_posts()) : the_post();
                 get_template_part('template-parts/block', 'slider', $args);
                 break;
 
-            // Philosophy Blocks
+            // Philosophy Blocks - style 1
             case 'philosophy_blocks':
                 get_template_part('template-parts/block', 'philosophy', $args);
+                break;
+
+            // Philosophy Blocks - style 2
+            case 'philosophy_blocks_2':
+                get_template_part('template-parts/block', 'philosophy_2', $args);
                 break;
 
             // Content Slider Blocks

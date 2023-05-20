@@ -1,0 +1,104 @@
+.philosophy-page {
+
+    section {
+        padding-top: 6rem !important;
+        padding-bottom: 6rem !important;
+
+        @include mediaMaxWidth($sm) {
+            padding-top: 3rem !important;
+            padding-bottom: 3rem !important;
+        }
+
+        &.post-head,
+        &.full-width {
+            padding-top: 0 !important;
+            padding-bottom: 1.5rem !important;
+        }
+    }
+
+    h4 {
+        @include mediaMaxWidth($sm) {
+            font-size: 1.6rem !important;
+
+        }
+    }
+
+    .full-width {
+        figure.media {
+            padding-bottom: 43%;
+        }
+    }
+
+    .content-blocks {
+
+        .title-cbs {
+            text-align: end;
+        }
+
+        .expanded-content {
+            ul {
+
+                @include mediaMaxWidth($sm) {
+                    grid-template-columns: 1fr;
+
+                    &.odd {
+                        li:last-child {
+                            grid-column: span 1 !important;
+                        }
+                    }
+                }
+
+                &.odd {
+                    li:last-child {
+                        grid-column: span 2;
+                    }
+                }
+
+            }
+        }
+
+        &.cbs-2 {
+            .expanded-content {
+                ul {
+                    grid-template-columns: 1fr;
+                    li {
+                        border-bottom: 1px solid #000;
+                       &:first-child h4 {
+                           margin-top: .8rem;
+                       }
+                    }
+                }
+            }
+        }
+
+        &.cbs-3 {
+            .expanded-content {
+                ul {
+                    grid-template-columns: 1fr 1fr 1fr;
+                    column-gap: 1.5rem;
+
+                    @include mediaMaxWidth($xs) {
+                        grid-template-columns: 1fr 1fr;
+                    }
+
+                    li {
+                        .media {
+                            padding: 50%;
+                        }
+                        h4 {
+                            margin-top: 1rem;
+                            margin-bottom: 1rem;
+                        }
+                    }
+                }
+            }
+        }
+
+        &.cbs-4 {
+            .media {
+                padding-bottom: 56.25%;
+            }
+        }
+    }
+
+}

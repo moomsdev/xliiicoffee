@@ -27,15 +27,17 @@ html {
 }
 
 .cf-complex__inserter-menu{
+    min-width: 20rem !important;
+
     .cf-complex__inserter-item{
         position: relative;
 
         &:after {
             content: "";
             width: fit-content;
-            min-width: 50rem;
+            min-width: 60rem;
             height: 100%;
-            min-height: 20rem;
+            min-height: 30rem;
             position: fixed;
             top: 0;
             left: 100%;
@@ -54,10 +56,14 @@ html {
             }
 
             &:nth-child(3):after{
-                background-image: url("~@images/blocks/content-slider-block.png");
+                background-image: url("~@images/blocks/philosophy-block-2.png");
             }
 
             &:nth-child(4):after{
+                background-image: url("~@images/blocks/content-slider-block.png");
+            }
+
+            &:nth-child(5):after{
                 background-image: url("~@images/blocks/featured-post-block.png");
             }
 

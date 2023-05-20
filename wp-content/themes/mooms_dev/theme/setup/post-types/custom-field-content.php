@@ -39,9 +39,15 @@ add_action('carbon_fields_register_fields', function () {
                      ])
 
                      // Philosophy Blocks
-                      ->add_fields('philosophy_blocks', __('Philosophy Blocks', 'gaumap'), [
+                      ->add_fields('philosophy_blocks', __('Philosophy Blocks - style 1', 'gaumap'), [
 
                          Field::make('separator', 'name_philosophy_block', __('Philosophy Blocks', 'gaumap')),
+
+                         Field::make('radio_image', 'display_type', __('Display type | Kiểu hiển thị', 'gaumap'))
+                              ->set_options([
+                                  'style-1' => get_site_url() . '/wp-content/themes/mooms_dev/resources/images/blocks/grid-content-img-type.png',
+                                  'style-2' => get_site_url() . '/wp-content/themes/mooms_dev/resources/images/blocks/grid-card-type.jpg',
+                              ]),
 
                          Field::make('text', 'title_philosophy_block', __('Title', 'gaumap'))
                               ->set_width(60)
@@ -88,6 +94,52 @@ add_action('carbon_fields_register_fields', function () {
                               ]),
 
                      ])->set_header_template('<% if (title_philosophy_block) { %><%- title_philosophy_block %><% } %>')
+
+                      ->add_fields('philosophy_blocks_2', __('Philosophy Blocks - style 2', 'gaumap'), [
+
+                          Field::make('separator', 'name_philosophy_block_2', __('Philosophy Blocks', 'gaumap')),
+
+                          Field::make('text', 'title_philosophy_block_2', __('Title', 'gaumap'))
+                               ->set_width(60)
+                               ->set_required(true),
+
+                          Field::make('image', 'img_philosophy_block_2', __('Image', 'gaumap'))
+                               ->set_width(20)
+                               ->set_required(true),
+
+                          Field::make('rich_text', 'desc_philosophy_block_2', __('Description', 'gaumap'))
+                               ->set_required(true),
+
+                          Field::make('select', 'type_read_more_link_philosophy_block_2', __('Type link: ', 'gaumap'))
+                               ->set_width(20)
+                               ->set_required(true)
+                               ->set_options([
+                                   'page'        => 'Page',
+                                   'manual-link' => 'Manual link',
+                               ]),
+
+                          Field::make('text', 'link_custom_philosophy_block_2', __('Custom link', 'gaumap'))
+                               ->set_width(80)
+                               ->set_conditional_logic([
+                                   'relation' => 'AND',
+                                   ['field' => 'type_read_more_link_philosophy_block_2', 'value' => 'manual-link', 'compare' => '=',],
+                               ]),
+
+                          Field::make('association', 'page_object_philosophy_block_2', __('Choose page:', 'gaumap'))
+                               ->set_width(80)
+                               ->set_max(1)
+                               ->set_conditional_logic([
+                                   'relation' => 'AND',
+                                   ['field' => 'type_read_more_link_philosophy_block_2', 'value' => 'page', 'compare' => '=',],
+                               ])
+                               ->set_types([
+                                   [
+                                       'type'      => 'post',
+                                       'post_type' => 'page',
+                                   ],
+                               ]),
+
+                      ])->set_header_template('<% if (title_philosophy_block_2) { %><%- title_philosophy_block_2 %><% } %>')
 
                      // Content Slider Blocks
                       ->add_fields('content_slider_blocks', __('Content + Slider Blocks', 'gaumap'), [

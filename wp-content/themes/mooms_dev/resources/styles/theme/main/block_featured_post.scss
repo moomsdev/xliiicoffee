@@ -151,9 +151,15 @@
                         padding-top: 0;
                         order: 1;
 
+                        a {
+                            display: block;
+                            height: 100%;
+                        }
+
                         .media.sm-img {
                             padding-bottom: 60%;
                             width: 100%;
+                            height: 100%;
                         }
 
                     }
@@ -191,10 +197,6 @@
             object-fit: cover;
             object-position: center center;
             transition: all .5s;
-
-            &:hover {
-                transform: scale(1.1);
-            }
         }
     }
 }

@@ -9,7 +9,7 @@
 
     .description-blocks {
         margin-bottom: 5rem;
-        max-width: 80%;
+        max-width: 90%;
     }
 
     .read-more-blocks {
@@ -18,9 +18,7 @@
     }
 
     .media {
-        position: relative;
-        overflow: hidden;
-        clear: both;
+
 
         &.sm-img {
             padding-bottom: 30%;
@@ -41,17 +39,12 @@
                 padding-bottom: 60%;
             }
         }
-
-        img {
-            position:absolute;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center center;
-            transition: all .5s;
-        }
     }
 
+}
+
+.philosophy-block-2 {
+    .media {
+        padding-bottom: 24%;
+    }
 }
