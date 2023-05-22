@@ -42,3 +42,17 @@ add_action('init', function () {
     );
 });
 // phpcs:enable
+
+add_action('carbon_fields_register_fields', function () {
+	Container::make('term_meta', __('More option | Thêm lựa chọn', 'gaumap'))
+		->where('term_taxonomy', 'IN', ['journal_cat'])
+		->add_fields([
+			Field::make('radio_image','display_type', __('Display type | Kiểu hiển thị','gaumap'))
+				->set_options([
+					'find' => get_site_url() . '/wp-content/themes/mooms_dev/resources/images/journal-find.png',
+					'protect' => get_site_url() . '/wp-content/themes/mooms_dev/resources/images/journal-protect.png',
+					'describe' => get_site_url() . '/wp-content/themes/mooms_dev/resources/images/journal-describe.png',
+					'taste' => get_site_url() . '/wp-content/themes/mooms_dev/resources/images/journal-taste.png',
+				]),
+		]);
+});
