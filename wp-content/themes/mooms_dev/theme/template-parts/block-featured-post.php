@@ -76,7 +76,7 @@ endif;
                             if ($imgLarge) :
                                 $img = $imgLarge;
                             else:
-                                $img = getPostThumbnailUrl();
+                                $img = getPostThumbnailUrl(get_the_ID());
                             endif;
                             ?>
                                 <figure class="media lg-img">
@@ -136,7 +136,7 @@ endif;
                                 if ($imgLarge) :
                                     $img = $imgLarge;
                                 else:
-                                    $img = getPostThumbnailUrl();
+                                    $img = getPostThumbnailUrl(get_the_ID());
                                 endif;
                                 ?>
 

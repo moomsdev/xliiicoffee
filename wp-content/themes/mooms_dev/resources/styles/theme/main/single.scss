@@ -375,6 +375,12 @@
             }
         }
 
+        .related-post {
+            figure.media {
+                padding-bottom: 100%;
+            }
+        }
+
     }
 
     //Single collaboration
@@ -715,4 +721,101 @@
         }
 
     }
+
+    .content-blocks {
+        &.cbs-2 {
+            img {
+                margin-right: 2rem;
+            }
+
+        }
+        &.cbs-1 {
+            .content-cbs {
+
+                img {
+                    margin-right: 2rem;
+                    margin-left: -50%;
+                    width: 100%;
+                    max-width: 27.5rem;
+                    float: left;
+                }
+
+            }
+        }
+
+        &.cbs-3 {
+            .inner {
+                figure.media {
+                    margin-bottom: 3rem;
+                }
+
+                .content-cbs {
+
+                    img {
+                        float: unset;
+                        margin-left: unset;
+                    }
+
+                    strong {
+                        float: unset;
+                        margin-left: unset;
+                    }
+                }
+            }
+        }
+
+        .inner {
+            .content-cbs {
+                strong {
+                    margin-left: -75%;
+                    width: 100%;
+                    font-size: 4.3rem;
+                    line-height: 1.1em;
+                }
+            }
+        }
+    }
+
+    .related-articles {
+        h4 {
+            padding-top: 3rem;
+            border-top: 1px solid #000;
+        }
+
+        .list-articles {
+            li {
+                margin-bottom: 1.5rem;
+                a {
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+            }
+
+        }
+
+        .tags {
+            margin-top: 3rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+
+            li {
+                a {
+                    padding: .7rem 1.5rem .7rem 3rem;
+                    display: block;
+                    border: 2px solid #000;
+                    border-radius: 3rem;
+                    text-transform: uppercase;
+
+                    &:hover {
+                        background: #000;
+                        color: #fff
+                    }
+                }
+            }
+
+        }
+    }
+
 }

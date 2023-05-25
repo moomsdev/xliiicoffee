@@ -13,20 +13,28 @@ $current_term = get_queried_object();
 <div class="page-listing products">
     <div class="container-fluid">
         <?php
+            $displayType = carbon_get_term_meta($current_term->term_id, 'co_display_type');
             $titleCat = $current_term->name;
+            $slugCat = $current_term->slug;
             $idCat = $current_term->term_id;
-            $displayType = carbon_get_term_meta($idCat, 'product_display_type');
 
-        if ( $displayType === "grid-card" ) :
+        if ( $displayType == "partner-cat" ) :
 
-            $template_path = 'template-parts/products/loop-tax-subscription.php';
+            $template_path = 'template-parts/collaboration/loop-partner.php';
+            if (file_exists(get_template_directory() . '/' . $template_path)) :
+                include(get_template_directory() . '/' . $template_path);
+            endif;
+
+        elseif ( $displayType == "customer-cat" ) :
+
+            $template_path = 'template-parts/collaboration/loop-customer.php';
             if (file_exists(get_template_directory() . '/' . $template_path)) :
                 include(get_template_directory() . '/' . $template_path);
             endif;
 
         else :
 
-            $template_path = 'template-parts/products/loop-tax-coffee_bean.php';
+            $template_path = 'template-parts/loop-colleague.php';
             if (file_exists(get_template_directory() . '/' . $template_path)) :
                 include(get_template_directory() . '/' . $template_path);
             endif;

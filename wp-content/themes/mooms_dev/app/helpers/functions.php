@@ -271,6 +271,52 @@ function getRelatePosts($postId = null, $postCount = null)
     return $posts;
 }
 
+function getRelatePostsProduct($postId = null, $postCount = null)
+{
+    if ($postCount === null) {
+        $postCount = get_option('posts_per_page');
+    }
+
+    if ($postId === null) {
+        global $post;
+        $postId = $post->ID;
+    }
+
+    $terms = get_the_terms($postId, 'product_cat');
+    $childCategoryId = null;
+
+    if ($terms && !is_wp_error($terms)) {
+        foreach ($terms as $term) {
+            if ($term->parent !== 0) {
+                $childCategoryId = $term->term_id;
+                break;
+            }
+        }
+    }
+
+    if ($childCategoryId === null) {
+        // No child category found, return empty query
+        return new \WP_Query();
+    }
+
+    $posts = new \WP_Query([
+        'post_type'      => 'product',
+        'post_status'    => 'publish',
+        'posts_per_page' => $postCount,
+        'post__not_in'   => [$postId],
+        'tax_query'      => [
+            [
+                'taxonomy' => 'product_cat',
+                'field'    => 'term_id',
+                'terms'    => $childCategoryId,
+            ],
+        ],
+    ]);
+
+    return $posts;
+}
+
+
 /**
  * Get latest posts
  *

@@ -1,5 +1,5 @@
 .page-listing {
-    // shop css
+    // Products
     &.products {
 
         .subscription {
@@ -175,6 +175,30 @@
                 }
             }
         }
+
+        .coffee-bean {
+
+            .categories {
+                ul {
+                    li {
+                        padding: 0;
+                        margin-left: 4rem;
+
+                        &:first-child {
+                            margin-left: 0;
+                        }
+
+                        &:after {
+                            content: none;
+                        }
+                        a {
+                            color: #A19A9B
+                        }
+                    }
+                }
+            }
+        }
+
     }
 
     //collaboration
@@ -223,5 +247,153 @@
                 }
             }
         }
+    }
+
+    //Journal
+    &.journal {
+
+        .newest {
+            .newest-post {
+
+                @include mediaMaxWidth($md) {
+                    margin-bottom: 3.5rem;
+                }
+
+                .media {
+                    padding-bottom: 65.1%;
+                }
+            }
+        }
+
+        .find-the-origin {
+            .item {
+                display: grid;
+                grid-template-columns: 30% 70%;
+                gap: 1.5rem;
+
+                margin-bottom: 3.5rem;
+
+                @include mediaMaxWidth($sm) {
+                    margin-bottom: 2.5rem;
+                }
+
+                .media {
+                    padding-bottom: 65.1%;
+                    max-width: 31.8rem;
+                }
+
+                .content {
+                    .categories {
+                        padding: 0;
+                        margin-bottom: 1.5rem;
+                    }
+
+                    .title-post {
+                        margin-bottom: 1.5rem;
+                    }
+                }
+            }
+        }
+
+        .protect-the-origin {
+            .items {
+                .left-column {
+                    display: flex;
+                    flex-direction: column;
+
+                    @include mediaMaxWidth($xl) {
+                        margin-bottom: 0;
+                    }
+
+                    .item-media {
+                        margin-top: auto;
+                        display: flex;
+                        justify-content: end;
+                        max-height: 21rem;
+
+                        @include mediaMaxWidth($md) {
+                            display: none;
+                        }
+
+                        .media {
+                            padding-bottom: 25%;
+                            max-width: 32rem;
+
+                            @include mediaMaxWidth($xl) {
+                                padding-bottom: 30%;
+                                max-width: 28rem;
+                            }
+
+                        }
+                    }
+                }
+
+                .right-column {
+                    .item-media {
+                        height: 100%;
+
+                        .media {
+                            height: 100%;
+                        }
+                    }
+
+                }
+
+                .item-media {
+                    .media {
+                        padding-bottom: 65.1%;
+                    }
+                }
+            }
+        }
+
+        .taste-the-origin {
+            .items {
+                display: grid;
+                grid-template-columns: 1fr 2fr 1fr;
+                column-gap: 9rem;
+
+                @include mediaMaxWidth($xl) {
+                    column-gap: 5rem;
+                }
+
+                @include mediaMaxWidth($lg) {
+                    grid-template-columns: 1fr 1fr;
+                }
+
+                .item {
+                    display: block;
+
+                    &:first-child {
+                        .inner-item {
+                            display: block;
+                        }
+                    }
+
+                    &:last-child {
+                        .inner-item {
+                            display: block;
+
+                            .item-media {
+                                display: none;
+                            }
+                        }
+
+                    }
+
+                    .inner-item {
+                        display: grid;
+                        grid-template-columns: 35% 63%;
+                        gap: 1.5rem;
+                        margin-bottom: 3.5rem;
+
+                        @include mediaMaxWidth($lg) {
+                            grid-template-columns: 1fr 1fr;
+                        }
+                    }
+                }
+            }
+        }
+
     }
 }

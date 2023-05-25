@@ -14,9 +14,11 @@
 
 
     <div class="row items">
+
         <?php
-        if ($post_query->have_posts()) :
-            while ($post_query->have_posts()) : $post_query->the_post();
+        if ( $post_query->have_posts() ) :
+            while ( $post_query->have_posts() ) : $post_query->the_post();
+                $desc = getPostMeta('description');
         ?>
             <div class="col-12 col-md-6 col-lg-3">
                 <div class="item">
@@ -33,9 +35,8 @@
                         </a>
 
                         <?php
-                        $desc = getPostMeta('description');
                         if ( $desc ) :
-                            ?>
+                        ?>
                             <div class="desc-post">
                                 <?php echo $desc; ?>
                             </div>
@@ -48,9 +49,10 @@
             </div>
         <?php
             endwhile;
+            wp_reset_postdata();
+            wp_reset_query();
         endif;
-        wp_reset_postdata();
-        wp_reset_query();
         ?>
+
     </div>
 </section>

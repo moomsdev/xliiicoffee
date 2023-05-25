@@ -61,11 +61,15 @@ section {
         }
 
         @include mediaMaxWidth($xs) {
-            margin-bottom: 1.8em;
+            margin-bottom: 1.65em;
         }
 
     }
 
+}
+
+.title-post {
+    text-transform: uppercase;
 }
 
 .title-blocks {
@@ -80,7 +84,7 @@ section {
 
     @include mediaMaxWidth($sm) {
         margin-bottom: 2rem;
-        font-size: 2.8rem;
+        font-size: 2.5rem;
     }
 }
 
@@ -100,6 +104,7 @@ section {
 
     @include mediaMaxWidth($xs) {
         margin-bottom: 1.3em;
+        font-size: 1.4rem;
     }
 }
 
@@ -189,4 +194,57 @@ figure.media {
         object-position: center center;
         transition: all .5s;
     }
+}
+
+.categories {
+    padding: 2.2rem 0;
+
+    @include mediaMaxWidth($md) {
+        padding: 1rem 0;
+    }
+
+    ul {
+        display: flex;
+
+        li {
+            padding: 0 4rem;
+            position: relative;
+            font-size: 1.6rem;
+            text-transform: uppercase;
+
+            @include mediaMaxWidth($md) {
+                padding: 0 2rem;
+            }
+
+            @include mediaMaxWidth($sm) {
+                font-size: 1.5rem;
+            }
+
+            &:first-child {
+                padding-left: 0;
+                &:after {
+                    content: none;
+                }
+            }
+
+            &:last-child {
+                padding-right: 0;
+            }
+
+            &:after {
+                content: "";
+                position: absolute;
+                top: 50%;
+                left: 0;
+                transform: translateY(-50%);
+                width: .2rem;
+                height: 55%;
+                background-color: #000;
+            }
+        }
+    }
+}
+
+.border-top-1px {
+    border-top: 1px solid #000;
 }

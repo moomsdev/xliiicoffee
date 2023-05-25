@@ -81,9 +81,9 @@
                     <div class="right-menu">
                         <ul>
                             <li ><?php theLanguageSwitcher() ?></li>
-                            <li><a href="#"><img src="<?php theAsset('/icon/icon-search.png'); ?>" alt="search"></a></li>
-                            <li><a href="#"><img src="<?php theAsset('/icon/icon-user.png'); ?>" alt="search"></a></li>
-                            <li><a href="#"><img src="<?php theAsset('/icon/icon-cart.png'); ?>" alt="search"></a></li>
+                            <!--<li><a href="#"><img src="--><?php //theAsset('/icon/icon-search.png'); ?><!--" alt="search"></a></li>-->
+                            <!--<li><a href="#"><img src="--><?php //theAsset('/icon/icon-user.png'); ?><!--" alt="search"></a></li>-->
+                            <!--<li><a href="#"><img src="--><?php //theAsset('/icon/icon-cart.png'); ?><!--" alt="search"></a></li>-->
                         </ul>
                     </div>
                 </div>

@@ -6,16 +6,31 @@
             margin-bottom: 5rem;
         }
 
-        @include mediaMaxWidth($md) {
-            margin-bottom: 2rem;
+        @include mediaMaxWidth($lg) {
+            @include mediaMaxWidth($lg) {
+                display: none;
+            }
         }
-
     }
 
     .post-items {
 
+        @include mediaMaxWidth($lg) {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            column-gap: 3rem;
+        }
+
+        @include mediaMaxWidth($sm) {
+            grid-template-columns: 1fr;
+        }
+
         .post-item {
             border-top: 1px solid #000;
+
+            @include mediaMaxWidth($lg) {
+                border-top: none;
+            }
 
             .post-item__inner {
                 display: grid;

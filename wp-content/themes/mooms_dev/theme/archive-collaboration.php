@@ -12,18 +12,17 @@
 <div class="page-listing products collaboration">
     <div class="container-fluid">
         <?php
-        $ProductCats = get_terms('collaboration_cat', [
+        $collaborationCats = get_terms('collaboration_cat', [
             'hide_empty' => true,
             'parent'   => 0,
         ]);
 
-        foreach ( $ProductCats as $ProductCat ) :
-
-                $displayType = carbon_get_term_meta($ProductCat->term_id, 'co_display_type');
-                $titleCat = $ProductCat->name;
-                $slugCat = $ProductCat->slug;
-                $idCat = $ProductCat->term_id;
-                $desc = $ProductCat->description;
+        foreach ( $collaborationCats as $collaborationCat ) :
+                $titleCat = $collaborationCat->name;
+                $slugCat = get_term_link($collaborationCat);
+                $idCat = $collaborationCat->term_id;
+                $desc = $collaborationCat->description;
+                $displayType = carbon_get_term_meta($idCat, 'co_display_type');
 
                 if ( $displayType == "partner-cat" ) :
                     $postsPerPage = 4;
@@ -49,22 +48,22 @@
 
             if ( $displayType == "partner-cat" ) :
 
-                $template_path = 'template-parts/loop-partner.php';
-                if (file_exists(get_template_directory() . '/' . $template_path)) :
+                $template_path = 'template-parts/collaboration/loop-partner.php';
+                if ( file_exists(get_template_directory() . '/' . $template_path) ) :
                     include(get_template_directory() . '/' . $template_path);
                 endif;
 
             elseif ( $displayType == "customer-cat" ) :
 
-                $template_path = 'template-parts/loop-customer.php';
-                if (file_exists(get_template_directory() . '/' . $template_path)) :
+                $template_path = 'template-parts/collaboration/loop-customer.php';
+                if ( file_exists(get_template_directory() . '/' . $template_path) ) :
                     include(get_template_directory() . '/' . $template_path);
                 endif;
 
             else :
 
-                $template_path = 'template-parts/loop-colleague.php';
-                if (file_exists(get_template_directory() . '/' . $template_path)) :
+                $template_path = 'template-parts/collaboration/loop-colleague.php';
+                if ( file_exists(get_template_directory() . '/' . $template_path) ) :
                     include(get_template_directory() . '/' . $template_path);
                 endif;
 

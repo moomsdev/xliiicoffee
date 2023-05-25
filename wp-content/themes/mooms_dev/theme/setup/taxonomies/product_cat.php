@@ -19,7 +19,7 @@ add_action('carbon_fields_register_fields', function () {
     Container::make('term_meta', __('More option | Thêm lựa chọn', 'gaumap'))
              ->where('term_taxonomy', 'IN', ['product_cat'])
              ->add_fields([
-                     Field::make('radio_image','display_type', __('Display type | Kiểu hiển thị','gaumap'))
+                     Field::make('radio_image','product_display_type', __('Display type | Kiểu hiển thị','gaumap'))
                         ->set_options([
                             'grid-content-img' => get_site_url() . '/wp-content/themes/mooms_dev/resources/images/grid-content-img-type.png' ,
                             'grid-card' => get_site_url() . '/wp-content/themes/mooms_dev/resources/images/grid-card-type.jpg' ,

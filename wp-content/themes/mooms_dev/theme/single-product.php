@@ -654,85 +654,83 @@ $tag = get_the_terms($post, 'product_tag');
 
         <!--YOU MAY LIKE-->
         <?php
+        the_post();
         global $post;
-        $post_query = getRelatePosts(get_the_ID(),8);
-        if ( $post_query->post_count != 0 ) :
+        $post_query = getRelatePostsProduct(get_the_ID(),8);
+
+        if ( $post_query->have_posts() ) :
         ?>
-        <section class="content-slider-block">
-            <div class="row">
-                <div class="col-12 title-link">
-                    <h2 class="title-blocks"><?php echo __('CÓ THỂ BẠN THÍCH', 'gaumap'); ?></h2>
-                    <a href="#" class="read-more-blocks underline-hover"><?php echo __('Xem tất cả', 'gaumap'); ?></a>
-                </div>
+            <section class="content-slider-block related-post">
+                <div class="row">
+                    <div class="col-12 title-link">
+                        <h2 class="title-blocks"><?php echo __('CÓ THỂ BẠN THÍCH', 'gaumap'); ?></h2>
+                        <a href="<?php echo get_term_link($category[0]) ?>" class="read-more-blocks underline-hover"><?php echo __('Xem tất cả', 'gaumap'); ?></a>
+                    </div>
 
-                <div class="col-12 items">
-                    <div class="swiper content-slider swiper-backface-hidden">
-                        <!-- Additional required wrapper -->
-                        <div class="swiper-wrapper">
-                            <?php
-                            if ( $post_query->have_posts() ) :
+                    <div class="col-12 items">
+                        <div class="swiper content-slider swiper-backface-hidden">
+                            <!-- Additional required wrapper -->
+                            <div class="swiper-wrapper">
+                                <?php
                                 while ( $post_query->have_posts() ) : $post_query->the_post();
-                                    $taxonomy = "product_cat";
-                                    $categories = get_the_terms(get_the_ID(), $taxonomy);
-                                    ?>
-
+                                    $categories = get_the_terms(get_the_ID(), 'product_cat');
+                                ?>
                                     <div class="swiper-slide">
-                                        <div class="item">
-                                            <figure class="media">
-                                                <a href="<?php the_permalink(); ?>">
-                                                    <img src="<?php thePostThumbnailUrl(); ?>" alt="<?php theTitle(); ?>">
-                                                </a>
-                                            </figure>
+                                            <div class="item">
+                                                <figure class="media">
+                                                    <a href="<?php the_permalink(); ?>">
+                                                        <img src="<?php thePostThumbnailUrl(); ?>" alt="<?php theTitle(); ?>">
+                                                    </a>
+                                                </figure>
 
-                                            <div class="content">
-                                                <?php
-                                                if ( $categories ) :
+                                                <div class="content">
+                                                    <?php
+                                                    if ( $categories ) :
+                                                        ?>
+                                                        <div class="categories">
+                                                            <ul>
+                                                                <?php
+                                                                foreach ($categories as $category) {
+                                                                    echo  "<li> $category->name </li>";
+                                                                }
+                                                                ?>
+                                                            </ul>
+                                                        </div>
+                                                    <?php
+                                                    endif;
                                                     ?>
-                                                    <div class="categories">
-                                                        <ul>
-                                                            <?php
-                                                            foreach ($categories as $category) {
-                                                                echo  "<li> $category->name </li>";
-                                                            }
-                                                            ?>
-                                                        </ul>
-                                                    </div>
-                                                <?php
-                                                endif;
-                                                ?>
 
-                                                <a href="<?php the_permalink(); ?>">
-                                                    <h4 class="title-post fs-30"><?php theTitle(); ?></h4>
-                                                </a>
+                                                    <a href="<?php the_permalink(); ?>">
+                                                        <h4 class="title-post fs-30"><?php theTitle(); ?></h4>
+                                                    </a>
 
 
-                                                <?php theProductPrice(); ?>
+                                                    <?php theProductPrice($product); ?>
 
-                                                <?php
-                                                $origin = getPostMeta('origin');
-                                                if ( $origin ) :
+                                                    <?php
+                                                    $origin = getPostMeta('origin');
+                                                    if ( $origin ) :
+                                                        ?>
+                                                        <div class="origin-product">
+                                                            <?php echo $origin; ?>
+                                                        </div>
+                                                    <?php
+                                                    endif;
                                                     ?>
-                                                    <div class="origin-product">
-                                                        <?php echo $origin; ?>
-                                                    </div>
-                                                <?php
-                                                endif;
-                                                ?>
 
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-
                                 <?php
                                 endwhile;
-                            endif;
-                            ?>
+                                wp_reset_postdata();
+                                ?>
+                            </div>
+                            <div class="swiper-scrollbar swiper-scrollbar-horizontal"></div>
                         </div>
-                        <div class="swiper-scrollbar swiper-scrollbar-horizontal"></div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
         <?php
         endif;
         ?>

@@ -8,7 +8,7 @@ $product = wc_get_product(get_the_ID());
     </div>
 
     <div class="categories">
-        <ul class="">
+        <ul>
             <?php
                $ProductCats = get_terms('product_cat', [
                     'hide_empty' => true,
@@ -19,7 +19,6 @@ $product = wc_get_product(get_the_ID());
                         'hide_empty'	=> true,
                         'parent'   		=> $ProductCat->term_id,
                     ]);
-                    $i= 0;
                     foreach ($child_product_cats as $type) :
             ?>
                         <li>

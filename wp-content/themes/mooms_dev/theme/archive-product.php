@@ -18,11 +18,10 @@
         ]);
 
         foreach ( $ProductCats as $ProductCat ) :
-
-                $displayType = carbon_get_term_meta($ProductCat->term_id, 'display_type');
                 $titleCat = $ProductCat->name;
-                $slugCat = $ProductCat->slug;
+                $slugCat = get_term_link($ProductCat);
                 $idCat = $ProductCat->term_id;
+                $displayType = carbon_get_term_meta($idCat, 'product_display_type');
 
                 $post_query = new WP_Query([
                     'post_type' => 'product',
@@ -38,16 +37,16 @@
                     ],
                 ]);
 
-            if ( $displayType == "grid-card" ) :
+            if ( $displayType === "grid-card" ) :
 
-                $template_path = 'template-parts/loop-subscription.php';
+                $template_path = 'template-parts/products/loop-subscription.php';
                 if (file_exists(get_template_directory() . '/' . $template_path)) :
                     include(get_template_directory() . '/' . $template_path);
                 endif;
 
             else :
 
-                $template_path = 'template-parts/loop-coffee_bean.php';
+                $template_path = 'template-parts/products/loop-coffee_bean.php';
                 if (file_exists(get_template_directory() . '/' . $template_path)) :
                     include(get_template_directory() . '/' . $template_path);
                 endif;

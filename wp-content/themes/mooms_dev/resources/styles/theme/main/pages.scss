@@ -1,19 +1,24 @@
 .philosophy-page {
 
     section {
-        padding-top: 6rem !important;
-        padding-bottom: 6rem !important;
+        padding-top: 3rem !important;
+        padding-bottom: 3rem !important;
 
-        @include mediaMaxWidth($sm) {
-            padding-top: 3rem !important;
-            padding-bottom: 3rem !important;
-        }
+        //@include mediaMaxWidth($sm) {
+        //    padding-top: 3rem !important;
+        //    padding-bottom: 3rem !important;
+        //}
 
         &.post-head,
         &.full-width {
             padding-top: 0 !important;
             padding-bottom: 1.5rem !important;
         }
+    }
+
+    h3.title-cbs {
+        font-size: 6.5rem !important;
+        line-height: 1.3em !important;
     }
 
     h4 {
