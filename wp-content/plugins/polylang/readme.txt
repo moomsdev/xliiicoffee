@@ -2,10 +2,10 @@
 Contributors: Chouby, manooweb, raaaahman, marianne38, sebastienserre, greglone, hugod
 Donate link: https://polylang.pro
 Tags: multilingual, bilingual, translate, translation, language, multilanguage, international, localization
-Requires at least: 5.7
+Requires at least: 5.8
 Tested up to: 6.2
 Requires PHP: 5.6
-Stable tag: 3.3.2
+Stable tag: 3.4.1
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -18,7 +18,7 @@ With Polylang fully integrated to WordPress and using only its built-in core fea
 = Features =
 
 Depending on the type of site you have built or are planning to build, a combination of plugins from the list below might be of interest.
-All plugins include a wizard allowing to install them in just a few clicks.
+All plugins include a wizard allowing to setup them in just a few clicks.
 
 ### Polylang
 
@@ -29,7 +29,7 @@ Polylang and [Polylang Pro](https://polylang.pro) share the same core providing 
 * Automatic copy of categories, post tags and other metas when creating a new post or page translation.
 * Translating menus and widgets.
 * Customizable language switcher available as a widget or a navigation menu item.
-* Compatibility with Yoast SEO
+* Compatibility with Yoast SEO.
 
 ### Polylang Pro
 
@@ -40,9 +40,10 @@ Helps optimizing the time spent translating your site with some very useful extr
 * Language options available in the widget block editor.
 * Template parts translatable in the site editor (FSE).
 * Duplicate and/or synchronize content across post translations.
-* Improved compatibilities with other plugins such as [ACF Pro](https://polylang.pro/doc/working-with-acf-pro/).
+* Improved compatibility with other plugins such as [ACF Pro](https://polylang.pro/doc/working-with-acf-pro/).
 * Share the same URL slug for posts or terms across languages.
-* [Translate URLs slugs](https://polylang.pro/doc/translating-urls-slugs/) for categories, author bases, custom post types and more...
+* [Translate URL slugs](https://polylang.pro/doc/translating-urls-slugs/) for categories, author bases, custom post types and more...
+* Export and import of content in XLIFF format for outsourced professional translation.
 * **Access to a Premium Support for personalized assistance.**
 
 ### Polylang for WooCommerce
@@ -55,7 +56,7 @@ Helps optimizing the time spent translating your site with some very useful extr
 * Compatibility with the native WooCommerce CSV import & export tool.
 * Compatibility with popular plugins such as WooCommerce Subscriptions, Product Bundles, WooCommerce Bookings, Shipment tracking and more.
 * Ability to use the WooCommerce REST API (available with Polylang Pro).
-* **Access to a Premium Support for personalized assistance**
+* **Access to a Premium Support for personalized assistance.**
 
 Neither of them will allow to do automated translation.
 
@@ -74,7 +75,7 @@ Wherever third party code has been used, credit has been given in the code’s c
 
 == Installation ==
 
-1. Make sure you are using WordPress 5.7 or later and that your server is running PHP 5.6 or later (same requirement as WordPress itself).
+1. Make sure you are using WordPress 5.8 or later and that your server is running PHP 5.6 or later (same requirement as WordPress itself).
 1. If you tried other multilingual plugins, deactivate them before activating Polylang, otherwise, you may get unexpected results!
 1. Install and activate the plugin as usual from the 'Plugins' menu in WordPress.
 1. The [setup wizard](https://polylang.pro/doc/setup-wizard/) is automatically launched to help you get started more easily with Polylang by configuring the main features.
@@ -102,6 +103,51 @@ Wherever third party code has been used, credit has been given in the code’s c
 4. The Edit Post screen with the Languages metabox
 
 == Changelog ==
+
+= 3.4.1 (2023-05-25) =
+
+* Fix incorrect site titles in My Site admin bar menu on multisites #1284
+* Fix incorrect home url when using multiple domains or subdomain and a static front page #1285
+
+= 3.4 (2023-05-23) =
+
+* Requires WP 5.8 as minimum version
+* Pro: Language fallbacks are now stored in language description instead of a term meta.
+* Pro: Add more error messages when doing wrong when importing or exporting translations
+* Pro: Avoid to check for translations files existence if no language fallbacks are defined.
+* Pro: Reduce the number of DB queries when exporting posts for translation
+* Pro: Fix incorrect post slug after XLIFF import
+* Pro: Fix a performance issue with the autocomplete field in the block editor languages panel
+* Pro: Fix translations not refreshed when switching the language in the block editor sidebar
+* Pro: Fix a performance issue in Site editor
+* Pro: Fix a possible bug in Site editor when language term_id and term_taxonomy_id are different
+* Pro: Fix deactivated language re-activated when it is edited.
+* Pro: Fix language switcher in legacy widget menu not correctly rendered in widget block editor
+* Pro: Fix error 404 for untranslated attached attachement
+* Pro: Fix a deprecated notice in ACF integration
+* Pro: Fix update compatibility with WP Umbrella
+* Refactor core to allow to easily translate contents stored in custom tables
+* Strings translations are now stored in a language term meta instead of post meta of specific post type #1209
+* Deprecate the filters `pll_languages_list` and `pll_after_languages_cache` #1210
+* Add a new property `PLL_Language::$is_default` #1228
+* Add a custom admin body class `pll-lang-{$language_code}` #1190
+* Add support for new WPML API filters #1266
+* Fix languages metabox autocomplete field not always returning expected results #1187
+* Fix language not displayed if the transient has been saved with an empty array #1247
+* Fix a PHP warning `Attempt to read property "home_url" on bool` #1206
+* Fix a conflict leading to a performance issue when translating the theme Astra options #1196
+* Fix related translations resetted when updating Yoast SEO titles settings #1111
+* Fix a fatal error in case the registered strings option is corrupted #1264
+* Fix the language extraction from the URL in plain permalinks #1270
+* Fix content cleared when switching the language of a new post in the block editor #1272
+* Fix: Prevent saving strings translations with an empty source #1273
+
+= 3.3.3 (2023-04-11) =
+
+* Pro: Adapt the submenu colors of the navigation language switcher block to WP 6.2
+* Pro: Fix the dropdown setting in the navigation language switcher block
+* Add Amharic, Aragonese and Spanish from Dominican Republic to the list of predefined languages #1248
+* Fix a deprecated notice in WP 6.2 when using multiple domains without the Internationalization PHP extension (intl) #1245
 
 = 3.3.2 (2023-03-06) =
 
@@ -150,92 +196,5 @@ Wherever third party code has been used, credit has been given in the code’s c
 * Fix is_front_page() when a static front page is not translated #1123
 * Yoast SEO: Fix posts without language displayed in the sitemap #1103
 * Yoast SEO: Avoid syncing robots meta. #1118
-
-= 3.2.8 (2022-10-17) =
-
-* Fix PHP warning when a filtered taxonomy has no query var #1124
-* Fix SQL error when attempting to get objects without languages and no language exist #1126
-* Fix error when term slugs are provided as array in WP_Query #1119, #1132 Props Susanna Häggblom
-* Fix a CSS regression in the wizard causing the default language icon to be removed #1137
-
-= 3.2.7 (2022-09-20) =
-
-* Work around a WooCommerce 6.9.x bug causing a fatal error in the wizard. #1116
-
-= 3.2.6 (2022-09-06) =
-
-* Pro: Fix a conflict with Kadence blocks
-* Pro: Fix a conflict with Flatsome builder
-* Fix media translation setting having no effect
-
-= 3.2.5 (2022-06-28) =
-
-* Pro: Fix creation of WC product categories with shared slug via REST API
-* Pro: Fix conflict with WooBuilder when editing a WC product
-* Fix: Force empty string translation to empty string #1058
-* Fix CSS conflict with Dynamic content for Elementor #1060
-
-= 3.2.4 (2022-06-07) =
-
-* Pro: Remove "Navigation menus" from the post type settings list
-* Pro: Fix block editor languages panel missing in WordPress 5.6
-* Pro: Fix wrongly indexed languages list returned by REST API when the first language is deactivated.
-* Revert fix for category feed not redirected when the language code is wrong #1054
-* Fix wrong redirect of category when the url includes a query string #1048
-* Fix querying multiple categories failing
-
-= 3.2.3 (2022-05-17) =
-
-* Pro: Fix a fatal error when inserting a term
-* Pro: Fix translation of the block cover when duplicating a post
-* Pro: Fix a CSS issue in bulk tranlate form introduced by WP 6.0
-* Pro: Fix a CSS issue in string import/export metaboxes.
-* Prevent random languages order in WP 6.0 #1041
-* Translate site title in retrieve password email #1042
-* Fix 'lang' attribute in language widget dropdown #1039
-
-= 3.2.2 (2022-04-25) =
-
-* Pro: Fix redirect occuring for tags sharing the same slug as their translations
-* Fix quick edit allowing to modify the language of the default category when it should not #1018
-
-= 3.2.1 (2022-04-14) =
-
-* Pro: Fix users with editor role not able to save or publish posts
-* Pro: Fix FSE compatibility not loaded when the plugin Gütenberg is active
-* Pro: Fix a fatal error occuring with Yoast SEO Premium
-* Pro: Fix a fatal error with ACF when no language is defined
-
-= 3.2 (2022-04-12) =
-
-* Requires WP 5.6 as minimum version
-* Pro: Add compatibility with the full site editing introduced in WP 5.9
-* Pro: Add a language switcher block for the navigation block introduced in WP 5.9
-* Pro: Add compatibility with the new gallery block introduced in WP 5.9
-* Pro: Make the language switcher block available in the widget section of the customizer
-* Pro: Fix wrong category when translating the latest posts block
-* Pro: Fix the language switcher block when using the dropdown option
-* Pro: Fix some edge cases with locale fallback
-* Pro: Fix post template replacing the post content when duplicating a post
-* Pro: Fix synchronization groups not correctly cleaned up when a language is deleted
-* Pro: Fix incorrect sticky property when duplicating / synchronizing posts
-* Pro: Fix "Page for posts" label after the page has been bulk translated
-* Pro: Fix translated slug when the url includes a query string
-* Pro: Synchronize ACF layout fields if a child field is synchronized or translatable
-* Pro: Fix wrong field group translation displayed when using object cache with ACF
-* Update plugin updater to 1.9.1
-* Add compatibility with the block site title introduced in WP 5.9
-* Add the list of wpml-config.xml files in the site health information
-* Improve the performance of the get_pages() filter #980
-* Improve the compatibility of 'wpml_object_id' with the original filter #972
-* Prevent term_exists to be filtered by language in WP 6.0
-* Fix some PHP 8.1 deprecations #949 #985
-* Fix a fatal error in PHP 8.1 #987
-* Fix category feed not redirected when the langage code is wrong #887
-* Fix default category not created for secondary languages (introduced in 3.1) #997
-* Fix parent page when the parent post type is not translatable #1001
-* Fix the Yoast SEO breadcrumb when it includes a non-synchronized taxonomy #1005
-* Fix a PHP Notice when adding a new language and Yoast SEO is active #979
-* Fix a PHP warning in Yoast SEO compatibility #954
 
 See [changelog.txt](https://plugins.svn.wordpress.org/polylang/trunk/changelog.txt) for older changelog

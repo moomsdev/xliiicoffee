@@ -108,7 +108,7 @@ class Setup_Wizard {
 				'class' => '\\RankMath\\Wizard\\Your_Site',
 			],
 
-			'analytics' => [
+			'analytics'     => [
 				'name'  => esc_html__( 'Analytics', 'rank-math' ),
 				'class' => '\\RankMath\\Wizard\\Search_Console',
 			],
@@ -212,7 +212,6 @@ class Setup_Wizard {
 		}
 
 		return $url;
-		return rank_math()->admin_dir() . "wizard/views/{$view}.php";
 	}
 
 	/**
@@ -251,7 +250,7 @@ class Setup_Wizard {
 		}
 
 		$this->hook_suffix = add_submenu_page(
-			null,
+			'',
 			esc_html__( 'Setup Wizard', 'rank-math' ),
 			esc_html__( 'Setup Wizard', 'rank-math' ),
 			'manage_options',
