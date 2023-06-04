@@ -4,7 +4,16 @@ $product = wc_get_product(get_the_ID());
 ?>
 <section class="coffee-bean">
     <div class="title-link">
-        <h2 class="title-blocks"><?php echo $titleCat; ?></h2>
+        <?php
+        $ancestors = get_ancestors(get_queried_object_id(), 'product_cat');
+        $top_level_cat = end($ancestors);
+        $parent_cat = get_term($top_level_cat, 'product_cat');
+        if ( $top_level_cat ) :
+            echo '<h2 class="title-blocks"> ' . $parent_cat->name . ' </h2>';
+        else:
+            echo '<h2 class="title-blocks"> ' . $titleCat . ' </h2>';
+        endif;
+        ?>
     </div>
 
     <div class="categories">
@@ -20,9 +29,11 @@ $product = wc_get_product(get_the_ID());
                         'parent'   		=> $ProductCat->term_id,
                     ]);
                     foreach ($child_product_cats as $type) :
+                        $current_category = is_tax('product_cat', $type->slug);
+
             ?>
                         <li>
-                            <a class="nav-link <?php echo $active ?>"  href="<?php echo $type->slug ?>"><?php echo $type->name ?></a>
+                            <a class="nav-link <?php echo $current_category ? 'active' : ''; ?>"  href="<?php echo $type->slug ?>"><?php echo $type->name ?></a>
                         </li>
             <?php
                     endforeach;
@@ -50,8 +61,10 @@ $product = wc_get_product(get_the_ID());
 
         if ($post_query->have_posts()) :
             while ($post_query->have_posts()) : $post_query->the_post();
-                $category = get_the_terms($post, 'product_cat');
-                $tag = get_the_terms($post, 'product_tag');
+                $categories = get_the_terms(get_the_ID(), 'product_cat');
+                $varieties = get_the_terms(get_the_ID(), 'variety_cat');
+                $origin = getPostMeta('origin',$post['id']);
+                $region = getPostMeta('region',$post['id']);
         ?>
 
                 <div class="item <?php echo $fistPost = ($post_count  == 0) ? 'first-post col-12' : 'col-12 col-sm-6 col-lg-4 col-xl-3'; ?>">
@@ -69,12 +82,28 @@ $product = wc_get_product(get_the_ID());
 
                     <div class="content">
                         <?php
-                        if ( $category && $tag ) :
-                        ?>
+                        if ( $categories && $varieties ) :
+                            ?>
                             <div class="categories">
                                 <ul>
-                                    <li><?php echo $category[0]->name; ?></li>
-                                    <li><?php echo $tag[0]->name; ?></li>
+                                    <?php
+                                    foreach ($categories as $category) {
+                                        $children = get_term_children($category->term_id, 'product_cat');
+                                        if (!empty($children) && !is_wp_error($children)) {
+                                            foreach ($children as $child) {
+                                                $child_category = get_term_by('term_id', $child, 'product_cat');
+                                                if (has_term($child_category->term_id, 'product_cat', get_the_ID())) {
+                                                    echo "<li>$child_category->name</li>";
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    foreach ($varieties as $variety) {
+                                        echo  "<li> $variety->name </li>";
+                                        break;
+                                    }
+                                    ?>
                                 </ul>
                             </div>
                         <?php
@@ -88,13 +117,8 @@ $product = wc_get_product(get_the_ID());
                         <?php theProductPrice($product); ?>
 
                         <?php
-                        $origin = getPostMeta('origin');
-                        if ( $origin ) :
-                        ?>
-                            <div class="origin-product">
-                                <?php echo $origin; ?>
-                            </div>
-                        <?php
+                        if ( $origin || $region) :
+                            echo ' <div class="origin-product">' . $origin . ', ' . $region . '</div>';
                         endif;
                         ?>
 

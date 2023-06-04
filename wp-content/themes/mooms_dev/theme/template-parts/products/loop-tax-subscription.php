@@ -1,24 +1,35 @@
 <section class="subscription">
-    <div class="title-link">
-        <h2 class="title-blocks"><?php echo $titleCat; ?></h2>
+    <div class="row">
+        <div class="col-12 title-link">
+            <h2 class="title-blocks"><?php echo $titleCat; ?></h2>
+        </div>
     </div>
 
     <div class="row">
         <?php
         $post_count = 0;
-        if (have_posts()) :
-            while (have_posts()) : the_post();
-                if ( $post_count < 1 ) :
+        $post_query = new WP_Query([
+            'post_type' => 'product',
+            'posts_per_page' => 9, // Số lượng bài viết hiển thị trên mỗi trang
+            'post_status' => 'publish',
+            'tax_query'      => [
+                [
+                    'taxonomy'         => 'product_cat',
+                    'field'            => 'term_id',
+                    'terms'            => $idCat,
+                    'include_children' => true,
+                ],
+            ],
+        ]);
+
+        if ($post_query->have_posts()) :
+            while ($post_query->have_posts()) : $post_query->the_post();
+                if ( $post_query->found_posts == 1 ) :
                 ?>
-
-                    <div class="col-12 item item-full">
-                        <figure class="item__bg">
-                            <img src="<?php thePostThumbnailUrl(); ?>" alt="<?php theTitle(); ?>">
-                        </figure>
-
-                        <div class="row">
-                            <div class="col-6"></div>
-                            <div class="col-6 item__inner">
+                    <div class="col-12 item item-full" style=" background: url('<?php thePostThumbnailUrl(); ?>') no-repeat center center; ">
+                        <div class="left-column"></div>
+                        <div class="right-column">
+                            <div class="item__inner">
                                 <a href="<?php the_permalink(); ?>">
                                     <h3 class="title-post"><?php theTitle(); ?>  </h3>
                                 </a>
@@ -37,19 +48,17 @@
                                 endif;
                                 ?>
 
+                                <a href="<?php the_permalink(); ?>" class="see-more-post"><?php echo __('Xem thêm', 'gaumap'); ?></a>
+
                             </div>
                         </div>
-
                     </div>
 
                 <?php
                 else:
                 ?>
 
-                    <div class="col-12 col-sm-6 item item-half">
-                        <figure class="item__bg">
-                            <img src="<?php thePostThumbnailUrl(); ?>" alt="<?php theTitle(); ?>">
-                        </figure>
+                    <div class="col-12 col-lg-6 item item-half" style=" background: url('<?php thePostThumbnailUrl(); ?>') no-repeat center center; ">
 
                         <div class="item__inner">
                             <a href="<?php the_permalink(); ?>">
@@ -80,8 +89,23 @@
                 $post_count++;
             endwhile;
             wp_reset_postdata();
+            // Tạo phân trang
+            $total_pages = $post_query->max_num_pages;
+            if ($total_pages > 1) {
+                $current_page = max(1, get_query_var('paged'));
+                echo '<div class="pagination">';
+                echo paginate_links(array(
+                    'base' => get_pagenum_link(1) . '%_%',
+                    'format' => 'page/%#%',
+                    'current' => $current_page,
+                    'total' => $total_pages,
+                    'prev_text' => __('«'),
+                    'next_text' => __('»'),
+                ));
+                echo '</div>';
+            }
         endif;
-        thePagination();
+        wp_reset_query();
         ?>
     </div>
 

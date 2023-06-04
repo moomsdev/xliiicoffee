@@ -115,9 +115,14 @@ add_action('carbon_fields_register_fields', function () {
                       ->set_width(50),
 
                  Field::make('oembed', 'video_journal', __('Video', 'gaumap'))
-                      ->set_width(30),
+                      ->set_width(85),
+                 Field::make( 'radio', 'video_position', __( '', 'gaumap'))
+                      ->set_width(15)
+                      ->set_options([
+                          'left' => __( 'Left' ),
+                          'right' => __( 'Right' ),
+                      ]),
                  Field::make('association', 'url_journal_product', __('Choose article | Chọn bài viết', 'gaumap'))
-                      ->set_width(70)
                       ->set_max(1)
                       ->set_types([
                           [

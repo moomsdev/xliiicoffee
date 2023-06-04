@@ -8,78 +8,63 @@
  *
  * @package WPEmergeTheme
  */
-
 ?>
-<div class="page-listing journal">
+<div class="page-listing locations">
     <div class="container-fluid">
-        <?php
-        $journalCats = get_terms('journal_cat', [
-            'hide_empty' => true,
-            'parent'     => 0,
-        ]);
+        <section class="location">
 
-        foreach ($journalCats as $journalCat) :
+            <div class="title-link">
+                <h2 class="title-blocks"> <?php echo __('Địa điểm', 'gaumap') ?> </h2>
+            </div>
 
-            $displayType = carbon_get_term_meta($journalCat->term_id, 'display_type');
-            $titleCat    = $journalCat->name;
-            $slugCat     = $journalCat->slug;
-            $idCat       = $journalCat->term_id;
-            $desc        = $journalCat->description;
+            <div class="categories">
+                <ul>
+                    <?php
+                    $locationCats = get_terms('location_cat', [
+                        'hide_empty' => true,
+                        'parent'   => 0,
+                    ]);
+                    foreach ($locationCats as $locationCat) :
+                        $current_category = is_tax('location_cat', $locationCat->slug);
+                        ?>
+                        <li>
+                            <a class="nav-link <?php echo $current_category ? 'active' : ''; ?>"  href="<?php echo $locationCat->slug ?>"><?php echo $locationCat->name ?></a>
+                        </li>
+                    <?php
+                    endforeach;
+                    ?>
+                </ul>
+            </div>
 
-            if ($displayType == "partner-cat") :
-                $postsPerPage = 4;
-            elseif ($displayType == "customer-cat") :
-                $postsPerPage = 2;
-            else:
-                $postsPerPage = 1;
-            endif;
-
-            $post_query = new WP_Query([
-                'post_type'      => 'journal',
-                'posts_per_page' => $postsPerPage,
-                'post_status'    => 'publish',
-                'tax_query'      => [
-                    [
-                        'taxonomy'         => 'journal_cat',
-                        'field'            => 'term_id',
-                        'terms'            => $idCat,
-                        'include_children' => true,
-                    ],
-                ],
-            ]);
-
-            if ($displayType == "find") :
-
-                $template_path = 'template-parts/journal/loop-find.php';
-                if (file_exists(get_template_directory() . '/' . $template_path)) :
-                    include(get_template_directory() . '/' . $template_path);
+            <div class="row items">
+                <?php
+                if (have_posts()) :
+                    while (have_posts()) : the_post();
+                        $type = getPostMeta('location_type');
+                        $address = getPostMeta('location_detail');
+                        ?>
+                        <div class="col-12 col-lg-6 location-item">
+                            <div class="location-bg" style="background-image: url('<?php thePostThumbnailUrl(); ?>')">
+                                <div class="item__inner">
+                                    <div class="inner_head">
+                                        <span class="location-type"><?php echo $type; ?></span>
+                                        <a href="<?php the_permalink(); ?>"><h2 class="title-post fs-43"><?php theTitle(); ?></h2></a>
+                                        <p class="location-detail"><?php echo $address; ?></p>
+                                    </div>
+                                    <div class="inner_bottom">
+                                        <a href="<?php the_permalink(); ?>" class="see-more-post"><?php echo __('Xem thêm', 'gaumap'); ?></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php
+                    endwhile;
+                    wp_reset_postdata();
                 endif;
-
-            elseif ($displayType == "protect") :
-
-                $template_path = 'template-parts/journal/loop-protect.php';
-                if (file_exists(get_template_directory() . '/' . $template_path)) :
-                    include(get_template_directory() . '/' . $template_path);
-                endif;
-
-            elseif ($displayType == "describe") :
-
-                $template_path = 'template-parts/journal/loop-describe.php';
-                if (file_exists(get_template_directory() . '/' . $template_path)) :
-                    include(get_template_directory() . '/' . $template_path);
-                endif;
-
-            else :
-
-                $template_path = 'template-parts/loop-taste.php';
-                if (file_exists(get_template_directory() . '/' . $template_path)) :
-                    include(get_template_directory() . '/' . $template_path);
-                endif;
-
-            endif;
-
-        endforeach;
-        ?>
+                thePagination();
+                ?>
+            </div>
+        </section>
     </div>
 </div>
 

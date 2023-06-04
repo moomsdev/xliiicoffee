@@ -16,21 +16,10 @@ $galleries = getPostMeta('product_gallery');
 $category = get_the_terms($post, 'product_cat');
 $tag = get_the_terms($post, 'product_tag');
 ?>
+
 <main class="main-content single-product">
     <div class="container-fluid">
-
-        <?php
-        if ( $category && $tag ) :
-            ?>
-            <div class="categories">
-                <ul>
-                    <li><?php echo $category[0]->name; ?></li>
-                    <li><?php echo $tag[0]->name; ?></li>
-                </ul>
-            </div>
-        <?php
-        endif;
-        ?>
+        <?php //theBreadcrumb(); ?>
 
         <!--info-product-->
         <section class="info-product">
@@ -271,11 +260,25 @@ $tag = get_the_terms($post, 'product_tag');
         $desc_journal = getPostMeta('desc_journal');
         $url_journal = getPostMeta('url_journal_product');
         $video_journal = getPostMeta('video_journal');
+        $video_position = getPostMeta('video_position');
+
+        $aroma_journal = getPostMeta('aroma_journal');
+        $hot_journal = getPostMeta('hot_journal');
+        $warm_journal = getPostMeta('warm_journal');
+        $cold_journal = getPostMeta('cold_journal');
+        $aftertaste_journal = getPostMeta('aftertaste_journal');
+        $acidity_journal = getPostMeta('acidity_journal');
+        $body_journal = getPostMeta('body_journal');
+        $balance_journal = getPostMeta('balance_journal');
+
         if ( $desc_journal || $url_journal || $video_journal ) :
         ?>
         <section class="journal-product">
             <div class="row">
                 <div class="col-12 col-lg-6 right-column">
+                    <?php
+                    if ( $video_position == 'left' ) :
+                    ?>
                     <div class="media">
                         <div class="video">
                             <iframe class="_iframe"
@@ -284,6 +287,9 @@ $tag = get_the_terms($post, 'product_tag');
                                     allowfullscreen></iframe>
                         </div>
                     </div>
+                    <?php
+                    endif;
+                    ?>
                 </div>
                 <div class="col-12 col-lg-6 left-column border-bottom-custom">
                         <?php
@@ -292,75 +298,88 @@ $tag = get_the_terms($post, 'product_tag');
                         endif;
                         ?>
 
-                        <div class="list-info">
-                            <ul>
-                                <?php
-                                $aroma_journal = getPostMeta('aroma_journal');
-                                if ($aroma_journal) :
-                                    echo "<li>
-                                            <span>" . __('Aroma', 'gaumap') . "</span>
-                                            <span>" . $aroma_journal . "</span>
-                                          </li>";
-                                endif;
+                        <?php
+                        if ( $aroma_journal || $hot_journal || $warm_journal || $cold_journal || $aftertaste_journal || $acidity_journal || $body_journal || $balance_journal ) :
+                        ?>
+                            <div class="list-info">
+                                <ul>
+                                    <?php
+                                    if ($aroma_journal) :
+                                        echo "<li>
+                                                <span>" . __('Aroma', 'gaumap') . "</span>
+                                                <span>" . $aroma_journal . "</span>
+                                              </li>";
+                                    endif;
 
-                                $hot_journal = getPostMeta('hot_journal');
-                                if ($hot_journal) :
-                                    echo "<li>
-                                            <span>" . __('Hot', 'gaumap') . "</span>
-                                            <span>" . $hot_journal . "</span>
-                                          </li>";
-                                endif;
+                                    if ($hot_journal) :
+                                        echo "<li>
+                                                <span>" . __('Hot', 'gaumap') . "</span>
+                                                <span>" . $hot_journal . "</span>
+                                              </li>";
+                                    endif;
 
-                                $warm_journal = getPostMeta('warm_journal');
-                                if ($warm_journal) :
-                                    echo "<li>
-                                            <span>" . __('Warm', 'gaumap') . "</span>
-                                            <span>" . $warm_journal . "</span>
-                                          </li>";
-                                endif;
+                                    if ($warm_journal) :
+                                        echo "<li>
+                                                <span>" . __('Warm', 'gaumap') . "</span>
+                                                <span>" . $warm_journal . "</span>
+                                              </li>";
+                                    endif;
 
-                                $cold_journal = getPostMeta('cold_journal');
-                                if ($cold_journal) :
-                                    echo "<li>
-                                            <span>" . __('Cold', 'gaumap') . "</span>
-                                            <span>" . $cold_journal . "</span>
-                                          </li>";
-                                endif;
+                                    if ($cold_journal) :
+                                        echo "<li>
+                                                <span>" . __('Cold', 'gaumap') . "</span>
+                                                <span>" . $cold_journal . "</span>
+                                              </li>";
+                                    endif;
 
-                                $aftertaste_journal = getPostMeta('aftertaste_journal');
-                                if ($aftertaste_journal) :
-                                    echo "<li>
-                                            <span>" . __('Aftertaste', 'gaumap') . "</span>
-                                            <span>" . $aftertaste_journal . "</span>
-                                          </li>";
-                                endif;
+                                    if ($aftertaste_journal) :
+                                        echo "<li>
+                                                <span>" . __('Aftertaste', 'gaumap') . "</span>
+                                                <span>" . $aftertaste_journal . "</span>
+                                              </li>";
+                                    endif;
 
-                                $acidity_journal = getPostMeta('acidity_journal');
-                                if ($acidity_journal) :
-                                    echo "<li>
-                                            <span>" . __('Acidity', 'gaumap') . "</span>
-                                            <span>" . $acidity_journal . "</span>
-                                          </li>";
-                                endif;
+                                    if ($acidity_journal) :
+                                        echo "<li>
+                                                <span>" . __('Acidity', 'gaumap') . "</span>
+                                                <span>" . $acidity_journal . "</span>
+                                              </li>";
+                                    endif;
 
-                                $body_journal = getPostMeta('body_journal');
-                                if ($body_journal) :
-                                    echo "<li>
-                                            <span>" . __('Body', 'gaumap') . "</span>
-                                            <span>" . $body_journal . "</span>
-                                          </li>";
-                                endif;
+                                    if ($body_journal) :
+                                        echo "<li>
+                                                <span>" . __('Body', 'gaumap') . "</span>
+                                                <span>" . $body_journal . "</span>
+                                              </li>";
+                                    endif;
 
-                                $balance_journal = getPostMeta('balance_journal');
-                                if ($balance_journal) :
-                                    echo "<li>
-                                            <span>" . __('Balance', 'gaumap') . "</span>
-                                            <span>" . $balance_journal . "</span>
-                                          </li>";
-                                endif;
-                                ?>
-                            </ul>
-                        </div>
+                                    if ($balance_journal) :
+                                        echo "<li>
+                                                <span>" . __('Balance', 'gaumap') . "</span>
+                                                <span>" . $balance_journal . "</span>
+                                              </li>";
+                                    endif;
+                                    ?>
+                                </ul>
+                            </div>
+                        <?php
+                        endif;
+                        ?>
+
+                        <?php
+                        if ( $video_position == 'right' ) :
+                            ?>
+                            <div class="media">
+                                <div class="video">
+                                    <iframe class="_iframe"
+                                            src="<?php echo getYoutubeEmbedUrl($video_journal); ?>"
+                                            frameborder="0"
+                                            allowfullscreen></iframe>
+                                </div>
+                            </div>
+                        <?php
+                        endif;
+                        ?>
 
                         <?php
                         if ( $url_journal ) :
@@ -674,6 +693,8 @@ $tag = get_the_terms($post, 'product_tag');
                                 <?php
                                 while ( $post_query->have_posts() ) : $post_query->the_post();
                                     $categories = get_the_terms(get_the_ID(), 'product_cat');
+                                    $varieties = get_the_terms(get_the_ID(), 'variety_cat');
+
                                 ?>
                                     <div class="swiper-slide">
                                             <div class="item">
@@ -685,13 +706,26 @@ $tag = get_the_terms($post, 'product_tag');
 
                                                 <div class="content">
                                                     <?php
-                                                    if ( $categories ) :
+                                                    if ( $categories && $varieties ) :
                                                         ?>
                                                         <div class="categories">
                                                             <ul>
                                                                 <?php
                                                                 foreach ($categories as $category) {
-                                                                    echo  "<li> $category->name </li>";
+                                                                    $children = get_term_children($category->term_id, 'product_cat');
+                                                                    if (!empty($children) && !is_wp_error($children)) {
+                                                                        foreach ($children as $child) {
+                                                                            $child_category = get_term_by('term_id', $child, 'product_cat');
+                                                                            if (has_term($child_category->term_id, 'product_cat', get_the_ID())) {
+                                                                                echo "<li>$child_category->name</li>";
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+
+                                                                foreach ($varieties as $variety) {
+                                                                    echo  "<li> $variety->name </li>";
+                                                                    break;
                                                                 }
                                                                 ?>
                                                             </ul>

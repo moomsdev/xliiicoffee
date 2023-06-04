@@ -83,6 +83,9 @@ endif;
                                 $post_type = get_post_type();
                                 if ( $post_type == 'product' ) :
                                     $taxonomy = "product_cat";
+                                    $varieties = get_the_terms(get_the_ID(), 'variety_cat');
+                                    $origin = getPostMeta('origin');
+                                    $region = getPostMeta('region');
                                 elseif ( $post_type == 'coffee_guide' ) :
                                     $taxonomy = "coffee_guide_cat";
                                 elseif ( $post_type == 'work_with_us' ) :
@@ -92,6 +95,8 @@ endif;
                                 endif;
 
                                 $categories = get_the_terms(get_the_ID(), $taxonomy);
+
+                                $desc = getPostMeta('description');
                         ?>
 
                                 <div class="swiper-slide">
@@ -104,13 +109,26 @@ endif;
 
                                         <div class="content">
                                             <?php
-                                            if ( $categories ) :
-                                            ?>
+                                            if ( $categories && $varieties ) :
+                                                ?>
                                                 <div class="categories">
                                                     <ul>
                                                         <?php
                                                         foreach ($categories as $category) {
-                                                            echo  "<li> $category->name </li>";
+                                                            $children = get_term_children($category->term_id, 'product_cat');
+                                                            if (!empty($children) && !is_wp_error($children)) {
+                                                                foreach ($children as $child) {
+                                                                    $child_category = get_term_by('term_id', $child, 'product_cat');
+                                                                    if (has_term($child_category->term_id, 'product_cat', get_the_ID())) {
+                                                                        echo "<li>$child_category->name</li>";
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+
+                                                        foreach ($varieties as $variety) {
+                                                            echo  "<li> $variety->name </li>";
+                                                            break;
                                                         }
                                                         ?>
                                                     </ul>
@@ -127,24 +145,14 @@ endif;
                                             <?php theProductPrice(); ?>
 
                                             <?php
-                                            $origin = getPostMeta('origin');
-                                            if ( $origin ) :
-                                            ?>
-                                                <div class="origin-product">
-                                                    <?php echo $origin; ?>
-                                                </div>
-                                            <?php
+                                            if ( $origin || $region) :
+                                                echo ' <div class="origin-product">'. $origin .', ' . $region . '</div>';
                                             endif;
                                             ?>
 
                                             <?php
-                                            $desc = getPostMeta('description');
                                             if ( $desc ) :
-                                            ?>
-                                                <div class="desc-post">
-                                                    <?php echo $desc; ?>
-                                                </div>
-                                            <?php
+                                                echo '<div class="desc-post"> ' . $desc . '</div>';
                                             endif;
                                             ?>
 
@@ -166,6 +174,7 @@ endif;
                             if ( $post_type == 'product' ) :
                                 $taxonomy = "product_cat";
                                 $variety = "variety_cat";
+
                             elseif ( $post_type == 'coffee_guide' ) :
                                 $taxonomy = "coffee_guide_cat";
                             elseif ( $post_type == 'work_with_us' ) :
@@ -174,7 +183,11 @@ endif;
                                 $taxonomy = "collaboration_cat";
                             endif;
 
-                            $categories = get_the_terms(get_the_ID(), $taxonomy);
+                            $categories = get_the_terms($post['id'], $taxonomy);
+                            $varieties = get_the_terms($post['id'], $variety);
+                            $origin = getPostMeta('origin',$post['id']);
+                            $region = getPostMeta('region',$post['id']);
+                            $desc = getPostMeta('description',$post['id']);
                             ?>
                             <div class="swiper-slide">
                                 <div class="item">
@@ -186,19 +199,27 @@ endif;
 
                                     <div class="content">
                                         <?php
-                                        if ( $categories ) :
+                                        if ( $categories && $varieties ) :
                                             ?>
                                             <div class="categories">
                                                 <ul>
                                                     <?php
-                                                        if ( $post_type == 'product' ) :
-                                                            echo "<li> $taxonomy[0] </li>
-                                                                  <li> $variety[0] </li>";
-                                                        else:
-                                                            foreach ($categories as $category) {
-                                                                echo  "<li> $category->name </li>";
+                                                    foreach ($categories as $category) {
+                                                        $children = get_term_children($category->term_id, $taxonomy);
+                                                        if (!empty($children) && !is_wp_error($children)) {
+                                                            foreach ($children as $child) {
+                                                                $child_category = get_term_by('term_id', $child, $taxonomy);
+                                                                if (has_term($child_category->term_id, $taxonomy, $post['id'])) {
+                                                                    echo "<li>$child_category->name</li>";
+                                                                }
                                                             }
-                                                        endif;
+                                                        }
+                                                    }
+
+                                                    foreach ($varieties as $variety) {
+                                                        echo  "<li> $variety->name </li>";
+                                                        break;
+                                                    }
                                                     ?>
                                                 </ul>
                                             </div>
@@ -213,24 +234,14 @@ endif;
                                         </a>
 
                                         <?php
-                                        $origin = getPostMeta('origin',$post['id']);
-                                        if ( $origin ) :
-                                            ?>
-                                            <div class="origin-product">
-                                                <?php echo $origin; ?>
-                                            </div>
-                                        <?php
+                                        if ( $origin || $region) :
+                                            echo ' <div class="origin-product">' . $origin . ', ' . $region . '</div>';
                                         endif;
                                         ?>
 
                                         <?php
-                                        $desc = getPostMeta('description',$post['id']);
                                         if ( $desc ) :
-                                            ?>
-                                            <div class="desc-post">
-                                                <?php echo $desc; ?>
-                                            </div>
-                                        <?php
+                                            echo '<div class="desc-post">' . $desc . '</div>';
                                         endif;
                                         ?>
 

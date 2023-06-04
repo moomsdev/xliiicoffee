@@ -245,3 +245,14 @@ new \App\PostTypes\Location();
 new \App\PostTypes\WorkWithUs();
 new \App\PostTypes\CoffeeGuide();
 new \App\PostTypes\Collaboration();
+
+
+// Note that this intentionally disables a tinyMCE security feature.
+// Use of this code is NOT recommended.add_filter('tiny_mce_before_init','tinymce_allow_unsafe_link_target');
+function tinymce_allow_unsafe_link_target( $mceInit ) {
+    $mceInit['allow_unsafe_link_target']=true;
+    return $mceInit;
+}
+
+
+

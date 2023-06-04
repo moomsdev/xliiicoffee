@@ -26,6 +26,14 @@ section {
 
         &.fs-43 {
             font-size: 4.3rem;
+
+            @include mediaMaxWidth($md) {
+                font-size: 2.8rem;
+            }
+
+            @include mediaMaxWidth($sm) {
+                font-size: 2.4rem;
+            }
         }
         &.fs-30 {
             font-size: 2.5rem;
@@ -38,8 +46,6 @@ section {
                 font-size: 2.4rem;
             }
         }
-        &.fs-25 {}
-        &.fs-20 {}
 
     }
 }
@@ -248,3 +254,9 @@ figure.media {
 .border-top-1px {
     border-top: 1px solid #000;
 }
+
+.rank-math-breadcrumb {
+
+}
+
+

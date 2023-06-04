@@ -14,9 +14,10 @@ $product = wc_get_product(get_the_ID());
         <?php
         if ( $post_query->have_posts() ) :
             while ( $post_query->have_posts() ) : $post_query->the_post();
-                $category = get_the_terms($post, 'product_cat');
-                $tag = get_the_terms($post, 'product_tag');
-                $origin = getPostMeta('origin');
+                $categories = get_the_terms(get_the_ID(), 'product_cat');
+                $varieties = get_the_terms(get_the_ID(), 'variety_cat');
+                $origin = getPostMeta('origin',$post['id']);
+                $region = getPostMeta('region',$post['id']);
                 $desc = apply_filters( 'the_content', $product->get_description() );
         ?>
                 <div class="item <?php echo $fistPost = ($post_query->current_post == 0) ? 'col-12' : 'col-12 col-sm-6 col-lg-4 col-xl-3'; ?>">
@@ -34,12 +35,28 @@ $product = wc_get_product(get_the_ID());
                         <div class="content">
 
                             <?php
-                            if ( $category && $tag ) :
+                            if ( $categories && $varieties ) :
                             ?>
                                 <div class="categories">
                                     <ul>
-                                        <li><?php echo $category[0]->name; ?></li>
-                                        <li><?php echo $tag[0]->name; ?></li>
+                                        <?php
+                                        foreach ($categories as $category) {
+                                            $children = get_term_children($category->term_id, 'product_cat');
+                                            if (!empty($children) && !is_wp_error($children)) {
+                                                foreach ($children as $child) {
+                                                    $child_category = get_term_by('term_id', $child, 'product_cat');
+                                                    if (has_term($child_category->term_id, 'product_cat', get_the_ID())) {
+                                                        echo "<li>$child_category->name</li>";
+                                                    }
+                                                }
+                                            }
+                                        }
+
+                                        foreach ($varieties as $variety) {
+                                            echo  "<li> $variety->name </li>";
+                                            break;
+                                        }
+                                        ?>
                                     </ul>
                                 </div>
                             <?php
@@ -54,12 +71,8 @@ $product = wc_get_product(get_the_ID());
                             <?php theProductPrice($product); ?>
 
                             <?php
-                            if ( $origin ) :
-                            ?>
-                                <div class="origin-product">
-                                    <?php echo $origin; ?>
-                                </div>
-                            <?php
+                            if ( $origin || $region) :
+                                echo ' <div class="origin-product">' . $origin . ', ' . $region . '</div>';
                             endif;
                             ?>
 
@@ -85,7 +98,6 @@ $product = wc_get_product(get_the_ID());
 
                 </div>
         <?php
-
             endwhile;
         endif;
         wp_reset_postdata();

@@ -37,7 +37,9 @@ endif;
 
         <?php if ( $img ) : ?>
             <figure class="media">
-                <img src="<?php echo getImageUrlById($img); ?>" alt="<?php echo get_the_title($img); ?>">
+                <a href="<?php echo $link; ?>">
+                    <img src="<?php echo getImageUrlById($img); ?>" alt="<?php echo get_the_title($img); ?>">
+                </a>
             </figure>
         <?php endif; ?>
     </div>

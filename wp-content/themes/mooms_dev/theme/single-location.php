@@ -8,390 +8,211 @@
  *
  * @package WPEmergeTheme
  */
+$address = getPostMeta('location_detail');
+$albums = getPostMeta('location_gallery');
+$related = getPostMeta('location_articles');
+$content = getPostMeta('location_content');
+$location_opening_hours = getPostMeta('location_opening_hours');
+$socials = getPostMeta('location_socials');
 
-$first_cooperation = getPostMeta('first_cooperation');
-$cooperation_model = getPostMeta('cooperation_model');
-$title_cooperation = getPostMeta('title_cooperation');
-$content_cooperation = getPostMeta('content_cooperation');
-$map_cooperation = getPostMeta('map_cooperation');
+$location_menu = getPostMeta('location_menu');
 
-$title_core_values = getPostMeta('title_core_values');
-$content_core_values = getPostMeta('content_core_values');
-$expanded_content_core_values = getPostMeta('expanded_content_core_values');
-$gallery_core_values = getPostMeta('gallery_core_values');
-$subtitle_core_values = getPostMeta('subtitle_core_values');
-$img_core_values = getPostMeta('img_core_values');
-$subcontent_core_values = getPostMeta('subcontent_core_values');
-
-$content_blocks = getPostMeta('content_blocks');
 ?>
-<main class="main-content single-collaboration">
+<main class="main-content single-location">
     <div class="container-fluid">
-
-        <section class="post-head">
-            <div class="sub row">
-                <div class="col-12 col-lg-6 text-start text-lg-end">
-                    <h1 class="title-post"><?php theTitle(); ?></h1>
-                </div>
-                <div class="cooperation col-12 col-lg-6 pt-5">
-                    <div class="inner">
-                        <?php
-                        if ( $first_cooperation || $cooperation_model ) :
-                        ?>
-                            <div class="list-info">
-                                <ul>
-                                    <?php
-                                    if ( $first_cooperation ) :
-                                    ?>
-                                        <li>
-                                            <span><?php echo __('First time cooperation','gaumap'); ?>:</span>
-                                            <span><?php echo $first_cooperation; ?></span>
-                                        </li>
-                                    <?php
-                                    endif;
-                                    ?>
-
-                                    <?php
-                                    if ( $cooperation_model ) :
-                                    ?>
-                                        <li>
-                                            <span><?php echo __('Cooperation model','gaumap'); ?>:</span>
-                                            <span><?php echo $cooperation_model; ?></span>
-                                        </li>
-                                    <?php
-                                    endif;
-                                    ?>
-                                </ul>
-                            </div>
-                        <?php
-                            endif;
-                        ?>
-
-                        <div class="cooperation-info">
-                            <?php
-                            if ( $title_cooperation ) :
-                            ?>
-                                <h3 class="title-cooperation"><?php echo $title_cooperation; ?></h3>
-                            <?php
-                            endif;
-                            ?>
-
-                            <?php
-                            if ( $content_cooperation ) :
-                            ?>
-                                <div class="content-cooperation">
-                                    <?php echo apply_filters('the_content', $content_cooperation); ?>
-                                </div>
-                            <?php
-                            endif;
-                            ?>
-
-                            <?php
-                            if ( $map_cooperation ) :
-                            ?>
-                                <div class="col-12 map-cooperation">
-                                    <div class="inner">
-                                        <iframe src="<?php echo getIframeSrc($map_cooperation); ?>" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                                    </div>
-                                </div>
-                            <?php
-                            endif;
-                            ?>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="core-value">
-            <div class="sub row">
-                <div class="col-12 col-lg-6">
-                </div>
-
-                <div class="col-12 col-lg-6">
-                    <div class="inner">
-                        <?php
-                        if ( $title_core_values ) :
-                            ?>
-                            <h3 class="title-core-value"><?php echo $title_core_values; ?></h3>
-                        <?php
-                        endif;
-                        ?>
-
-                        <?php
-                        if ( $content_core_values ) :
-                            ?>
-                            <div class="content-core-value">
-                                <?php echo apply_filters('the_content', $content_core_values); ?>
-                            </div>
-                        <?php
-                        endif;
-                        ?>
-
-                        <?php
-                        if ( $expanded_content_core_values ) :
-                        ?>
-                            <div class="expanded-content">
-                                <ul>
-                                    <?php
-                                    foreach ( $expanded_content_core_values as $value ) :
-                                    ?>
-                                        <li>
-                                            <h4 class="title-expanded"><?php echo $value['title_expanded'] ?></h4>
-                                            <div class="desc-expanded"><?php echo apply_filters('the_content', $value['dest_expanded']); ?></div>
-                                        </li>
-                                    <?php
-                                    endforeach;
-                                    ?>
-                                </ul>
-                            </div>
-                        <?php
-                        endif;
-                        ?>
-
-                    </div>
-                </div>
-            </div>
-            <?php
-            if ( $gallery_core_values ) :
-            ?>
-                <div class="row">
-                    <?php
-                    foreach ( $gallery_core_values as $image ) :
-                        echo "<div class='gallery-core-values col-12 col-md-6 col-lg-3'>
-                                <figure class='media'>
-                                    <img src='" . getImageUrlById($image['img_gallery']) . "' alt='" . get_the_title($image['img_gallery']) . "'>
-                                </figure>
-                              </div>";
-                    endforeach;
-                    ?>
-                </div>
-            <?php
-            endif;
-            ?>
-
-            <div class="sub row">
-                <div class="col-12 col-lg-6"></div>
-                <div class="col-12 col-lg-6">
-                    <div class="inner">
-                        <?php
-                        if ( $subtitle_core_values ) :
-                            ?>
-                            <span class="subtitle"><?php echo $subtitle_core_values; ?></span>
-                        <?php
-                        endif;
-                        ?>
-
-                        <?php
-                        if ( $subcontent_core_values ) :
-                            ?>
-                            <div class="subcontent"><?php echo apply_filters('the_content', $subcontent_core_values); ?></div>
-                        <?php
-                        endif;
-                        ?>
-
-                    </div>
-                </div>
-
-                <?php
-                if ( $img_core_values ) :
-                ?>
-                    <div class="col-12">
-                        <figure class="media">
-                            <img src="<?php echo getImageUrlById($img_core_values) ?>" alt="<?php echo get_the_title($img_core_values); ?>">
-                        </figure>
-                    </div>
-                <?php
-                endif;
-                ?>
-
-            </div>
-
-        </section>
+        <!--Post title-->
+        <?php
+        if ( is_singular(get_post_type()) ) :
+            $parent_post_id = wp_get_post_parent_id(get_the_ID());
+            echo '<h1 class="title-post"> ' . get_the_title($parent_post_id) . ' </h1>';
+        else:
+            echo '<h1 class="title-post"> ' . get_the_title() . ' </h1>';
+        endif;
+        ?>
+        <!-- Address -->
+        <?php
+        if ( is_singular(get_post_type()) ) :
+            $parent_post_id = wp_get_post_parent_id(get_the_ID());
+            echo '<p class="location-detail"> ' . getPostMeta('location_detail', $parent_post_id) . ' </p>';
+        else:
+            echo '<p class="location-detail"> ' . $address . ' </p>';
+        endif;
+        ?>
 
         <?php
-        if ( $content_blocks ) :
-            foreach ( $content_blocks as $block ) :
-                $title = $block['title_cbs'];
-                $image = $block['img_cbs'];
-                $content = $block['content_cbs'];
-                $expanded_content_cbs = $block['expanded_content_cbs'];
-            ?>
-                <?php
-                if ( $block['content_blocks_display_type'] == "cbs-1" ) :
-                ?>
-                    <section class="content-blocks cbs-1">
-                        <div class="sub row">
-                            <div class="col-12 col-lg-6 d-flex justify-content-center justify-content-lg-end align-items-center">
+        //child post
+        if ( is_singular(get_post_type()) ) :
+        ?>
+            <div class="location-menu">
+                <ul class="nav nav-tabs" id="menuTab" role="tablist">
+                    <?php
+                    $i = 0;
+                    foreach ( $location_menu as $ỉtem ) :
+                        $type_name = $ỉtem['type_of_drink'];
+                        ?>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link <?php echo $i ==0 ? 'active' : ''; ?>" id="<?php echo sanitize_title($type_name); ?>" data-bs-toggle="tab" data-bs-target="#<?php echo sanitize_title($type_name); ?>-pane" type="button" role="tab" aria-controls="<?php echo sanitize_title($type_name); ?>-pane" aria-selected="true"><?php echo $type_name; ?></a>
+                        </li>
+                        <?php
+                        $i++;
+                    endforeach;
+                    ?>
+                </ul>
+                <div class="tab-content" id="menuTabContent">
+                    <?php
+                    $i = 0;
+                    foreach ( $location_menu as $ỉtem ) :
+                        $type_name = $ỉtem['type_of_drink'];
+                        $menu_desc = $ỉtem['menu_desc'];
+                        $drinks = $ỉtem['drinks'];
+
+                        ?>
+                        <div class="tab-pane fade <?php echo $i ==0 ? 'show active' : ''; ?>" id="<?php echo sanitize_title($type_name); ?>-pane" role="tabpanel" aria-labelledby="<?php echo sanitize_title($type_name); ?>" tabindex="0">
+                            <div class="row">
                                 <?php
-                                if ( $image ) :
-                                ?>
-                                    <figure class="media">
-                                        <img src="<?php echo getImageUrlById($image) ?>" alt="<?php echo get_the_title($image); ?>">
-                                    </figure>
-                                <?php
+                                if ( $drinks ) :
+                                    foreach ( $drinks as $drink ) :
+                                        $img = $drink['drink_img'];
+                                        $name = $drink['drink_name'];
+                                        $desc = $drink['drink_desc'];
+                                        ?>
+                                        <div class="col-12 col-sm-6 col-lg-3 mb-5">
+                                            <div class="tab-pane__inner">
+
+                                                <?php
+                                                if ( $img ) :
+                                                    echo '<figure class="media"> <img src=" ' . getImageUrlById($img) . ' " alt=" ' . get_the_title($img) . ' "> </figure>';
+                                                endif;
+                                                ?>
+
+                                                <?php
+                                                if ( $name ) :
+                                                    echo ' <h4 class="title-post"> ' . $name . ' </h4>';
+                                                endif;
+                                                ?>
+
+                                                <?php
+                                                if ( $desc ) :
+                                                    echo '<p class="desc-post"> ' . $desc . ' </p>';
+                                                endif;
+                                                ?>
+
+                                            </div>
+                                        </div>
+                                    <?php
+                                    endforeach;
                                 endif;
                                 ?>
                             </div>
-
-                            <div class="col-12 col-lg-6">
-                                <div class="inner">
-
-                                    <?php
-                                    if ( $title ) :
-                                    ?>
-                                        <h3 class="title-cbs"><?php echo $title; ?></h3>
-                                    <?php
-                                    endif;
-                                    ?>
-
-                                    <?php
-                                    if ( $block['subtitle_cbs_1'] ) :
-                                    ?>
-                                        <span class="subtitle"><?php echo $block['subtitle_cbs_1']; ?></span>
-                                    <?php
-                                    endif;
-                                    ?>
-
-                                    <?php
-                                    if ( $content ) :
-                                    ?>
-                                        <div class="content-cbs"><?php echo $content; ?></div>
-                                    <?php
-                                    endif;
-                                    ?>
-                                </div>
-                            </div>
                         </div>
-                    </section>
-                <?php
+                        <?php
+                        $i++;
+                    endforeach;
+                    ?>
+                </div>
+            </div>
+        <?php
+        else:
+        ?>
+            <!--Parent post-->
+            <section class="slider-block">
+                <div class="inner">
+                    <div class="swiper sliders">
+                        <div class="swiper-wrapper">
+                            <?php foreach ($albums as $slider) : ?>
+                                <div class="swiper-slide">
+                                    <img src="<?php echo getImageUrlById($slider); ?>" alt="<?php echo get_the_title($slider);  ?>">
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="article-inner">
+            <div class="row">
+                <div class="col-12 col-lg-6 article-related">
+                    <?php
+                    if ( $related ) :
+                        foreach ( $related as $article ) :
+                        ?>
+                            <div class="related-item">
+                                <a href="<?php echo $article['article_link']; ?>">
+                                    <figure class="media">
+                                        <img src="<?php echo getImageUrlById($article['article_img']); ?>" alt="<?php echo get_the_title($article['article_img']); ?>">
+                                    </figure>
+                                </a>
+                                <span class="tag"><?php echo $article['article_tag']; ?></span>
+                                <a href="<?php echo $article['article_link']; ?>">
+                                    <h3 class="article-title"><?php echo $article['article_title']; ?></h3>
+                                </a>
+                                <p class="article-desc"><?php echo $article['article_desc']; ?></p>
+                            </div>
+                        <?php
+                        endforeach;
                     endif;
-                ?>
+                    ?>
+                </div>
 
-                <?php
-                if ( $block['content_blocks_display_type'] == "cbs-2" ) :
-                ?>
-                    <section class="content-blocks cbs-2">
-                        <div class="sub row">
-                            <div class="col-12 col-lg-6">
+                <div class="col-12 col-lg-6 article-content">
 
-                            </div>
+                    <div class="content">
+                        <?php
+                        if ( $content ) :
+                        ?>
+                            <div class="desc"><?php echo $content; ?></div>
+                        <?php
+                        endif;
+                        ?>
 
-                            <div class="col-12 col-lg-6">
-                                <div class="inner">
-
-                                    <?php
-                                    if ( $title ) :
-                                        ?>
-                                        <h3 class="title-cbs"><?php echo $title; ?></h3>
-                                    <?php
-                                    endif;
-                                    ?>
-
-                                    <?php
-                                    if ( $content ) :
-                                        ?>
-                                        <div class="content-cbs"><?php echo $content; ?></div>
-                                    <?php
-                                    endif;
-                                    ?>
-
-                                    <?php
-                                    if ( $image ) :
-                                    ?>
-                                    <div class="inner-media">
-
-                                            <img src="<?php echo getImageUrlById($image) ?>" alt="<?php echo get_the_title($image); ?>" style="shape-outside: url(<?php echo getImageUrlById($image) ?>);">
-
+                        <?php
+                        $children = get_children([
+                            'post_parent' => get_the_ID(),
+                            'post_type'   => get_post_type(),
+                        ]);
+                        if ( $location_opening_hours || $children ) :
+                        ?>
+                            <div class="content-inner">
+                                <?php
+                                if ( $location_opening_hours ) :
+                                ?>
+                                    <div class="opening-hours">
+                                        <p><?php echo __('Giờ mở cửa', 'gaumap'); ?></p>
+                                        <p><?php echo $location_opening_hours; ?></p>
                                     </div>
+                                <?php
+                                endif;
+                                ?>
 
-                                    <?php
-                                    endif;
-                                    ?>
-                                </div>
+                                <?php
+                                if ( $children ) :
+                                    foreach ($children as $child_post) :
+                                        $child_post_link = get_permalink($child_post->ID);
+                                        echo '<div class="menu"><a href="' . $child_post_link . '">' . __('>> Xem thêm Menu', 'gaumap') . '</a></div>';
+                                    endforeach;
+                                endif;
+                                ?>
                             </div>
-                        </div>
-                    </section>
-                <?php
-                endif;
-                ?>
+                        <?php
+                        endif;
+                        ?>
 
-                <?php
-                if ( $block['content_blocks_display_type'] == "cbs-3" ) :
-                ?>
-                    <section class="content-blocks cbs-3">
-                        <div class="sub row">
-                            <div class="col-12 col-lg-6">
+                    </div>
 
-                            </div>
-
-                            <div class="col-12 col-lg-6">
-                                <div class="inner">
-                                    <?php
-                                    if ( $title ) :
-                                        ?>
-                                        <h3 class="title-cbs"><?php echo $title; ?></h3>
-                                    <?php
-                                    endif;
-                                    ?>
-
-                                    <?php
-                                    if ( $expanded_content_cbs ) :
-                                        ?>
-                                        <div class="expanded-content">
-                                            <ul>
-                                                <?php
-                                                foreach ( $expanded_content_cbs as $value ) :
-                                                    ?>
-                                                    <li>
-                                                        <h4 class="title-expanded"><?php echo $value['title_expanded'] ?></h4>
-                                                        <div class="desc-expanded"><?php echo $value['dest_expanded'] ?></div>
-                                                    </li>
-                                                <?php
-                                                endforeach;
-                                                ?>
-                                            </ul>
-                                        </div>
-                                    <?php
-                                    endif;
-                                    ?>
-
-                                    <?php
-                                    if ( $image ) :
-                                        ?>
-                                        <figure class="media">
-                                            <img src="<?php echo getImageUrlById($image) ?>" alt="<?php echo get_the_title($image); ?>">
-                                        </figure>
-                                    <?php
-                                    endif;
-                                    ?>
-
-                                    <?php
-                                    if ( $block['subtitle_cbs_3'] ) :
-                                        ?>
-                                        <span class="subtitle"><?php echo $block['subtitle_cbs_3']; ?></span>
-                                    <?php
-                                    endif;
-                                    ?>
-
-                                    <?php
-                                    if ( $content ) :
-                                        ?>
-                                        <div class="content-cbs"><?php echo $content; ?></div>
-                                    <?php
-                                    endif;
-                                    ?>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                <?php
-                endif;
-                ?>
-
-            <?php
-            endforeach;
+                    <div class="socials border-top-1px">
+                        <ul>
+                            <?php
+                            foreach ( $socials as $social ) :
+                                echo '<li><a href=" ' . $social['socials_link'] . ' "> ' . $social['socials_name'] . ' </a></li>' ;
+                            endforeach;
+                            ?>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <?php
         endif;
         ?>
     </div>

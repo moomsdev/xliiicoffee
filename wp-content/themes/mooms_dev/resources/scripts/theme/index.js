@@ -18,24 +18,12 @@ import Swiper from 'swiper/swiper-bundle.min';
 
 // import "@fancyapps/fancybox/dist/jquery.fancybox.min";
 jQuery(document).ready(function () {
-
-    // // Smooth scrolling
-    // $(window).on('scroll', function(event) {
-    //     event.preventDefault();
-    //     var scrollPosition = $(window).scrollTop();
-    //     $('html, body').stop().animate({
-    //         scrollTop: scrollPosition
-    //     }, 200);
-    // });
-    //
-    // $(window).on('mousewheel', function(event) {
-    //     event.preventDefault();
-    //     var delta = event.originalEvent.wheelDelta;
-    //     var scrollPosition = $(window).scrollTop();
-    //     $('html, body').stop().animate({
-    //         scrollTop: scrollPosition - delta
-    //     }, 200);
-    // });
+    //turn off go to internal link at current tab
+    $('a[target="_blank"]').on('click', function(e) {
+        e.preventDefault();
+        var url = $(this).attr('href');
+        window.open(url, '_blank');
+    });
 
     //back to top
     var btn = $('#button');

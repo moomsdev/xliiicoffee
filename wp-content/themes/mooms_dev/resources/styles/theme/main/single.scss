@@ -125,11 +125,30 @@
             &:after {
                 content: "";
                 position: absolute;
-                width: calc( 100% - var(--bs-gutter-x) );
+                width: calc( 100% - var(--bs-gutter-x)*2 );
                 height: 1px;
                 bottom: 0;
                 left: var(--bs-gutter-x);
                 background: #000;
+            }
+        }
+
+        .video {
+            padding-bottom: 56.25%;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            clear: both;
+
+            iframe {
+                position:absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center center;
+                transition: all .5s;
             }
         }
 
@@ -352,25 +371,14 @@
                     width: 100%;
                     max-width: 61.2rem;
                     max-height: 34.6rem;
+                }
+            }
 
-                    .video {
-                        padding-bottom: 56.25%;
-                        width: 100%;
-                        position: relative;
-                        overflow: hidden;
-                        clear: both;
-
-                        iframe {
-                            position:absolute;
-                            left: 0;
-                            top: 0;
-                            width: 100%;
-                            height: 100%;
-                            object-fit: cover;
-                            object-position: center center;
-                            transition: all .5s;
-                        }
-                    }
+            .left-column {
+                .media {
+                    margin-bottom: 2rem;
+                    height: 100%;
+                    width: 100%;
                 }
             }
         }
@@ -818,4 +826,168 @@
         }
     }
 
+    //location
+    &.single-location {
+        .slider-block {
+            .sliders {
+                .swiper-wrapper {
+                    .swiper-slide {
+                        padding-bottom: 40.7%;
+                        width: 100%;
+                        position: relative;
+                        overflow: hidden;
+                        clear: both;
+
+                        img {
+                            position:absolute;
+                            left: 0;
+                            top: 0;
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                            object-position: center center;
+                            transition: all .5s;
+                        }
+                    }
+                }
+            }
+        }
+
+        .article-inner {
+            padding-top: 0;
+            padding-bottom: 0;
+
+            @include mediaMaxWidth($xs) {
+                padding-top: 1rem;
+                padding-bottom: 1rem;
+            }
+
+            .article-related {
+                margin-bottom: 3rem;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 3rem;
+
+                @include mediaMaxWidth($sm) {
+                    grid-template-columns: 1fr;
+                    gap: 2rem;
+                }
+
+                .related-item {
+                    margin-bottom: 2.5rem;
+                    figure.media {
+                        margin-bottom: 2rem;
+                        padding-bottom: 65.1%;
+                    }
+                    .tag {
+                        margin-bottom: 2rem;
+                        display: block;
+                        text-transform: uppercase;
+                    }
+                    .article-title {
+                        margin-bottom: 2rem;
+                        font-size: 2rem;
+                        text-transform: uppercase;
+
+                        @include mediaMaxWidth($md) {
+                            font-size: 1.8rem;
+                        }
+
+                        &:hover {
+                            text-decoration: underline;
+                        }
+                    }
+                }
+            }
+
+            .article-content {
+
+                .content {
+                    padding-bottom: 5rem;
+
+                    .desc {
+                        margin-bottom: 3rem;
+                    }
+
+                    .content-inner {
+                        display: flex;
+                        justify-content: space-between;
+
+                        .opening-hours {
+                            p {
+                                margin-bottom: 1rem;
+                            }
+                        }
+                        .menu {
+                            display: flex;
+                            align-items: end;
+                            a {
+                                margin-bottom: 1rem;
+                                display: block;
+                            }
+                        }
+                    }
+                }
+
+                .socials {
+                    padding-top: 4rem;
+
+                    ul {
+                        display: flex;
+                        justify-content: space-between;
+                        flex-wrap: wrap;
+                        column-count: 2;
+
+                        li {
+                            width: 50%;
+                            margin-bottom: 2rem;
+                        }
+                    }
+                }
+            }
+        }
+
+        //child post
+        .location-menu {
+            #menuTab {
+                margin-bottom: 5rem ;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 2rem 5rem;
+                border-bottom: none;
+
+                li {
+
+                    a {
+                        padding: 0;
+                        border: unset;
+                        color: #000;
+                        opacity: .8;
+
+                        &.active {
+                            opacity: 1;
+                        }
+                    }
+                }
+            }
+
+            #menuTabContent {
+                .tab-pane {
+                    .tab-pane__inner {
+                        figure.media {
+                            margin-bottom: 3rem;
+                            padding-bottom: 100%;
+
+                            @include mediaMaxWidth($md) {
+                                margin-bottom: 1.5rem;
+                            }
+                            @include mediaMaxWidth($xs) {
+                                margin-bottom: 1rem;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

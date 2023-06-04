@@ -29,7 +29,9 @@ header#header {
                 }
 
                 img {
+                    width: auto;
                     max-width: 38rem;
+                    max-height: 3.8rem;
 
                     @include mediaMaxWidth($md) {
                         max-width: 32rem;
@@ -74,6 +76,18 @@ header#header {
 
                         li {
                             padding-bottom: 1rem;
+                            position: relative;
+
+                            &.active:after {
+                                position: absolute;
+                                content: "";
+                                width: 100%;
+                                height: .1rem;
+                                left: 0;
+                                bottom: 1rem;
+                                background: $primary-color;
+                            }
+
                             a {
                                 position: relative;
                                 display: revert;
@@ -82,16 +96,6 @@ header#header {
                                 font-weight: $fw-bold;
                                 color: $primary-color;
                                 text-transform: uppercase;
-
-                                &.active:after {
-                                    position: absolute;
-                                    content: "";
-                                    width: 100%;
-                                    height: .1rem;
-                                    left: 0;
-                                    bottom: -.2rem;
-                                    background: $primary-color;
-                                }
                             }
 
                             &.menu-item-has-children {
@@ -109,6 +113,11 @@ header#header {
                                     li {
                                         margin-bottom: .5rem;
                                         padding-bottom: 0;
+
+                                        &.active:after {
+                                            content: none;
+                                        }
+
                                         a {
                                             padding: 1rem;
                                             display: block;

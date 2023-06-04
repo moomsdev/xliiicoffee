@@ -16,12 +16,12 @@ if (!defined('ABSPATH')) {
 // phpcs:disable
 add_action('init', function () {
     register_taxonomy(
-        'journal_cat',
-        ['journal'],
+        'location_cat',
+        ['location'],
         [
             'labels'    => [
-                                'name'              => __('Danh mục Journal', 'app'),
-                                'singular_name'     => __('Danh mục Journal', 'app'),
+                                'name'              => __('Danh mục location', 'app'),
+                                'singular_name'     => __('Danh mục location', 'app'),
                                 'search_items'      => __('Tìm kiếm Danh mục', 'app'),
                                 'all_items'         => __('Tất cả Danh mục', 'app'),
                                 'parent_item'       => __('Parent item', 'app'),
@@ -37,22 +37,9 @@ add_action('init', function () {
             'show_ui'           => true,
             'show_admin_column' => true,
             'query_var'         => true,
-            'rewrite'           => ['slug' => 'journal-cat'],
+            'rewrite'           => ['slug' => 'location-cat'],
         ]
     );
 });
 // phpcs:enable
 
-add_action('carbon_fields_register_fields', function () {
-	Container::make('term_meta', __('More option | Thêm lựa chọn', 'gaumap'))
-		->where('term_taxonomy', 'IN', ['journal_cat'])
-		->add_fields([
-			Field::make('radio_image','journal_display_type', __('Display type | Kiểu hiển thị','gaumap'))
-				->set_options([
-					'find' => get_site_url() . '/wp-content/themes/mooms_dev/resources/images/journal-find.png',
-					'protect' => get_site_url() . '/wp-content/themes/mooms_dev/resources/images/journal-protect.png',
-					'describe' => get_site_url() . '/wp-content/themes/mooms_dev/resources/images/journal-describe.png',
-					'taste' => get_site_url() . '/wp-content/themes/mooms_dev/resources/images/journal-taste.png',
-				]),
-		]);
-});
