@@ -19,12 +19,17 @@ add_action('carbon_fields_register_fields', function () {
     Container::make('post_meta', __('Content', 'gaumap'))
              ->set_context('carbon_fields_after_title')
              ->set_priority('core')
-             ->where('post_type', 'IN', ['page', 'coffee_guide', 'collaboration', 'journal', 'location', 'work_with_us', 'product'])
+             // ->where('post_type', 'IN', ['page', 'coffee_guide', 'collaboration', 'journal', 'location', 'work_with_us', 'product'])
+             ->where('post_type', 'IN', ['page'])
              ->add_fields([
                  Field::make('complex', 'choose_block', __('Choose blocks:', 'gaumap'))
                       ->set_layout('tabbed-vertical')
                       ->set_collapsed(true)
 
+                     //Content blocks
+                     ->add_fields('content_blocks', __('Content Blocks', 'gaumap'), [
+                         Field::make('rich_text', 'content_block', __('Content:', 'gaumap')),
+                     ])
                      // Slider Blocks
                       ->add_fields('slider_blocks', __('Slider Blocks', 'gaumap'), [
                          Field::make('complex', 'slider_block', __('Add slider:', 'gaumap'))

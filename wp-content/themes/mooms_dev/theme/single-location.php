@@ -112,9 +112,12 @@ $location_menu = getPostMeta('location_menu');
                 </div>
             </div>
         <?php
-        else:
+        endif;
         ?>
-            <!--Parent post-->
+        <!--Parent post-->
+        <?php
+        if ( $albums ) :
+        ?>
             <section class="slider-block">
                 <div class="inner">
                     <div class="swiper sliders">
@@ -129,14 +132,17 @@ $location_menu = getPostMeta('location_menu');
                     </div>
                 </div>
             </section>
+        <?php
+        endif;
+        ?>
 
-            <section class="article-inner">
+        <section class="article-inner">
             <div class="row">
                 <div class="col-12 col-lg-6 article-related">
                     <?php
                     if ( $related ) :
                         foreach ( $related as $article ) :
-                        ?>
+                            ?>
                             <div class="related-item">
                                 <a href="<?php echo $article['article_link']; ?>">
                                     <figure class="media">
@@ -160,7 +166,7 @@ $location_menu = getPostMeta('location_menu');
                     <div class="content">
                         <?php
                         if ( $content ) :
-                        ?>
+                            ?>
                             <div class="desc"><?php echo $content; ?></div>
                         <?php
                         endif;
@@ -172,11 +178,11 @@ $location_menu = getPostMeta('location_menu');
                             'post_type'   => get_post_type(),
                         ]);
                         if ( $location_opening_hours || $children ) :
-                        ?>
+                            ?>
                             <div class="content-inner">
                                 <?php
                                 if ( $location_opening_hours ) :
-                                ?>
+                                    ?>
                                     <div class="opening-hours">
                                         <p><?php echo __('Giờ mở cửa', 'gaumap'); ?></p>
                                         <p><?php echo $location_opening_hours; ?></p>
@@ -200,20 +206,24 @@ $location_menu = getPostMeta('location_menu');
 
                     </div>
 
-                    <div class="socials border-top-1px">
-                        <ul>
-                            <?php
-                            foreach ( $socials as $social ) :
-                                echo '<li><a href=" ' . $social['socials_link'] . ' "> ' . $social['socials_name'] . ' </a></li>' ;
-                            endforeach;
-                            ?>
-                        </ul>
-                    </div>
+
+                    <?php
+                    if ( $socials ) :
+                    ?>
+                        <div class="socials border-top-1px">
+                            <ul>
+                                <?php
+                                foreach ( $socials as $social ) :
+                                    echo '<li><a href=" ' . $social['socials_link'] . ' "> ' . $social['socials_name'] . ' </a></li>' ;
+                                endforeach;
+                                ?>
+                            </ul>
+                        </div>
+                    <?php
+                    endif;
+                    ?>
                 </div>
             </div>
         </section>
-        <?php
-        endif;
-        ?>
     </div>
 </main>

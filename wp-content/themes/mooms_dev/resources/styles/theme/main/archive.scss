@@ -277,7 +277,12 @@
                 }
 
                 .media {
+                    margin-bottom: 2.5rem;
                     padding-bottom: 65.1%;
+
+                    @include mediaMaxWidth($md) {
+                        margin-bottom: 1.5rem;
+                    }
                 }
             }
         }
@@ -384,6 +389,10 @@
                     &:first-child {
                         .inner-item {
                             display: block;
+
+                            .media {
+                                padding-bottom: 100%;
+                            }
                         }
                     }
 
@@ -469,6 +478,7 @@
                             }
 
                             .title-post {
+
                                 @include mediaMaxWidth($xl) {
                                     font-size: 3.5rem;
                                 }
@@ -480,7 +490,12 @@
                                 @include mediaMaxWidth($xs) {
                                     font-size: 1.8rem;
                                 }
+
+                                &:hover {
+                                    text-decoration: none;
+                                }
                             }
+
 
                             .location-detail {
                                 @include mediaMaxWidth($xs) {

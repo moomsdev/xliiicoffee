@@ -86,20 +86,25 @@ $content_blocks = getPostMeta('content_blocks');
                             endif;
                             ?>
 
-                            <?php
-                            if ( $map_cooperation ) :
-                            ?>
-                                <div class="col-12 map-cooperation">
-                                    <div class="inner">
-                                        <iframe src="<?php echo getIframeSrc($map_cooperation); ?>" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                                    </div>
-                                </div>
-                            <?php
-                            endif;
-                            ?>
+
 
                         </div>
                     </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <?php
+                    if ( $map_cooperation ) :
+                        ?>
+                        <div class="map-cooperation">
+                            <div class="inner">
+                                <iframe src="<?php echo getIframeSrc($map_cooperation); ?>" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            </div>
+                        </div>
+                    <?php
+                    endif;
+                    ?>
                 </div>
             </div>
         </section>
@@ -215,8 +220,11 @@ $content_blocks = getPostMeta('content_blocks');
             foreach ( $content_blocks as $block ) :
                 $title = $block['title_cbs'];
                 $image = $block['img_cbs'];
+                $type_img_cbs = $block['type_img_cbs'];
+                $url_img_cbs = $block['url_img_cbs'];
                 $content = $block['content_cbs'];
                 $expanded_content_cbs = $block['expanded_content_cbs'];
+
             ?>
                 <?php
                 if ( $block['content_blocks_display_type'] == "cbs-1" ) :
@@ -383,6 +391,38 @@ $content_blocks = getPostMeta('content_blocks');
                                     endif;
                                     ?>
                                 </div>
+                            </div>
+                        </div>
+                    </section>
+                <?php
+                endif;
+                ?>
+
+                <?php
+                if ( $block['content_blocks_display_type'] == "cbs-4" ) :
+                    ?>
+                    <section class="content-blocks cbs-4">
+                        <div class="row">
+                            <div class="col-12">
+                                <?php
+                                if ( $image ) :
+                                ?>
+                                    <?php
+                                    if ($url_img_cbs ) :
+                                        echo '<a href=" ' . $url_img_cbs . ' ">';
+                                    endif;
+                                    ?>
+                                        <figure class="<?php echo $typeImage = ( $type_img_cbs == 'ratio' ) ? 'media' : 'media-original'; ?>">
+                                            <img src="<?php echo getImageUrlById($image) ?>" alt="<?php echo get_the_title($image); ?>">
+                                        </figure>
+                                    <?php
+                                    if ( $url_img_cbs ) :
+                                        echo '</a>';
+                                    endif;
+                                    ?>
+                                <?php
+                                endif;
+                                ?>
                             </div>
                         </div>
                     </section>

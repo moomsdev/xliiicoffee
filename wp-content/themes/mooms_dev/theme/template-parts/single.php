@@ -4,6 +4,9 @@ while (have_posts()) : the_post();
     foreach ($blocks as $block) {
         $args = [
 
+            // Content Blocks
+            'content_block'     => $block['content_block'],
+
             // Slider Blocks
             'slider_block'     => $block['slider_block'],
 
@@ -54,6 +57,11 @@ while (have_posts()) : the_post();
 
         ];
         switch ($block['_type']) {
+
+            // Content Blocks
+            case 'content_blocks':
+                get_template_part('template-parts/block', 'content', $args);
+                break;
 
             // Slider Blocks
             case 'slider_blocks':

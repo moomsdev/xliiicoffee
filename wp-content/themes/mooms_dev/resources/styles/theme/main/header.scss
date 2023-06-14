@@ -31,7 +31,7 @@ header#header {
                 img {
                     width: auto;
                     max-width: 38rem;
-                    max-height: 3.8rem;
+                    max-height: 2.8rem;
 
                     @include mediaMaxWidth($md) {
                         max-width: 32rem;

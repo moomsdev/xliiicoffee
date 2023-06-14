@@ -10,11 +10,19 @@
         <div class="item">
             <?php
             $post_query = new WP_Query([
-                'post_type'        => get_post_type(),
-                'posts_per_page'   => 1,
-                'post_status'      => 'publish',
-                'order'            => 'DESC',
+                'post_type'      => 'journal',
+                'posts_per_page' => 1,
+                'post_status'    => 'publish',
+                'tax_query'      => [
+                    [
+                        'taxonomy'         => 'journal_cat',
+                        'field'            => 'term_id',
+                        'terms'            => $idCat,
+                        'include_children' => true,
+                    ],
+                ],
             ]);
+
             if ($post_query->have_posts()) :
                 while ($post_query->have_posts()) : $post_query->the_post();
                     $tag = get_the_terms($post, 'journal_tags');
@@ -75,11 +83,18 @@
         <div class="item">
             <?php
             $post_query = new WP_Query([
-                'post_type'        => get_post_type(),
-                'posts_per_page'   => 3,
-                'post_status'      => 'publish',
-                'order'            => 'DESC',
+                'post_type'      => 'journal',
+                'posts_per_page' => 3,
+                'post_status'    => 'publish',
                 'offset'            => 1,
+                'tax_query'      => [
+                    [
+                        'taxonomy'         => 'journal_cat',
+                        'field'            => 'term_id',
+                        'terms'            => $idCat,
+                        'include_children' => true,
+                    ],
+                ],
             ]);
 
             if ($post_query->have_posts()) :
@@ -142,11 +157,18 @@
         <div class="item">
             <?php
             $post_query = new WP_Query([
-                'post_type'        => get_post_type(),
-                'posts_per_page'   => 3,
-                'post_status'      => 'publish',
-                'order'            => 'DESC',
+                'post_type'      => 'journal',
+                'posts_per_page' => 3,
+                'post_status'    => 'publish',
                 'offset'            => 4,
+                'tax_query'      => [
+                    [
+                        'taxonomy'         => 'journal_cat',
+                        'field'            => 'term_id',
+                        'terms'            => $idCat,
+                        'include_children' => true,
+                    ],
+                ],
             ]);
             if ($post_query->have_posts()) :
                 while ($post_query->have_posts()) : $post_query->the_post();

@@ -63,7 +63,8 @@ footer.footer {
 
             .name {
                 margin-bottom: 1rem;
-                font-size: 2rem;
+                font-size: 1.5rem;
+                text-transform: uppercase;
             }
 
             .info {
@@ -89,7 +90,7 @@ footer.footer {
                     page-break-inside: avoid;
 
                     a {
-                        font-size: 1.6rem;
+                        font-size: 1.3rem;
                         text-decoration: none;
                         transition: text-decoration 0.3s linear;
 
@@ -106,7 +107,7 @@ footer.footer {
 
             .information {
                 margin-bottom: 1.5rem;
-                font-size: 1.6rem;
+                font-size: 1.3rem;
                 text-align: end;
 
                 @include mediaMaxWidth($md) {

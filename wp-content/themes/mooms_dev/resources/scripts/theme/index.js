@@ -17,6 +17,23 @@ import 'swiper/swiper-bundle.min';
 import Swiper from 'swiper/swiper-bundle.min';
 
 // import "@fancyapps/fancybox/dist/jquery.fancybox.min";
+
+// Lắng nghe sự kiện click trên các thẻ có class "smooth-scroll"
+document.querySelectorAll('.smooth-scroll').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        // Lấy id của phần tử mà link trỏ tới
+        const target = document.querySelector(this.getAttribute('href'));
+
+        // Thực hiện scroll smooth đến phần tử đó
+        target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start' // Đảm bảo phần tử được scroll đến ở đầu trang
+        });
+    });
+});
+
 jQuery(document).ready(function () {
     //turn off go to internal link at current tab
     $('a[target="_blank"]').on('click', function(e) {

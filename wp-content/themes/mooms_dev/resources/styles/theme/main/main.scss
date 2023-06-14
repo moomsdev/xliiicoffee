@@ -27,8 +27,8 @@ section {
         &.fs-43 {
             font-size: 4.3rem;
 
-            @include mediaMaxWidth($md) {
-                font-size: 2.8rem;
+            @include mediaMaxWidth($xl) {
+                font-size: 3.5rem;
             }
 
             @include mediaMaxWidth($sm) {

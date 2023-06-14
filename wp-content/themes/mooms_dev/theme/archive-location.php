@@ -8,6 +8,8 @@
  *
  * @package WPEmergeTheme
  */
+// $current_term = get_queried_object();
+// $slugCat = $current_term->slug;
 ?>
 <div class="page-listing locations">
     <div class="container-fluid">
@@ -20,6 +22,7 @@
             <div class="categories">
                 <ul>
                     <?php
+
                     $locationCats = get_terms('location_cat', [
                         'hide_empty' => true,
                         'parent'   => 0,
@@ -28,7 +31,7 @@
                         $current_category = is_tax('location_cat', $locationCat->slug);
                         ?>
                         <li>
-                            <a class="nav-link <?php echo $current_category ? 'active' : ''; ?>"  href="<?php echo $locationCat->slug ?>"><?php echo $locationCat->name ?></a>
+                            <a class="nav-link <?php echo $current_category ? 'active' : ''; ?>"  href="<?php echo get_term_link($locationCat) ?>"><?php echo $locationCat->name ?></a>
                         </li>
                     <?php
                     endforeach;
@@ -42,6 +45,9 @@
                     while (have_posts()) : the_post();
                         $type = getPostMeta('location_type');
                         $address = getPostMeta('location_detail');
+
+                        $ancestors = get_post_ancestors($post->ID);
+                        if (empty($ancestors)) :
                         ?>
                         <div class="col-12 col-lg-6 location-item">
                             <div class="location-bg" style="background-image: url('<?php thePostThumbnailUrl(); ?>')">
@@ -57,7 +63,8 @@
                                 </div>
                             </div>
                         </div>
-                    <?php
+                <?php
+                        endif;
                     endwhile;
                     wp_reset_postdata();
                 endif;
