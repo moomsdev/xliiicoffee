@@ -33,8 +33,12 @@
 
     .related-articles {
         h4 {
-            padding-top: 3rem;
+            padding-top: 5rem;
             border-top: 1px solid #000;
+
+            @include mediaMaxWidth($sm) {
+                padding-top: 3rem;
+            }
         }
 
         .list-articles {
@@ -71,6 +75,16 @@
                 }
             }
 
+        }
+    }
+
+    .new-articles {
+        .categories {
+            ul {
+                li {
+                    padding: 0 1rem;
+                }
+            }
         }
     }
 
@@ -478,27 +492,27 @@
         }
 
         h3 {
-            margin-top: 3rem;
-            margin-bottom: 3rem;
+            margin-top: 5rem;
+            margin-bottom: 5rem;
             font-size: 2.4rem;
             line-height: 1.8em;
             text-transform: uppercase;
 
             @include mediaMaxWidth($sm) {
-                margin-top: 2.5rem;
-                margin-bottom: 2.5rem;
+                margin-top: 3rem;
+                margin-bottom: 3rem;
                 font-size: 2.2rem;
             }
         }
 
         h4 {
-            margin-top: 2.5rem;
-            margin-bottom: 2.5rem;
+            margin-top: 5rem;
+            margin-bottom: 3rem;
             font-size: 2rem;
             text-transform: uppercase;
 
             @include mediaMaxWidth($sm) {
-                margin-top: 2rem;
+                margin-top: 3rem;
                 margin-bottom: 2rem;
                 font-size: 1.8rem;
             }
@@ -700,7 +714,7 @@
             .inner {
                 margin-top: 3rem;
                .title-cbs {
-                   padding-top: 3rem;
+                   padding-top: 5rem;
                    border-top: 1px solid #000;
 
                    @include mediaMaxWidth($sm) {
@@ -856,8 +870,6 @@
         }
     }
 
-
-
     //Single journal
     &.single-journal {
         .content-blocks {
@@ -912,16 +924,24 @@
                     }
 
                     .desc-post {
-                        @include  limitLine(3);
+                        @include  limitLine(2);
                     }
                 }
             }
         }
 
         h1 {
-            margin-bottom: 2.5rem;
+            margin-bottom: 5rem;
             padding-right: unset;
             font-size: 3.5rem;
+
+            @include mediaMaxWidth($md) {
+                margin-bottom: 3rem;
+            }
+        }
+
+        .desc-post {
+            margin-bottom: 3rem;
         }
     }
 

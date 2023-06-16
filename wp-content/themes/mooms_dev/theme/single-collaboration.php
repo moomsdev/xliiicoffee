@@ -412,7 +412,7 @@ $content_blocks = getPostMeta('content_blocks');
                                         echo '<a href=" ' . $url_img_cbs . ' ">';
                                     endif;
                                     ?>
-                                        <figure class="<?php echo $typeImage = ( $type_img_cbs == 'ratio' ) ? 'media' : 'media-original'; ?>">
+                                        <figure class="text-center <?php echo $typeImage = ( $type_img_cbs == 'ratio' ) ? 'media' : 'media-original'; ?>">
                                             <img src="<?php echo getImageUrlById($image) ?>" alt="<?php echo get_the_title($image); ?>">
                                         </figure>
                                     <?php
