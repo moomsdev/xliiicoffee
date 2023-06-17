@@ -290,7 +290,7 @@
         .find-the-origin {
             .item {
                 display: grid;
-                grid-template-columns: 30% 70%;
+                grid-template-columns: 40% 60%;
                 gap: 1.5rem;
 
                 margin-bottom: 3.5rem;
@@ -305,6 +305,12 @@
                 }
 
                 .content {
+                    padding-right: 10rem;
+
+                    @include mediaMaxWidth($md) {
+                        padding-right: 5rem;
+                    }
+
                     .categories {
                         padding: 0;
                         margin-bottom: 1.5rem;
@@ -312,6 +318,10 @@
 
                     .title-post {
                         margin-bottom: 1.5rem;
+                    }
+
+                    .desc-post {
+                        @include  limitLine(2);
                     }
                 }
             }
@@ -325,6 +335,13 @@
 
                     @include mediaMaxWidth($xl) {
                         margin-bottom: 0;
+                    }
+
+                    .content {
+                        padding-right: 40%;
+                        @include mediaMaxWidth($lg) {
+                            padding-right: 0;
+                        }
                     }
 
                     .item-media {

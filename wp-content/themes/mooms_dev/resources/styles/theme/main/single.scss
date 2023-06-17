@@ -79,10 +79,43 @@
     }
 
     .new-articles {
-        .categories {
-            ul {
-                li {
-                    padding: 0 1rem;
+        margin-top: 4rem;
+        padding-top: 2.5rem;
+        border-top: 1px solid #000;
+        .item {
+            display: grid;
+            grid-template-columns: 40% 60%;
+            gap: 1.5rem;
+
+            margin-bottom: 3.5rem;
+
+            @include mediaMaxWidth($sm) {
+                margin-bottom: 2.5rem;
+            }
+
+            .media {
+                padding-bottom: 65.1%;
+                max-width: 31.8rem;
+            }
+
+            .content {
+                padding-right: 10rem;
+
+                h4 {
+                    margin-top: 0;
+                }
+
+                .categories {
+                    padding: 0;
+                    margin-bottom: 1.5rem;
+                }
+
+                .title-post {
+                    margin-bottom: 1.5rem;
+                }
+
+                .desc-post {
+                    @include  limitLine(2);
                 }
             }
         }
@@ -887,48 +920,7 @@
             }
         }
 
-        .new-articles {
-            margin-top: 4rem;
-            padding-top: 2.5rem;
-            border-top: 1px solid #000;
-            .item {
-                display: grid;
-                grid-template-columns: 35% 65%;
-                gap: 1.5rem;
 
-                margin-bottom: 3.5rem;
-
-                @include mediaMaxWidth($sm) {
-                    margin-bottom: 2.5rem;
-                }
-
-                .media {
-                    padding-bottom: 65.1%;
-                    max-width: 31.8rem;
-                }
-
-                .content {
-                    padding-right: 10rem;
-
-                    h4 {
-                        margin-top: 0;
-                    }
-
-                    .categories {
-                        padding: 0;
-                        margin-bottom: 1.5rem;
-                    }
-
-                    .title-post {
-                        margin-bottom: 1.5rem;
-                    }
-
-                    .desc-post {
-                        @include  limitLine(2);
-                    }
-                }
-            }
-        }
 
         h1 {
             margin-bottom: 5rem;

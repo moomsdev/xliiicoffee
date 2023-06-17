@@ -38,6 +38,7 @@
 
                                 <?php
                                 global $product;
+                                $product = wc_get_product(get_the_ID());
                                 $desc = apply_filters( 'the_content', $product->get_description() );
                                 if ( $desc ) :
                                     ?>

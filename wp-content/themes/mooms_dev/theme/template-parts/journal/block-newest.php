@@ -10,9 +10,10 @@
         <?php
         // Show the last 2 posts
         $post_query = new WP_Query([
-            'post_type'        => get_post_type(),
+            'post_type'        => 'journal',
             'posts_per_page'   => 2,
             'post_status'      => 'publish',
+            'orderby'          => 'date',
             'order'            => 'DESC',
         ]);
 

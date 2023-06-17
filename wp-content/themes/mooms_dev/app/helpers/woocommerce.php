@@ -258,19 +258,26 @@ function getProductPrice(WC_Product $product)
     $regularPrice = $product->get_regular_price();
     $salePrice    = $product->get_sale_price();
 
-    if ( !empty($salePrice) ) :
+    if ( !empty($salePrice) && !empty($regularPrice) ) :
     ?>
         <div class="price-product">
             <span class="price regular-price"><?php echo number_format($regularPrice,0,",","."); ?> VND</span>
             <span class="price sale-price"><?php echo number_format($salePrice,0,",","."); ?> VND</span>
         </div>
     <?php
-        else:
+    elseif ( empty($salePrice) && !empty($regularPrice) ) :
     ?>
         <div class="price-product">
             <span class="price regular-price"><?php echo number_format($regularPrice,0,",","."); ?> VND</span>
         </div>
     <?php
+    else:
+    ?>
+        <div class="price-product">
+            <span class="price regular-price"><?php echo __('Liên hệ','gaumap')?></span>
+        </div>
+    <?php
+
     endif;
 
     return $regularPrice;
@@ -281,5 +288,5 @@ function theProductPrice()
     /**
      * @var \WC_Product $product
      */ global $product;
-    $price = number_format(getProductPrice($product),0,",",".");
+    $price = getProductPrice($product);
 }

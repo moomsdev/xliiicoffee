@@ -74,6 +74,7 @@ endif;
                             'post_type'        => $cpt,
                             'posts_per_page'   => 8,
                             'post_status'      => 'publish',
+                            'orderby'          => 'date',
                             'order'            => 'DESC',
                         ]);
 

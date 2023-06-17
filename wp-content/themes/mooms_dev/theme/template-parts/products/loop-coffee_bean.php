@@ -1,6 +1,5 @@
 <?php
 global $product;
-$product = wc_get_product(get_the_ID());
 ?>
 <section class="coffee-bean">
     <div class="row">
@@ -18,7 +17,8 @@ $product = wc_get_product(get_the_ID());
                 $varieties = get_the_terms(get_the_ID(), 'variety_cat');
                 $origin = getPostMeta('origin',$post['id']);
                 $region = getPostMeta('region',$post['id']);
-                $desc = apply_filters( 'the_content', $product->get_description() );
+                $product = wc_get_product(get_the_ID());
+                $descCoffee = apply_filters( 'the_content', $product->get_description() );
         ?>
                 <div class="item <?php echo $fistPost = ($post_query->current_post == 0) ? 'col-12' : 'col-12 col-sm-6 col-lg-4 col-xl-3'; ?>">
 
@@ -78,10 +78,10 @@ $product = wc_get_product(get_the_ID());
 
                             <?php
                             if ( $post_query->current_post == 0 ) :
-                                if ( $desc ) :
+                                if ( $descCoffee ) :
                                     ?>
                                     <div class="desc-post">
-                                        <?php echo $desc; ?>
+                                        <?php echo $descCoffee; ?>
                                     </div>
                                 <?php
                                 endif;

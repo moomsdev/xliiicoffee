@@ -1,6 +1,5 @@
 <?php
 global $product;
-$product = wc_get_product(get_the_ID());
 ?>
 <section class="coffee-bean">
     <div class="title-link">
@@ -65,6 +64,8 @@ $product = wc_get_product(get_the_ID());
                 $varieties = get_the_terms(get_the_ID(), 'variety_cat');
                 $origin = getPostMeta('origin',$post['id']);
                 $region = getPostMeta('region',$post['id']);
+                $product = wc_get_product(get_the_ID());
+                $desc = apply_filters( 'the_content', $product->get_description() );
         ?>
 
                 <div class="item <?php echo $fistPost = ($post_count  == 0) ? 'first-post col-12' : 'col-12 col-sm-6 col-lg-4 col-xl-3'; ?>">
@@ -123,8 +124,7 @@ $product = wc_get_product(get_the_ID());
                         ?>
 
                         <?php
-                        global $product;
-                        $desc = apply_filters( 'the_content', $product->get_description() );
+
                         if ( $post_count == 0 ) :
                             if ( $desc ) :
                             ?>

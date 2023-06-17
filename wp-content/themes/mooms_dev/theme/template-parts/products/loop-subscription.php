@@ -1,3 +1,6 @@
+<?php
+global $product;
+?>
 <section class="subscription">
     <div class="row">
         <div class="col-12 title-link">
@@ -22,10 +25,9 @@
                                         <h3 class="title-post"><?php theTitle(); ?>  </h3>
                                     </a>
 
-                                    <?php theProductPrice(); ?>
+                                    <?php theProductPrice($product); ?>
 
                                     <?php
-                                    global $product;
                                     $desc = apply_filters( 'the_content', $product->get_description() );
                                     if ( $desc ) :
                                         ?>
@@ -53,10 +55,10 @@
                                 <h3 class="title-post"><?php theTitle(); ?>  </h3>
                             </a>
 
-                            <?php theProductPrice(); ?>
+                            <?php theProductPrice($product); ?>
 
                             <?php
-                            global $product;
+                            $product = wc_get_product(get_the_ID());
                             $desc = apply_filters( 'the_content', $product->get_description() );
                             if ( $desc ) :
                             ?>
