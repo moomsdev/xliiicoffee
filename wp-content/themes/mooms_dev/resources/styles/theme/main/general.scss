@@ -45,7 +45,12 @@ h6::selection,
 a::selection,
 p::selection,
 span::selection,
-img::selection {
+img::selection,
+label::selection,
+li::selection,
+button::selection,
+input::selection,
+bdi::selection {
     color: #fff;
     background-color: #000;
 }

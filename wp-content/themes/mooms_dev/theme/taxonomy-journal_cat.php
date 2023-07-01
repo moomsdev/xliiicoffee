@@ -10,7 +10,7 @@
  */
 $current_term = get_queried_object();
 ?>
-<div class="page-listing products">
+<div class="page-listing journal">
     <div class="container-fluid">
         <?php
             $titleCat = $current_term->name;
@@ -18,35 +18,39 @@ $current_term = get_queried_object();
             $idCat = $current_term->term_id;
             $displayType = carbon_get_term_meta($idCat, 'journal_display_type');
 
-        if ($displayType == "find") :
-
-            $template_path = 'template-parts/journal/loop-tax-find.php';
-            if (file_exists(get_template_directory() . '/' . $template_path)) :
-                include(get_template_directory() . '/' . $template_path);
-            endif;
-
-        elseif ($displayType == "protect") :
-
-            $template_path = 'template-parts/journal/loop-tax-protect.php';
-            if (file_exists(get_template_directory() . '/' . $template_path)) :
-                include(get_template_directory() . '/' . $template_path);
-            endif;
-
-        elseif ($displayType == "describe") :
-
-            $template_path = 'template-parts/journal/loop-tax-describe.php';
-            if (file_exists(get_template_directory() . '/' . $template_path)) :
-                include(get_template_directory() . '/' . $template_path);
-            endif;
-
-        else :
-
-            $template_path = 'template-parts/journal/loop-tax-taste.php';
-            if (file_exists(get_template_directory() . '/' . $template_path)) :
-                include(get_template_directory() . '/' . $template_path);
-            endif;
-
+        $template_path = 'template-parts/journal/loop-tax.php';
+        if (file_exists(get_template_directory() . '/' . $template_path)) :
+            include(get_template_directory() . '/' . $template_path);
         endif;
+        // if ($displayType == "find") :
+        //
+        //     $template_path = 'template-parts/journal/loop-tax-find.php';
+        //     if (file_exists(get_template_directory() . '/' . $template_path)) :
+        //         include(get_template_directory() . '/' . $template_path);
+        //     endif;
+        //
+        // elseif ($displayType == "protect") :
+        //
+        //     $template_path = 'template-parts/journal/loop-tax-protect.php';
+        //     if (file_exists(get_template_directory() . '/' . $template_path)) :
+        //         include(get_template_directory() . '/' . $template_path);
+        //     endif;
+        //
+        // elseif ($displayType == "describe") :
+        //
+        //     $template_path = 'template-parts/journal/loop-tax-describe.php';
+        //     if (file_exists(get_template_directory() . '/' . $template_path)) :
+        //         include(get_template_directory() . '/' . $template_path);
+        //     endif;
+        //
+        // else :
+        //
+        //     $template_path = 'template-parts/journal/loop-tax-taste.php';
+        //     if (file_exists(get_template_directory() . '/' . $template_path)) :
+        //         include(get_template_directory() . '/' . $template_path);
+        //     endif;
+        //
+        // endif;
         ?>
     </div>
 </div>

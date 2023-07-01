@@ -49,18 +49,9 @@
 
                 </div>
 
-                <div class="item-media">
-                    <figure class="media">
-                        <a href="<?php the_permalink(); ?>">
-                            <img src="<?php thePostThumbnailUrl(); ?>" alt="<?php theTitle(); ?>">
-                        </a>
-                    </figure>
-                </div>
-            </div>
-            <div class="col-12 col-lg-6 right-column">
                 <?php
                 if ( $largeImg ) :
-                ?>
+                    ?>
                     <div class="item-media">
                         <figure class="media">
                             <a href="<?php the_permalink(); ?>">
@@ -71,6 +62,16 @@
                 <?php
                 endif;
                 ?>
+
+            </div>
+            <div class="col-12 col-lg-6 right-column">
+                <div class="item-media">
+                    <figure class="media">
+                        <a href="<?php the_permalink(); ?>">
+                            <img src="<?php thePostThumbnailUrl(); ?>" alt="<?php theTitle(); ?>">
+                        </a>
+                    </figure>
+                </div>
             </div>
         </div>
     <?php

@@ -81,9 +81,17 @@
                     <div class="right-menu">
                         <ul>
                             <li ><?php theLanguageSwitcher() ?></li>
-                            <!--<li><a href="#"><img src="--><?php //theAsset('/icon/icon-search.png'); ?><!--" alt="search"></a></li>-->
+                            <li>
+                                <button type="button" data-bs-toggle="modal" data-bs-target="#search">
+                                    <img src="<?php theAsset('/icon/icon-search.png'); ?>" alt="search">
+                                </button>
+                            </li>
                             <!--<li><a href="#"><img src="--><?php //theAsset('/icon/icon-user.png'); ?><!--" alt="search"></a></li>-->
-                            <!--<li><a href="#"><img src="--><?php //theAsset('/icon/icon-cart.png'); ?><!--" alt="search"></a></li>-->
+                            <li>
+                                <button type="button" data-bs-toggle="modal" data-bs-target="#cart">
+                                    <img src="<?php theAsset('/icon/icon-cart.png'); ?>" alt="cart">
+                                </button>
+                            </li>
                         </ul>
                     </div>
                 </div>

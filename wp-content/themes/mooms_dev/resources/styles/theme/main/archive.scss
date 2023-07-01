@@ -2,6 +2,10 @@
     // Products
     &.products {
 
+        img {
+            object-position: center center;
+        }
+
         .subscription {
 
             .row:nth-child(2) {
@@ -288,6 +292,7 @@
         }
 
         .find-the-origin {
+
             .item {
                 display: grid;
                 grid-template-columns: 40% 60%;
@@ -296,12 +301,17 @@
                 margin-bottom: 3.5rem;
 
                 @include mediaMaxWidth($sm) {
-                    margin-bottom: 2.5rem;
+                    grid-template-columns: 1fr;
+                    margin-bottom: 3.5rem;
                 }
 
                 .media {
                     padding-bottom: 65.1%;
                     max-width: 31.8rem;
+
+                    @include mediaMaxWidth($sm) {
+                        max-width: 100%;
+                    }
                 }
 
                 .content {
@@ -309,6 +319,9 @@
 
                     @include mediaMaxWidth($md) {
                         padding-right: 5rem;
+                    }
+                    @include mediaMaxWidth($sm) {
+                        padding-right: 0;
                     }
 
                     .categories {
@@ -335,6 +348,9 @@
 
                     @include mediaMaxWidth($xl) {
                         margin-bottom: 0;
+                    }
+                    @include mediaMaxWidth( $lg ) {
+                        order: 2;
                     }
 
                     .content {
@@ -368,6 +384,10 @@
                 }
 
                 .right-column {
+                    @include mediaMaxWidth( $lg ) {
+                        order: 1;
+                    }
+
                     .item-media {
                         height: 100%;
 
@@ -390,20 +410,21 @@
             .items {
                 display: grid;
                 grid-template-columns: 1fr 2fr 1fr;
-                column-gap: 9rem;
-
-                @include mediaMaxWidth($xl) {
-                    column-gap: 5rem;
-                }
+                column-gap: 3rem;
 
                 @include mediaMaxWidth($lg) {
-                    grid-template-columns: 1fr 1fr;
+                    grid-template-columns: 1fr;
                 }
 
                 .item {
                     display: block;
 
                     &:first-child {
+
+                        @include mediaMaxWidth( $sm ) {
+                            margin-bottom: 0;
+                        }
+
                         .inner-item {
                             display: block;
 
@@ -411,32 +432,94 @@
                                 margin-bottom: 2rem;
                                 padding-bottom: 100%;
                                 max-width: 100%;
+
+                                @include mediaMaxWidth($sm) {
+                                    padding-bottom: 65.1%;
+                                }
+                            }
+
+                            .desc-post {
+                                -webkit-line-clamp: unset;
+
+                                @include mediaMaxWidth( $sm ) {
+                                    @include limitLine(2);
+                                }
                             }
                         }
                     }
 
+                    &:nth-child(2) {
+                       .inner-item {
+                           @include mediaMaxWidth( $sm ) {
+                               grid-template-columns: 1fr;
+                               .content {
+                                   padding-right: 0;
+                               }
+                           }
+                       }
+                    }
+
                     &:last-child {
+                        display: flex;
+                        flex-wrap: wrap;
+                        align-content: space-between;
+
                         .inner-item {
                             display: block;
 
                             .item-media {
                                 display: none;
                             }
-                        }
 
+                            .content {
+                                padding-right: 0;
+                            }
+                        }
                     }
 
                     .inner-item {
                         display: grid;
-                        grid-template-columns: 35% 63%;
-                        gap: 1.5rem;
+                        grid-template-columns: 45% 55%;
+                        gap: 3rem;
                         margin-bottom: 3.5rem;
 
                         @include mediaMaxWidth($lg) {
                             grid-template-columns: 1fr 1fr;
+                            gap: 1.5rem;
+                        }
+
+                        figure.media {
+                            max-width: 100%;
+                        }
+
+                        .content {
+                            padding-right: 5rem;
                         }
                     }
                 }
+            }
+        }
+
+        .describe-the-origin {
+            .post-items {
+                .post-item {
+                    .post-item__inner {
+                        .inner__content {
+                            .desc-post {
+                                @include  limitLine(2);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .find-the-origin,
+        .protect-the-origin,
+        .taste-the-origin,
+        .describe-the-origin {
+            @include mediaMaxWidth($sm) {
+                border-top: 1px solid #000;
             }
         }
 
@@ -554,3 +637,5 @@
         }
     }
 }
+
+

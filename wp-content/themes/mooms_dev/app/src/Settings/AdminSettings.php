@@ -383,7 +383,7 @@ class AdminSettings {
 								<div style="position: relative;">
 									<div style="text-align:center">
 										<a target="_blank" href="' . AUTHOR['website'] . '">
-											<img style="width:50%" src="' . AUTHOR['logo_color_url'] . '" alt="' . AUTHOR['name'] . '">
+											<img style="width:50%" src="' .  get_site_url() . "/wp-content/themes/mooms_dev/resources/images/dev/moomsdev-black.png" . '" alt="' . AUTHOR['name'] . '">
 										</a>
 									</div>
 									<h1 style="text-align: center; text-transform: uppercase">Sorry, you do not have access to this content</h1>

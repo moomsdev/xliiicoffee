@@ -19,32 +19,20 @@ section {
 
     .title-post {
 
+        margin-bottom: 2rem;
+
         &:hover {
             color: #000;
             text-decoration: underline;
         }
 
         &.fs-43 {
-            font-size: 4.3rem;
+            font-size: 2rem;
 
-            @include mediaMaxWidth($xl) {
-                font-size: 3.5rem;
-            }
-
-            @include mediaMaxWidth($sm) {
-                font-size: 2.4rem;
-            }
         }
         &.fs-30 {
-            font-size: 2.5rem;
+            font-size: 2rem;
 
-            @include mediaMaxWidth($md) {
-                font-size: 2.8rem;
-            }
-
-            @include mediaMaxWidth($sm) {
-                font-size: 2.4rem;
-            }
         }
 
     }
@@ -76,6 +64,14 @@ section {
 
 .title-post {
     text-transform: uppercase;
+}
+
+.title-result {
+    margin-bottom: 3.5rem;
+
+    @include mediaMaxWidth( $md ) {
+        margin-bottom: 2rem;
+    }
 }
 
 .title-blocks {
@@ -197,8 +193,12 @@ figure.media {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        object-position: center center;
+        object-position: left center;
         transition: all .5s;
+
+        &.product-img {
+            object-position: center center;
+        }
     }
 }
 
@@ -259,4 +259,38 @@ figure.media {
 
 }
 
+.pagination {
+    ul.pagination {
+        margin: 0 auto;
+        column-gap: 1.2rem;
 
+        li.page-item {
+            padding: 0 2px;
+
+            .page-link {
+                padding: 3px 6px;
+                font-size: 1.3rem;
+                line-height: 1em;
+                color: #000;
+                background: #fff;
+                border-radius: 50%;
+                border: 2px solid #000;
+                transition: all .2s linear;
+
+                &:focus {
+                    box-shadow: none;
+                }
+
+                &.current, &:hover {
+                    color: #fff;
+                    background: #000;
+                }
+
+                &.next, &.prev {
+                    border-radius: 1.5rem;
+                }
+            }
+
+        }
+    }
+}

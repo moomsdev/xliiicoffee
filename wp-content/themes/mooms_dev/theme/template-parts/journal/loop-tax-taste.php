@@ -12,6 +12,19 @@ $product = wc_get_product(get_the_ID());
 
     <div class="row items">
         <?php
+        $post_query = new WP_Query([
+            'post_type' => 'journal',
+            'posts_per_page' => 9, // Số lượng bài viết hiển thị trên mỗi trang
+            'post_status' => 'publish',
+            'tax_query'      => [
+                [
+                    'taxonomy'         => 'journal_cat',
+                    'field'            => 'term_id',
+                    'terms'            => $idCat,
+                    'include_children' => true,
+                ],
+            ],
+        ]);
         if ($post_query->have_posts()) :
             while ($post_query->have_posts()) : $post_query->the_post();
 
@@ -86,8 +99,23 @@ $product = wc_get_product(get_the_ID());
         <?php
 
             endwhile;
+            wp_reset_postdata();
+            // Tạo phân trang
+            $total_pages = $post_query->max_num_pages;
+            if ($total_pages > 1) {
+                $current_page = max(1, get_query_var('paged'));
+                echo '<div class="pagination">';
+                echo paginate_links(array(
+                    'base' => get_pagenum_link(1) . '%_%',
+                    'format' => 'page/%#%',
+                    'current' => $current_page,
+                    'total' => $total_pages,
+                    'prev_text' => __('«'),
+                    'next_text' => __('»'),
+                ));
+                echo '</div>';
+            }
         endif;
-        wp_reset_postdata();
         wp_reset_query();
         ?>
     </div>

@@ -158,7 +158,7 @@
             <?php
             $post_query = new WP_Query([
                 'post_type'      => 'journal',
-                'posts_per_page' => 3,
+                'posts_per_page' => 4,
                 'post_status'    => 'publish',
                 'offset'            => 4,
                 'tax_query'      => [

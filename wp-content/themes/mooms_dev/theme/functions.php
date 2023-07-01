@@ -254,5 +254,12 @@ function tinymce_allow_unsafe_link_target( $mceInit ) {
     return $mceInit;
 }
 
-
+// thay đ sang vnđ
+function change_currency_symbol( $currency_symbol, $currency ) {
+    if ( 'VND' === $currency ) {
+        $currency_symbol = 'VNĐ';
+    }
+    return $currency_symbol;
+}
+add_filter( 'woocommerce_currency_symbol', 'change_currency_symbol', 10, 2 );
 

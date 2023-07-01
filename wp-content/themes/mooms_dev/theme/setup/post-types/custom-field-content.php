@@ -50,8 +50,8 @@ add_action('carbon_fields_register_fields', function () {
 
                          Field::make('radio_image', 'display_type', __('Display type | Kiểu hiển thị', 'gaumap'))
                               ->set_options([
-                                  'style-1' => get_site_url() . '/wp-content/themes/mooms_dev/resources/images/blocks/grid-content-img-type.png',
-                                  'style-2' => get_site_url() . '/wp-content/themes/mooms_dev/resources/images/blocks/grid-card-type.jpg',
+                                  'style-1' => get_site_url() . '/wp-content/themes/mooms_dev/resources/images/blocks/philosophy-block.png',
+                                  'style-2' => get_site_url() . '/wp-content/themes/mooms_dev/resources/images/blocks/philosophy-block-2.png',
                               ]),
 
                          Field::make('text', 'title_philosophy_block', __('Title', 'gaumap'))

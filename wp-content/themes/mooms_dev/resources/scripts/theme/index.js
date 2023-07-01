@@ -35,6 +35,23 @@ document.querySelectorAll('.smooth-scroll').forEach(anchor => {
 });
 
 jQuery(document).ready(function () {
+
+    var searchInput = document.getElementById("search-input");
+    var clearIcon = document.getElementById("clear-icon");
+
+    searchInput.addEventListener("input", function() {
+        if (searchInput.value !== "") {
+            clearIcon.style.opacity = "1";
+        } else {
+            clearIcon.style.opacity = "0";
+        }
+    });
+
+    clearIcon.addEventListener("click", function() {
+        searchInput.value = "";
+        clearIcon.style.opacity = "0";
+    });
+
     //turn off go to internal link at current tab
     $('a[target="_blank"]').on('click', function(e) {
         e.preventDefault();

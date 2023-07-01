@@ -66,21 +66,15 @@ endif;
                         'post_type'        => $cpt,
                         'posts_per_page'   => 1,
                         'post_status'      => 'publish',
+                        'orderby'          => 'date',
                         'order'            => 'DESC',
                     ]);
 
                     if ($post_query->have_posts()) :
                         while ($post_query->have_posts()) : $post_query->the_post();
-                            $imgLarge = getPostMetaImageUrl('large_img');
-
-                            if ($imgLarge) :
-                                $img = $imgLarge;
-                            else:
-                                $img = getPostThumbnailUrl(get_the_ID());
-                            endif;
                             ?>
                                 <figure class="media lg-img">
-                                    <img src="<?php echo $img; ?>" alt="<?php theTitle();?>">
+                                    <img src="<?php echo getPostThumbnailUrl(get_the_ID()) ?>" alt="<?php theTitle();?>">
                                 </figure>
                             <?php
                         endwhile;
@@ -124,6 +118,7 @@ endif;
                             'post_type'        => $cpt,
                             'posts_per_page'   => 2,
                             'post_status'      => 'publish',
+                            'orderby'          => 'date',
                             'order'            => 'DESC',
                         ]);
 
@@ -132,12 +127,6 @@ endif;
                                 $imgLarge = getPostMetaImageUrl('large_img');
                                 $title = get_the_title();
                                 $desc = getPostMeta('description');
-
-                                if ($imgLarge) :
-                                    $img = $imgLarge;
-                                else:
-                                    $img = getPostThumbnailUrl(get_the_ID());
-                                endif;
                                 ?>
 
                                     <div class="post-item">
@@ -158,6 +147,7 @@ endif;
                                                                         </a>
                                                                     </li>
                                                                 <?php
+                                                                break;
                                                                 endforeach;
                                                                 ?>
                                                             </ul>
@@ -178,7 +168,7 @@ endif;
                                             <div class="inner__media">
                                                 <a href="<?php the_permalink(); ?>">
                                                     <figure class="media sm-img">
-                                                        <img src="<?php thePostThumbnailUrl(); ?>" alt="<?php theTitle(); ?>">
+                                                        <img src="<?php echo $imgLarge ?>" alt="<?php theTitle(); ?>">
                                                     </figure>
                                                 </a>
                                             </div>

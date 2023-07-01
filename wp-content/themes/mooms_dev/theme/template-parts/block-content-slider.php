@@ -42,8 +42,11 @@ elseif ( $cpt == 'journal' ) :
 else :
     $tagsCPT = 'product_tag';
     $cptQuery = $product;
+    $classProduct = 'product-img';
 
 endif;
+
+global $product;
 ?>
 <section class="content-slider-block">
     <div class="container-fluid">
@@ -93,10 +96,12 @@ endif;
                                     $taxonomy = "work_with_us_cat";
                                 elseif ( $post_type == 'collaboration' ) :
                                     $taxonomy = "collaboration_cat";
+                                elseif ( $post_type == 'journal' ) :
+                                    $taxonomy = "journal_cat";
                                 endif;
 
                                 $categories = get_the_terms(get_the_ID(), $taxonomy);
-
+                                $productID = wc_get_product(get_the_ID());
                                 $desc = getPostMeta('description');
                         ?>
 
@@ -104,7 +109,7 @@ endif;
                                     <div class="item">
                                         <figure class="media">
                                             <a href="<?php the_permalink(); ?>">
-                                                <img src="<?php thePostThumbnailUrl(); ?>" alt="<?php theTitle(); ?>">
+                                                <img <?php echo $classProduct; ?> src="<?php thePostThumbnailUrl(); ?>" alt="<?php theTitle(); ?>">
                                             </a>
                                         </figure>
 
@@ -143,7 +148,7 @@ endif;
                                             </a>
 
 
-                                            <?php theProductPrice(); ?>
+                                            <?php //theProductPrice($productID); ?>
 
                                             <?php
                                             if ( $origin || $region) :
@@ -182,6 +187,8 @@ endif;
                                 $taxonomy = "work_with_us_cat";
                             elseif ( $post_type == 'collaboration' ) :
                                 $taxonomy = "collaboration_cat";
+                            elseif ( $post_type == 'journal' ) :
+                                $taxonomy = "journal_cat";
                             endif;
 
                             $categories = get_the_terms($post['id'], $taxonomy);
@@ -194,7 +201,7 @@ endif;
                                 <div class="item">
                                     <figure class="media">
                                         <a href="<?php echo get_permalink($post['id']); ?>">
-                                            <img src="<?php echo getPostThumbnailUrl($post['id']); ?>" alt="<?php echo get_the_title($post['id']); ?>">
+                                            <img class="<?php echo $classProduct; ?>" src="<?php echo getPostThumbnailUrl($post['id']); ?>" alt="<?php echo get_the_title($post['id']); ?>">
                                         </a>
                                     </figure>
 
